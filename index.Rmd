@@ -1,0 +1,321 @@
+---
+title: "KSI Portal"
+resource_files:
+  - "./ksi_gene.RData"
+#   - "data/temp_merged_dict.csv"
+output:
+  flexdashboard::flex_dashboard:
+    theme:
+      version: 3
+      bootswatch: cerulean
+    # includes:
+    #   after_body: ./footer.html
+  orientation: columns
+runtime: shiny
+---
+
+
+```{r global, cache=FALSE}
+
+
+library(flexdashboard)
+library(ggplot2)
+library(reshape2)
+library(scales)
+library(tidyverse)
+library(plotly)
+library(FDRestimation)
+library(ggrepel)
+library(hrbrthemes)
+library(dplyr)
+library(shiny)
+library(jsonlite)
+library(DT)
+library(patchwork)
+library(network)
+library(sna)
+library(igraph)
+library(ggraph)
+library(tidygraph)
+library(visNetwork)
+library(stringr)
+library(RColorBrewer)
+library(wesanderson)
+
+shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
+
+ksi_gene <- read.csv('data/ksi_gene.csv')
+
+ksi_gene_t <- data.frame(ksi_gene)
+
+k_to_group <- read.csv('data/k_to_group.csv')
+ks_df <- read.csv('data/ks_df.csv')
+ks_edge_list <- read.csv('data/ks_edge_list.csv')
+ks_group <- read.csv('data/ks_group.csv')
+
+kinase_set <- unique(ksi_gene$Kinase)
+substrate_set <- unique(ksi_gene$Substrate)
+
+ks_set <- unique(ks_group$KS)
+
+ks_id <- 1:length(ks_group$KS)
+ks_node_id_map <- c(as.character(ks_group$id))
+
+
+groups <- unique(ks_group$Group)
+
+# h1 <- hcl.colors(length(groups), palette = "Dynamic")
+# h1 <- wes_palette("Zissou1", 11, type = "continuous")
+h1 <- brewer.pal(n = 11, name = 'Set3')
+ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
+
+# legendNodes <- data.frame(label = groups,
+#                           color.background = h1
+#                           )
+# ksi_gene <- read.csv('data/ksi_gene.csv')
+# print("test")
+# colnames(ksi_gene_t) <- c('From', 'To', 'Group')
+# 
+# k_to_group <- data.frame(ksi_gene[,c('Kinase', 'Group')])
+# k_to_group <- k_to_group %>% distinct(Kinase, Group, .keep_all = TRUE)
+# 
+# 
+# 
+
+
+# ks_df <- data.frame('KS'=ks_set)
+# 
+# colnames(k_to_group)[which(names(k_to_group) == 'Kinase')] <- 'KS'
+# ks_group <- merge(x = ks_df, y = k_to_group, by = "KS",
+#            all = TRUE)
+# 
+# ks_group$Group[is.na(ks_group$Group)] <- 'Non-Kinase'
+
+# ks_group$id <- ks_id
+# 
+# 
+# 
+# 
+# ks_edge_list <- data.frame(ksi_gene_t[,c('From', 'To')])
+
+# names(ks_node_id_map) <- paste0("^", ks_group$KS, "$")
+# ks_edge_list$from <- as.integer(str_replace_all(string = ks_edge_list$From,
+#                                               pattern= ks_node_id_map))
+# 
+# ks_edge_list$to <- as.integer(str_replace_all(string = ks_edge_list$To,
+#                                                 pattern= ks_node_id_map))
+
+```
+
+# Introduction
+
+<!-- # Visualize by Kinase -->
+
+<!-- # Visualize by Substrate -->
+
+# Visualize Kinase-Substrate Interaction
+
+## Select a variable to explore {.sidebar data-width="200"}
+<!-- DEMO: selected kinase = STK11 -->
+```{r, cache = FALSE}
+# renderUI({
+# textInput(inputId = 'inputKinase', label = "Enter the interested Kinase/Substrate: (e.g: ZAP70, ULK1, STK11)", value = "STK11")
+
+selectizeInput(inputId = 'inputKinase', choices=ks_set, label = "Enter the interested Kinase/Substrate: (e.g: ZAP70, ULK1, STK11)", selected = "STK11", multiple = FALSE,
+               options = list(maxItems = 1))
+# })
+actionButton("enterKinase", "Enter")
+```
+
+## Network Visualization {data-width="800"}
+Select the id (kinase name), or the kinase group in the network to see their interaction:
+```{r, cache = FALSE}
+
+input_k <- eventReactive(input$enterKinase, {
+#   if(input$enterKinase){
+# t_k <- 'STK11'
+  input$inputKinase
+})
+
+doubleclicked_K <- observeEvent(input$doubleClickedNode, {
+  # req(input$current_node_id)
+  # if (is.null(input$current_node_id)){
+  #     updateTextInput(inputId = "inputKinase", value = t_k)
+  # }else{
+    # input$current_node_id
+  # print(input$doubleClickedNode)
+  updateTextInput(inputId = "inputKinase",
+                  value = ks_set[input$doubleClickedNode])
+  # }
+  # ks_set[input$doubleClickedNode]
+})
+
+renderVisNetwork({
+# t_k <- 'PRKACA'
+
+req(input_k())
+t_k <- input_k()
+
+if((is.null(t_k)) || (t_k == ".")) {
+  nodes <- data.frame(id = ks_group$id, 
+                      label = ks_group$KS,
+                      group = ks_group$Group,
+                      # value <- size_weight,
+                      title = paste0('Name: ',
+                                     ks_group$KS
+                                     ))
+  
+  edges <- data.frame(from=ks_edge_list$from,
+                      to=ks_edge_list$to,
+                      title = paste0('From: ', ks_edge_list$From, '<br>To: ', ks_edge_list$To))
+    
+    vn <- visNetwork(nodes, edges, height="600px", width = "100%") %>%
+      visLegend(main = "Kinase group", zoom = FALSE) %>% visGroups() %>%
+   # visIgraphLayout(layout = "layout_with_sugiyama") %>%
+      visLayout(randomSeed = 123) %>% 
+      # visInteraction(zoomView = FALSE) %>%
+      visInteraction(navigationButtons = TRUE, hover = TRUE, tooltipDelay = 0) %>%
+      visPhysics(enable=TRUE, stabilization=1000) %>%
+        # visIgraphLayout(layout="layout_in_circle") %>%
+        # visEvents(hoverNode = "function(nodes) {
+        #   Shiny.onInputChange('current_node_id', nodes);
+        # ;}")  %>%
+      visOptions(nodesIdSelection = TRUE, selectedBy = "group", highlightNearest = list(enabled = T, degree=0), collapse = TRUE) %>%  
+      # visOptions(selectedBy = "group") %>%
+      # visGroups(groupname = groups[1], color = h1[1]) %>% 
+      # visEvents(doubleClick = "function(nodes) {
+      #   Shiny.onInputChange('current_node_id', nodes.nodes);
+      #   ;}") %>%
+      visClusteringByGroup(groups=groups) %>%
+    visEdges(arrows = 'to', smooth =T)
+      # visHierarchicalLayout()
+    
+    for(i in 1:length(groups)){
+      vn <- vn %>% visGroups(groupname = groups[i], color = h1[i])
+    }
+    vn
+  }else if(t_k %in% ks_set){
+    # if (t_k %in% kinase_set){
+      subg <- make_ego_graph(ks_ig, order=1, nodes=c(t_k))
+    # }else{
+      # subg <- make_ego_graph(ks_ig, order=1, nodes=c(t_k))
+    # }
+    
+    desired_subset <- NULL
+    for (i in seq_along(subg)){
+        x <- subg[[i]]
+        desired_subset <- graph.union(desired_subset, x)
+    }
+    sel <- as_edgelist(desired_subset)
+    from_included <- unique(sel[,1])
+    # tk_to_list <- ks_edge_list[ks_edge_list$From == t_k, 'To']
+    # from_included <- c(t_k, tk_to_list)
+    ks_group_subnet <- data.frame(ks_group[(ks_group$KS %in% from_included) | (ks_group$KS == t_k),])
+    print(ks_group_subnet)
+    # if (t_k %in% kinase_set){
+      k_from_sublist <- ks_edge_list[ks_edge_list$From %in% from_included,]
+      k_to_sublist <- ks_edge_list[ks_edge_list$To == t_k,]
+      ks_edge_list_subnet <- data.frame(unique(rbind(k_from_sublist,k_to_sublist)))
+    # }
+    
+    size_weight <- as.numeric(ks_group_subnet$KS == t_k)
+    size_weight <- size_weight + 1
+    
+    nodes <- data.frame(id = ks_group_subnet$id, 
+                        label = ks_group_subnet$KS,
+                        group = ks_group_subnet$Group,
+                        value = size_weight,
+                        # shape ="square",
+                        title = paste0('Name: ',
+                                       ks_group_subnet$KS
+                                       ))
+    nodes <- data.frame(rbind(nodes[nodes$label==t_k,],
+                              nodes[nodes$label!=t_k,]
+                              ))
+    
+    edges <- data.frame(from=ks_edge_list_subnet$from,
+                        to=ks_edge_list_subnet$to,
+                        title = paste0('From: ', ks_edge_list_subnet$From, '<br>To: ', ks_edge_list_subnet$To))
+
+    vn <- visNetwork(nodes, edges, height="600px", width = "100%") %>% 
+      # visEdges(color = list(highlight = "blue", hover = "blue")) %>% 
+      # visIgraphLayout(layout = "layout_as_star") %>%
+      visGroups() %>%
+      addFontAwesome() %>%
+      
+   # visIgraphLayout(layout = "layout_with_sugiyama") %>%
+       
+      visLayout(randomSeed = 42) %>% 
+      # visInteraction(zoomView = FALSE) %>%
+      visInteraction(navigationButtons = TRUE, hover = TRUE, tooltipDelay = 0) %>%
+      visPhysics(enable=TRUE, stabilization=100) %>%
+        # visIgraphLayout() %>%
+     
+      # visIgraphLayout(layout="layout_in_circle") %>%
+        visEvents(hoverNode = "function(nodes) {
+          Shiny.onInputChange('current_node_id', nodes);
+        ;}")  %>%
+      visOptions(nodesIdSelection = list(enabled = TRUE), 
+                 selectedBy = "group",
+                 highlightNearest = list(enabled = T, 
+                                         algorithm = "all",
+                                         degree = list(from = 1,
+                                                       to = 1),
+                                         # labelOnly=FALSE,
+                                         hover=TRUE
+                                         )) %>% 
+    # visNodes(scaling = list(label = list(enabled = T))) %>%
+      # visOptions(selectedBy = "group") %>%
+      # visGroups(groupname = groups[1], color = h1[1]) %>% 
+      visEvents(doubleClick = "function(nodes) {
+        Shiny.onInputChange('doubleClickedNode', nodes.nodes);
+        ;}") %>%
+      # visClusteringByGroup(groups=groups) %>%
+    visEdges(arrows = 'to', smooth =T)
+      # visHierarchicalLayout()
+    
+    for(i in 1:length(groups)){
+      vn <- vn %>% visGroups(groupname = groups[i], 
+                             color = h1[i]
+                            )
+    } 
+      vn <- vn %>% visLegend(main = "Kinase group", 
+                             zoom = FALSE
+                             ) 
+    vn
+    # submit_at_clear <- reactiveVal(-1)
+    
+
+  }
+})
+
+# 
+# visNetworkOutput("mynetworkid")
+```
+
+<style type="text/css">
+.nav-tabs-custom .nav-tabs li.active a{
+  font-weight: bold;
+}
+
+.nav-tabs-custom .nav-tabs li:not(.active) a{
+  font-weight: bold;
+}
+body {
+margin-left: 3%; /* Add a left margin to     avoid content overlay */
+margin-right: 3%;
+
+<!-- background-image: url('https://linesteppers.com/tutorials/RMarkdown/img/BannerImage_TreeBlossoms_4470x3024.jpg'); -->
+<!--   background-repeat: no-repeat; -->
+<!--   background-size: 100%; -->
+<!-- padding-top:5px; -->
+}
+
+.chart-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+li {font-size: 15px;}
+
+
+</style>
