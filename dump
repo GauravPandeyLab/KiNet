@@ -1,0 +1,150 @@
+```{r, cache = FALSE}
+
+input_k <- eventReactive(input$enterKinase, {input$inputKinase})
+doubleclicked_K <- observeEvent(input$doubleClickedNode, {
+  updateTextInput(inputId = "inputKinase",value = ks_set[input$doubleClickedNode])
+})
+
+renderVisNetwork({
+#t_k <- 'STK11'
+t_k <- input$inputKinase
+
+#req(input_k())
+#t_k <- input_k()
+#t_k <- reactive({input$inputKinase})
+if((is.null(t_k)) || (t_k == ".")) {
+  nodes <- data.frame(id = ks_group$id, 
+                      label = ks_group$KS,
+                      group = ks_group$Group,
+                      # value <- size_weight,
+                      title = paste0('Name: ',
+                                     ks_group$KS
+                                     ))
+  
+  edges <- data.frame(from=ks_edge_list$from,
+                      to=ks_edge_list$to,
+                      title = paste0('From: ', ks_edge_list$From, '<br>To: ', ks_edge_list$To))
+    
+    vn <- visNetwork(nodes, edges, height="600px", width = "100%") %>%
+      visLegend(main = "Kinase group", zoom = FALSE) %>% visGroups() %>%
+   # visIgraphLayout(layout = "layout_with_sugiyama") %>%
+      visLayout(randomSeed = 123) %>% 
+      # visInteraction(zoomView = FALSE) %>%
+      visInteraction(navigationButtons = TRUE, hover = TRUE, tooltipDelay = 0) %>%
+      visPhysics(enable=TRUE, stabilization=1000) %>%
+        # visIgraphLayout(layout="layout_in_circle") %>%
+        # visEvents(hoverNode = "function(nodes) {
+        #   Shiny.onInputChange('current_node_id', nodes);
+        # ;}")  %>%
+      visOptions(nodesIdSelection = TRUE, selectedBy = "group", highlightNearest = list(enabled = T, degree=0), collapse = TRUE) %>%  
+      # visOptions(selectedBy = "group") %>%
+      # visGroups(groupname = groups[1], color = h1[1]) %>% 
+      # visEvents(doubleClick = "function(nodes) {
+      #   Shiny.onInputChange('current_node_id', nodes.nodes);
+      #   ;}") %>%
+      visClusteringByGroup(groups=groups) %>%
+    visEdges(arrows = 'to', smooth =T)
+      # visHierarchicalLayout()
+    
+    for(i in 1:length(groups)){
+      vn <- vn %>% visGroups(groupname = groups[i], color = h1[i])
+    }
+    vn
+  }else if(t_k %in% ks_set){
+    # if (t_k %in% kinase_set){
+      subg <- make_ego_graph(ks_ig, order=1, nodes=c(t_k))
+    # }else{
+      # subg <- make_ego_graph(ks_ig, order=1, nodes=c(t_k))
+    # }
+    
+    desired_subset <- NULL
+    for (i in seq_along(subg)){
+        x <- subg[[i]]
+        desired_subset <- graph.union(desired_subset, x)
+    }
+    sel <- as_edgelist(desired_subset)
+    from_included <- unique(sel[,1])
+    # tk_to_list <- ks_edge_list[ks_edge_list$From == t_k, 'To']
+    # from_included <- c(t_k, tk_to_list)
+    ks_group_subnet <- data.frame(ks_group[(ks_group$KS %in% from_included) | (ks_group$KS == t_k),])
+    print(ks_group_subnet)
+    # if (t_k %in% kinase_set){
+      k_from_sublist <- ks_edge_list[ks_edge_list$From %in% from_included,]
+      k_to_sublist <- ks_edge_list[ks_edge_list$To == t_k,]
+      ks_edge_list_subnet <- data.frame(unique(rbind(k_from_sublist,k_to_sublist)))
+    # }
+    
+    size_weight <- as.numeric(ks_group_subnet$KS == t_k)
+    size_weight <- size_weight + 1
+    
+    nodes <- data.frame(id = ks_group_subnet$id, 
+                        label = ks_group_subnet$KS,
+                        group = ks_group_subnet$Group,
+                        value = size_weight,
+                        # shape ="square",
+                        title = paste0('Name: ',
+                                       ks_group_subnet$KS
+                                       ))
+    nodes <- data.frame(rbind(nodes[nodes$label==t_k,],
+                              nodes[nodes$label!=t_k,]
+                              ))
+    
+    edges <- data.frame(from=ks_edge_list_subnet$from,
+                        to=ks_edge_list_subnet$to,
+                        title = paste0('From: ', ks_edge_list_subnet$From, '<br>To: ', ks_edge_list_subnet$To))
+
+    vn <- visNetwork(nodes, edges, height="600px", width = "100%") %>% 
+      # visEdges(color = list(highlight = "blue", hover = "blue")) %>% 
+      # visIgraphLayout(layout = "layout_as_star") %>%
+      visGroups() %>%
+      addFontAwesome() %>%
+      
+   # visIgraphLayout(layout = "layout_with_sugiyama") %>%
+       
+      visLayout(randomSeed = 42) %>% 
+      # visInteraction(zoomView = FALSE) %>%
+      visInteraction(navigationButtons = TRUE, hover = TRUE, tooltipDelay = 0) %>%
+      visPhysics(enable=TRUE, stabilization=100) %>%
+        # visIgraphLayout() %>%
+     
+      # visIgraphLayout(layout="layout_in_circle") %>%
+        visEvents(hoverNode = "function(nodes) {
+          Shiny.onInputChange('current_node_id', nodes);
+        ;}")  %>%
+      visOptions(nodesIdSelection = list(enabled = TRUE), 
+                 selectedBy = "group",
+                 highlightNearest = list(enabled = T, 
+                                         algorithm = "all",
+                                         degree = list(from = 1,
+                                                       to = 1),
+                                         # labelOnly=FALSE,
+                                         hover=TRUE
+                                         )) %>% 
+    # visNodes(scaling = list(label = list(enabled = T))) %>%
+      # visOptions(selectedBy = "group") %>%
+      # visGroups(groupname = groups[1], color = h1[1]) %>% 
+      visEvents(doubleClick = "function(nodes) {
+        Shiny.onInputChange('doubleClickedNode', nodes.nodes);
+        ;}") %>%
+      # visClusteringByGroup(groups=groups) %>%
+    visEdges(arrows = 'to', smooth =T)
+      # visHierarchicalLayout()
+    
+    for(i in 1:length(groups)){
+      vn <- vn %>% visGroups(groupname = groups[i], 
+                             color = h1[i]
+                            )
+    } 
+      vn <- vn %>% visLegend(main = "Kinase group", 
+                             zoom = FALSE
+                             ) 
+    vn
+    # submit_at_clear <- reactiveVal(-1)
+    
+
+  }
+})
+
+# 
+# visNetworkOutput("mynetworkid")
+```

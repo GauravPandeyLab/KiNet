@@ -42,7 +42,7 @@ colnames(k_to_group)[which(names(k_to_group) == 'Kinase')] <- 'KS'
 ks_group <- merge(x = ks_df, y = k_to_group, by = "KS",
                   all = TRUE)
 
-ks_group$Group[is.na(ks_group$Group)] <- 'Non-Kinase'
+ks_group$Group[is.na(ks_group$Group)] <- 'Non-kinase'
 ks_id <- 1:length(ks_group$KS)
 ks_group$id <- ks_id
 
@@ -57,3 +57,18 @@ ks_edge_list$from <- as.integer(str_replace_all(string = ks_edge_list$From,
 
 ks_edge_list$to <- as.integer(str_replace_all(string = ks_edge_list$To,
                                               pattern= ks_node_id_map))
+
+ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
+subg <- make_ego_graph(ks_ig, order=1, nodes=c('STK11'))[[1]]
+#visIgraph(subg[[1]])
+
+
+group_colors <- c("#1f77b4ff","#ff7f0eff","#2ca02cff","#d62728ff","#9467bdff","#c49c94ff","#f7b6d2ff","#c7c7c7ff","#dbdb8dff","#9edae5ff","#808080ff")
+group_names <- c("TK","OTHER","CAMK","CMGC","AGC","STE","TKL","ATYPICAL","CK1","RGC","Non-kinase")
+
+get_color <- function(name){
+  gp = ks_group$Group[which(ks_group$KS == name)]
+  group_colors[which(group_names == gp)]
+}
+
+V(subg)$color = sapply(V(subg)$name,get_color)
