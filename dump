@@ -24,7 +24,7 @@ if((is.null(t_k)) || (t_k == ".")) {
   edges <- data.frame(from=ks_edge_list$from,
                       to=ks_edge_list$to,
                       title = paste0('From: ', ks_edge_list$From, '<br>To: ', ks_edge_list$To))
-    
+    unp
     vn <- visNetwork(nodes, edges, height="600px", width = "100%") %>%
       visLegend(main = "Kinase group", zoom = FALSE) %>% visGroups() %>%
    # visIgraphLayout(layout = "layout_with_sugiyama") %>%

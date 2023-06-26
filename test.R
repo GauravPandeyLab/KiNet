@@ -19,6 +19,7 @@ library(ggraph)
 library(tidygraph)
 library(visNetwork)
 library(stringr)
+library(purrr)
 
 ksi_gene <- read.csv('data/ksi_gene.csv')
 
@@ -59,7 +60,7 @@ ks_edge_list$to <- as.integer(str_replace_all(string = ks_edge_list$To,
                                               pattern= ks_node_id_map))
 
 ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
-subg <- make_ego_graph(ks_ig, order=1, nodes=c('STK11'))[[1]]
+#subg <- make_ego_graph(ks_ig, order=1, nodes=c('STK11'))[[1]]
 #visIgraph(subg[[1]])
 
 
@@ -70,5 +71,9 @@ get_color <- function(name){
   gp = ks_group$Group[which(ks_group$KS == name)]
   group_colors[which(group_names == gp)]
 }
+# 
+# V(subg)$color = sapply(V(subg)$name,get_color)
+unip <- read_delim('data/uniprot.txt',delim="\t")
 
-V(subg)$color = sapply(V(subg)$name,get_color)
+lapply(unip['Gene Names'], function(s){strsplit(s," ")}) -> x
+unip$Primary <- unlist(map(x[[1]],1))

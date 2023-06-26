@@ -19,28 +19,10 @@ runtime: shiny
 
 
 library(flexdashboard)
-library(ggplot2)
-library(reshape2)
-library(scales)
 library(tidyverse)
-library(plotly)
-library(FDRestimation)
-library(ggrepel)
-library(hrbrthemes)
-library(dplyr)
-library(shiny)
-library(jsonlite)
-library(DT)
-library(patchwork)
-library(network)
-library(sna)
 library(igraph)
-library(ggraph)
-library(tidygraph)
 library(visNetwork)
-library(stringr)
-library(RColorBrewer)
-library(wesanderson)
+
 
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
@@ -52,8 +34,9 @@ k_to_group <- read.csv('data/k_to_group.csv')
 ks_df <- read.csv('data/ks_df.csv')
 ks_edge_list <- read.csv('data/ks_edge_list.csv')
 ks_group <- read.csv('data/ks_group.csv')
-group_colors <- c("#1f77b4ff","#ff7f0eff","#2ca02cff","#d62728ff","#9467bdff","#c49c94ff","#f7b6d2ff","#c7c7c7ff","#dbdb8dff","#9edae5ff","#242526ff")
-group_names <- c("TK","OTHER","CAMK","CMGC","AGC","STE","TKL","ATYPICAL","CK1","RGC","Non-kinase")
+#group_colors <- c("#1f77b4ff","#ff7f0eff","#2ca02cff","#d62728ff","#9467bdff","#c49c94ff","#f7b6d2ff","#c7c7c7ff","#dbdb8dff","#9edae5ff","#00000000")
+group_colors <- c("#1f77b4","#aec7e8","#ff7f0e","#ffbb78","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5","#808080")
+group_names <- c("TK","OTHER","CAMK","CMGC","AGC","STE","TKL","ATYPICAL","CK1","RGC","Non-Kinase")
 
 get_color <- function(name){
   gp = ks_group$Group[which(ks_group$KS == name)]
@@ -70,27 +53,57 @@ ks_node_id_map <- c(as.character(ks_group$id))
 
 
 groups <- unique(ks_group$Group)
-h1 <- brewer.pal(n = 11, name = 'Set3')
 ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
+
+unip <- read_delim('data/uniprot.txt',delim="\t")
+lapply(unip['Gene Names'], function(s){strsplit(s," ")}) -> x
+unip$Primary <- unlist(map(x[[1]],1))
 
 ```
 
-# Introduction
+# About
+```{r}
+titlePanel("Hello Shiny!")
+```
 
-<!-- # Visualize by Kinase -->
+# Navigate
 
-<!-- # Visualize by Substrate -->
-
-# Visualization
-
-<!-- DEMO: selected kinase = STK11 -->
+## Controls {.sidebar data-width=200}
 ```{r, cache = FALSE}
-selectInput(inputId='centerProtein',choices=ks_set,label="Select kinase/substrate:",selected = "STK11", multiple = FALSE)
-#renderText({paste0('Selected protein: ',input$inputKinase)})
+selectInput(inputId='centerProtein',choices=ks_set,label="Select kinase/substrate:",selected = "STK11", multiple = F)
+
+```
+Click node to highlight.
+
+Double click node to recenter.
+
+Use mouse to zoom and pan.
+
+## Main Figure 
+```{r,cache = FALSE}
+
 renderVisNetwork({
- subg <- make_ego_graph(ks_ig, order=1, nodes=c(input$centerProtein))[[1]]
+ subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
  V(subg)$color = sapply(V(subg)$name,get_color)
- visIgraph(subg)
+ data <- toVisNetworkData(subg)
+ visNetwork(nodes=data$nodes,edges=data$edges,physics=T) %>%
+   visIgraphLayout() %>%
+   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
+   visNodes(size=20,font=list(size=30)) %>%
+   visEdges(arrows = "to",smooth=T) %>%
+   visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
+   visEvents(click = "function(nodes){Shiny.onInputChange('currentlySelectedProtein', nodes.nodes);}") 
+})
+
+observeEvent(input$nextCenterProtein,{
+  updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
+})
+
+renderUI({
+  rec <- unip %>% filter(Primary==input$currentlySelectedProtein)
+  str1 <- paste("Selected Protein: ", input$currentlySelectedProtein)
+  str2 <- paste("Synonyms: ", rec %>% select('Gene Names') %>% pull)
+  HTML(paste(str1,str2,sep="<br/>"))
 })
 ```
 
@@ -107,6 +120,7 @@ body {
 margin-left: 3%; /* Add a left margin to     avoid content overlay */
 margin-right: 3%;
 
+
 <!-- background-image: url('https://linesteppers.com/tutorials/RMarkdown/img/BannerImage_TreeBlossoms_4470x3024.jpg'); -->
 <!--   background-repeat: no-repeat; -->
 <!--   background-size: 100%; -->
@@ -118,6 +132,10 @@ margin-right: 3%;
   font-weight: bold;
 }
 li {font-size: 15px;}
+
+.shiny-plot-output{
+  height: 100%
+}
 
 
 </style>
