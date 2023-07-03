@@ -1,5 +1,5 @@
 ---
-title: "Kinase-Substrate Interaction Portal"
+title: "Kinase-Substrate Interaction Network"
 resource_files:
   - "./ksi_gene.RData"
 #   - "data/temp_merged_dict.csv"
@@ -22,7 +22,6 @@ library(tidyverse)
 library(igraph)
 library(visNetwork)
 library(glue)
-
 
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
@@ -60,6 +59,8 @@ unip$Primary <- unlist(map(x[[1]],1))
 
 unip2 <- read_delim('data/uniprot2.tsv',delim="\t")
 
+pathways_df <- read_csv('data/pathway_gene_sets.csv')
+
 ```
 
 # About
@@ -68,7 +69,7 @@ unip2 <- read_delim('data/uniprot2.tsv',delim="\t")
 titlePanel("Hello Shiny!")
 ```
 
-# Navigate
+# Navigate the network
 
 ##  {.sidebar data-width="300"}
 
@@ -111,8 +112,6 @@ selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11"
 Click node to highlight and drag. Double click node to recenter. Use mouse to zoom and pan.
 ```{r,cache = FALSE}
 
-
-
 renderVisNetwork({
  subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
  V(subg)$color = sapply(V(subg)$name,get_color)
@@ -136,10 +135,10 @@ observeEvent(input$nextCenterProtein,{
 ## Controls {.sidebar data-width="200"}
 
 ```{r, cache = FALSE}
-selectizeInput(inputId='proteinList',
-               choices=ks_set,
-               label="Select one or more kinase/substrate(s):",selected = "STK11", multiple = T)
-actionButton("export2","Export")
+#selectizeInput(inputId='proteinList',choices=ks_set,
+#               label="Select one or more kinase/substrate(s):",selected = "STK11", multiple = T)
+#actionButton("export2","Export")
+
 ```
 
 ## Main Figure 2
