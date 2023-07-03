@@ -14,7 +14,6 @@ output:
 runtime: shiny
 ---
 
-
 ```{r global, cache=FALSE}
 
 
@@ -22,6 +21,7 @@ library(flexdashboard)
 library(tidyverse)
 library(igraph)
 library(visNetwork)
+library(glue)
 
 
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
@@ -34,7 +34,6 @@ k_to_group <- read.csv('data/k_to_group.csv')
 ks_df <- read.csv('data/ks_df.csv')
 ks_edge_list <- read.csv('data/ks_edge_list.csv')
 ks_group <- read.csv('data/ks_group.csv')
-#group_colors <- c("#1f77b4ff","#ff7f0eff","#2ca02cff","#d62728ff","#9467bdff","#c49c94ff","#f7b6d2ff","#c7c7c7ff","#dbdb8dff","#9edae5ff","#00000000")
 group_colors <- c("#1f77b4","#aec7e8","#ff7f0e","#ffbb78","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5","#808080")
 group_names <- c("TK","OTHER","CAMK","CMGC","AGC","STE","TKL","ATYPICAL","CK1","RGC","Non-Kinase")
 
@@ -59,28 +58,60 @@ unip <- read_delim('data/uniprot.txt',delim="\t")
 lapply(unip['Gene Names'], function(s){strsplit(s," ")}) -> x
 unip$Primary <- unlist(map(x[[1]],1))
 
+unip2 <- read_delim('data/uniprot2.tsv',delim="\t")
+
 ```
 
 # About
+
 ```{r}
 titlePanel("Hello Shiny!")
 ```
 
 # Navigate
 
-## Controls {.sidebar data-width=200}
+##  {.sidebar data-width="300"}
+
+#### Select a kinase or substrate
+
+
 ```{r, cache = FALSE}
-selectInput(inputId='centerProtein',choices=ks_set,label="Select kinase/substrate:",selected = "STK11", multiple = F)
-
+selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11", multiple = F)
 ```
-Click node to highlight.
 
-Double click node to recenter.
 
-Use mouse to zoom and pan.
 
-## Main Figure 
+#### Selected node
+
+```{r}
+
+  infoProtein <- reactive({
+    if(is.null(input$selectProtein)){input$centerProtein} else({input$selectProtein})})
+  renderUI({
+    str1 <- paste('Gene name:', infoProtein())
+    rec <- unip %>% filter(Primary==infoProtein())
+    str2 <- paste('Synonyms:',rec %>% pull('Gene Names'))
+    entry <- rec %>% pull('Entry')
+    str3 <- paste("UniProt entry: ", entry)
+    str4 <- paste(unip2 %>% filter(Entry == entry) %>% pull('Protein names'))
+    HTML(paste(str4,str3,str2,sep="<br/>"))
+    
+  })
+```
+
+#### Export
+
+```{r, cache=FALSE}
+  actionButton("export","Export")
+```
+
+## Main Panel
+
+### Node-centric view {data-height="800"}
+Click node to highlight and drag. Double click node to recenter. Use mouse to zoom and pan.
 ```{r,cache = FALSE}
+
+
 
 renderVisNetwork({
  subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
@@ -92,22 +123,45 @@ renderVisNetwork({
    visNodes(size=20,font=list(size=30)) %>%
    visEdges(arrows = "to",smooth=T) %>%
    visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
-   visEvents(click = "function(nodes){Shiny.onInputChange('currentlySelectedProtein', nodes.nodes);}") 
+   visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
 })
 
 observeEvent(input$nextCenterProtein,{
   updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
 })
-
-renderUI({
-  rec <- unip %>% filter(Primary==input$currentlySelectedProtein)
-  str1 <- paste("Selected Protein: ", input$currentlySelectedProtein)
-  str2 <- paste("Synonyms: ", rec %>% select('Gene Names') %>% pull)
-  HTML(paste(str1,str2,sep="<br/>"))
-})
 ```
 
+# Visualize
 
+## Controls {.sidebar data-width="200"}
+
+```{r, cache = FALSE}
+selectizeInput(inputId='proteinList',
+               choices=ks_set,
+               label="Select one or more kinase/substrate(s):",selected = "STK11", multiple = T)
+actionButton("export2","Export")
+```
+
+## Main Figure 2
+
+```{r,cache = FALSE}
+
+renderVisNetwork({
+  
+ #subg1 <- do.call(union,make_ego_graph(ks_ig, order=0, nodes=input$proteinList))
+  subg1 = induced_subgraph(ks_ig,input$proteinList)
+ V(subg1)$color = sapply(V(subg1)$name,get_color)
+ data <- toVisNetworkData(subg1)
+ visNetwork(nodes=data$nodes,edges=data$edges,physics=T) %>%
+   visIgraphLayout() %>%
+   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
+   visNodes(size=20,font=list(size=30)) %>%
+   visEdges(arrows = "to",smooth=T)
+})
+
+```
+
+```{=html}
 <style type="text/css">
 .nav-tabs-custom .nav-tabs li.active a{
   font-weight: bold;
@@ -139,3 +193,4 @@ li {font-size: 15px;}
 
 
 </style>
+```
