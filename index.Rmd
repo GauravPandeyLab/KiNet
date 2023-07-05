@@ -41,6 +41,10 @@ get_color <- function(name){
   group_colors[which(group_names == gp)]
 }
 
+get_group <- function(name){
+  ks_group$Group[which(ks_group$KS == name)]
+}
+
 kinase_set <- unique(ksi_gene$Kinase)
 substrate_set <- unique(ksi_gene$Substrate)
 
@@ -60,6 +64,8 @@ unip$Primary <- unlist(map(x[[1]],1))
 unip2 <- read_delim('data/uniprot2.tsv',delim="\t")
 
 pathways_df <- read_csv('data/pathway_gene_sets.csv')
+pathway_categories <- pathways_df$Category %>% unique
+
 
 ```
 
@@ -79,12 +85,12 @@ titlePanel("Hello Shiny!")
 ```{r, cache = FALSE}
 selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11", multiple = F)
 ```
+Use mouse to select and move nodes, pan and zoom on graph.
+Double-click node to re-center the graph on that node.
 
+#### Selected node: `r renderText(input$centerProtein)`
 
-
-#### Selected node
-
-```{r}
+```{r, cache=FALSE}
 
   infoProtein <- reactive({
     if(is.null(input$selectProtein)){input$centerProtein} else({input$selectProtein})})
@@ -107,19 +113,21 @@ selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11"
 ```
 
 ## Main Panel
+#### Local neighborhood of `r renderText(input$centerProtein)`
+### {data-height="800"}
 
-### Node-centric view {data-height="800"}
-Click node to highlight and drag. Double click node to recenter. Use mouse to zoom and pan.
-```{r,cache = FALSE}
-
-renderVisNetwork({
+```{r,cache=FALSE}
+visNetworkOutput('network')
+output$network <- renderVisNetwork({
  subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
  V(subg)$color = sapply(V(subg)$name,get_color)
+ V(subg)$group = sapply(V(subg)$name,get_group)
  data <- toVisNetworkData(subg)
  visNetwork(nodes=data$nodes,edges=data$edges,physics=T) %>%
    visIgraphLayout() %>%
    visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
    visNodes(size=20,font=list(size=30)) %>%
+   visNodes(id=input$centerProtein,size=50) %>%
    visEdges(arrows = "to",smooth=T) %>%
    visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
    visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
