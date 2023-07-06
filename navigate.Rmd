@@ -1,0 +1,81 @@
+
+# Navigate the network
+
+##  {.sidebar data-width="300"}
+
+#### Controls
+
+Pick a protein to display its interactions:
+
+```{r, cache = FALSE}
+selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11", multiple = F)
+infoProtein <- reactive({na.omit(c(input$selectProtein,input$centerProtein)[[1]])})
+``` 
+Use mouse controls to pan and zoom. \
+Click on a node to display information. \
+Double-click on a node to recenter graph. 
+
+
+#### Selected node `r renderText(infoProtein())`
+
+```{r, cache=FALSE}
+  renderUI({
+    info <- get_protein_info(infoProtein())
+    unip_url <- 'https://www.uniprot.org/uniprotkb/%s/entry'
+    L1 <-  list(tags$b(info$fullname),tags$br())
+    L2 <- list('UniProt: ',tags$a(info$uniprot,href= sprintf(unip_url,info$uniprot)), tags$br())
+    L3 <- list()
+    for(x in info$remaining) {
+      L3 <- c(L3,list(x,tags$br()))
+    }
+    tagList(L1,L2,L3)
+  })
+```
+#### Legend {data-height="210"}
+Node colors indicate kinase-group.
+```{r, cache=FALSE}
+legend_nodes <- data.frame(
+  id=1:length(group_names),
+  label = group_names,
+  color = group_colors,
+  size = 20
+)
+legend_edges <- data.frame()
+visNetwork(legend_nodes,legend_edges,width="90%") %>%
+  visNodes(font=list(size=30)) %>%
+  visOptions(width="90%",height="200")
+```
+#### Export
+
+```{r, cache=FALSE}
+  actionButton("export","Export")
+```
+
+## Main Panel
+#### Kinase-substrate interactions of `r renderText(input$centerProtein)`
+
+### {data-height="800"}
+
+```{r,cache=FALSE}
+visNetworkOutput('network')
+output$network <- renderVisNetwork({
+ subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
+ V(subg)$color = sapply(V(subg)$name,get_color)
+ V(subg)$size= 20
+ V(subg)[V(subg)$name == input$centerProtein]$size = 50
+
+ data <- toVisNetworkData(subg)
+ visNetwork(nodes=data$nodes,edges=data$edges,physics=F) %>%
+   visIgraphLayout() %>%
+   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
+   visNodes(font=list(size=30)) %>%
+   visNodes(id=as.numeric(V(subg)[input$centerProtein]),size=50) %>%
+   visEdges(arrows = "to",smooth=F) %>%
+   visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
+   visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
+})
+
+observeEvent(input$nextCenterProtein,{
+  updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
+})
+```

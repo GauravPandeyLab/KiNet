@@ -60,7 +60,7 @@ ks_edge_list$to <- as.integer(str_replace_all(string = ks_edge_list$To,
                                               pattern= ks_node_id_map))
 
 ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
-#subg <- make_ego_graph(ks_ig, order=1, nodes=c('STK11'))[[1]]
+subg <- make_ego_graph(ks_ig, order=1, nodes=c('STK11'))[[1]]
 #visIgraph(subg[[1]])
 
 

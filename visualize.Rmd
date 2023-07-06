@@ -1,0 +1,30 @@
+
+# Visualize gene sets
+
+## Controls {.sidebar data-width="200"}
+
+```{r, cache = FALSE}
+#selectizeInput(inputId='proteinList',choices=ks_set,
+#               label="Select one or more kinase/substrate(s):",selected = "STK11", multiple = T)
+#actionButton("export2","Export")
+
+```
+
+## Main Figure 2
+
+```{r,cache = FALSE}
+
+renderVisNetwork({
+  
+ #subg1 <- do.call(union,make_ego_graph(ks_ig, order=0, nodes=input$proteinList))
+  subg1 = induced_subgraph(ks_ig,input$proteinList)
+ V(subg1)$color = sapply(V(subg1)$name,get_color)
+ data <- toVisNetworkData(subg1)
+ visNetwork(nodes=data$nodes,edges=data$edges,physics=F) %>%
+   visIgraphLayout() %>%
+   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
+   visNodes(size=20,font=list(size=30)) %>%
+   visEdges(arrows = "to",smooth=T)
+})
+
+```

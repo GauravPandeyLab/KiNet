@@ -1,7 +1,8 @@
 ---
 title: "Kinase-Substrate Interaction Network"
 resource_files:
-  - "./ksi_gene.RData"
+  - "./load_data.R"
+#  - "./ksi_gene.RData"
 #   - "data/temp_merged_dict.csv"
 output:
   flexdashboard::flex_dashboard:
@@ -14,58 +15,16 @@ output:
 runtime: shiny
 ---
 
-```{r global, cache=FALSE}
+```{r global, file='load_data.R', cache=FALSE}
 
 
 library(flexdashboard)
-library(tidyverse)
-library(igraph)
-library(visNetwork)
-library(glue)
+#library(tidyverse)
+#library(igraph)
+#library(visNetwork)
+
 
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
-
-ksi_gene <- read.csv('data/ksi_gene.csv')
-
-ksi_gene_t <- data.frame(ksi_gene)
-
-k_to_group <- read.csv('data/k_to_group.csv')
-ks_df <- read.csv('data/ks_df.csv')
-ks_edge_list <- read.csv('data/ks_edge_list.csv')
-ks_group <- read.csv('data/ks_group.csv')
-group_colors <- c("#1f77b4","#aec7e8","#ff7f0e","#ffbb78","#2ca02c","#98df8a","#d62728","#ff9896","#9467bd","#c5b0d5","#808080")
-group_names <- c("TK","OTHER","CAMK","CMGC","AGC","STE","TKL","ATYPICAL","CK1","RGC","Non-Kinase")
-
-get_color <- function(name){
-  gp = ks_group$Group[which(ks_group$KS == name)]
-  group_colors[which(group_names == gp)]
-}
-
-get_group <- function(name){
-  ks_group$Group[which(ks_group$KS == name)]
-}
-
-kinase_set <- unique(ksi_gene$Kinase)
-substrate_set <- unique(ksi_gene$Substrate)
-
-ks_set <- unique(ks_group$KS)
-
-ks_id <- 1:length(ks_group$KS)
-ks_node_id_map <- c(as.character(ks_group$id))
-
-
-groups <- unique(ks_group$Group)
-ks_ig <- graph_from_edgelist(as.matrix(ks_edge_list[,c("From", "To")]), directed = TRUE)
-
-unip <- read_delim('data/uniprot.txt',delim="\t")
-lapply(unip['Gene Names'], function(s){strsplit(s," ")}) -> x
-unip$Primary <- unlist(map(x[[1]],1))
-
-unip2 <- read_delim('data/uniprot2.tsv',delim="\t")
-
-pathways_df <- read_csv('data/pathway_gene_sets.csv')
-pathway_categories <- pathways_df$Category %>% unique
-
 
 ```
 
@@ -75,98 +34,11 @@ pathway_categories <- pathways_df$Category %>% unique
 titlePanel("Hello Shiny!")
 ```
 
-# Navigate the network
-
-##  {.sidebar data-width="300"}
-
-#### Select a kinase or substrate
-
-
-```{r, cache = FALSE}
-selectInput(inputId='centerProtein',choices=ks_set,label=NULL,selected = "STK11", multiple = F)
+```{r child='navigate.Rmd'}
 ```
-Use mouse to select and move nodes, pan and zoom on graph.
-Double-click node to re-center the graph on that node.
-
-#### Selected node: `r renderText(input$centerProtein)`
-
-```{r, cache=FALSE}
-
-  infoProtein <- reactive({
-    if(is.null(input$selectProtein)){input$centerProtein} else({input$selectProtein})})
-  renderUI({
-    str1 <- paste('Gene name:', infoProtein())
-    rec <- unip %>% filter(Primary==infoProtein())
-    str2 <- paste('Synonyms:',rec %>% pull('Gene Names'))
-    entry <- rec %>% pull('Entry')
-    str3 <- paste("UniProt entry: ", entry)
-    str4 <- paste(unip2 %>% filter(Entry == entry) %>% pull('Protein names'))
-    HTML(paste(str4,str3,str2,sep="<br/>"))
-    
-  })
+```{r child='visualize.Rmd'}
 ```
 
-#### Export
-
-```{r, cache=FALSE}
-  actionButton("export","Export")
-```
-
-## Main Panel
-#### Local neighborhood of `r renderText(input$centerProtein)`
-### {data-height="800"}
-
-```{r,cache=FALSE}
-visNetworkOutput('network')
-output$network <- renderVisNetwork({
- subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
- V(subg)$color = sapply(V(subg)$name,get_color)
- V(subg)$group = sapply(V(subg)$name,get_group)
- data <- toVisNetworkData(subg)
- visNetwork(nodes=data$nodes,edges=data$edges,physics=T) %>%
-   visIgraphLayout() %>%
-   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
-   visNodes(size=20,font=list(size=30)) %>%
-   visNodes(id=input$centerProtein,size=50) %>%
-   visEdges(arrows = "to",smooth=T) %>%
-   visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
-   visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
-})
-
-observeEvent(input$nextCenterProtein,{
-  updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
-})
-```
-
-# Visualize
-
-## Controls {.sidebar data-width="200"}
-
-```{r, cache = FALSE}
-#selectizeInput(inputId='proteinList',choices=ks_set,
-#               label="Select one or more kinase/substrate(s):",selected = "STK11", multiple = T)
-#actionButton("export2","Export")
-
-```
-
-## Main Figure 2
-
-```{r,cache = FALSE}
-
-renderVisNetwork({
-  
- #subg1 <- do.call(union,make_ego_graph(ks_ig, order=0, nodes=input$proteinList))
-  subg1 = induced_subgraph(ks_ig,input$proteinList)
- V(subg1)$color = sapply(V(subg1)$name,get_color)
- data <- toVisNetworkData(subg1)
- visNetwork(nodes=data$nodes,edges=data$edges,physics=T) %>%
-   visIgraphLayout() %>%
-   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
-   visNodes(size=20,font=list(size=30)) %>%
-   visEdges(arrows = "to",smooth=T)
-})
-
-```
 
 ```{=html}
 <style type="text/css">
@@ -197,7 +69,6 @@ li {font-size: 15px;}
 .shiny-plot-output{
   height: 100%
 }
-
 
 </style>
 ```
