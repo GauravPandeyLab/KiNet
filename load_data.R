@@ -52,10 +52,19 @@ get_protein_info <- function(name){
   elems <- mapply(substr,rep(s,each=length(x1)),x1,x2,USE.NAMES=FALSE)
   outs = list(fullname=elems[1],uniprot=entry)
   elems <- elems[-1]
-  if(substring(elems[1],1,3)=='EC ') {
-    outs$ec <- substring(elems[1],4)
-    elems <- elems[-1]
-  }
+  elems <- elems[grep("EC ",elems,invert=TRUE)]
+  # if(substring(elems[1],1,3)=='EC ') {
+  #   outs$ec <- substring(elems[1],4)
+  #   elems <- elems[-1]
+  # }
   outs$remaining <- c(elems, misc_names) %>% unique %>% setdiff(c(name))
   return(outs)
+}
+
+default_pathway_category <- "Environmental Information Processing"
+pathway_choices <- pathways_df %>% split(pathways_df[['Category']])
+
+get_pathway_genes <- function(categ,name){
+  ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
+  intersect(ch[[1]],ks_group$KS)
 }
