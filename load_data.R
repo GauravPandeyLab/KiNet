@@ -53,10 +53,6 @@ get_protein_info <- function(name){
   outs = list(fullname=elems[1],uniprot=entry)
   elems <- elems[-1]
   elems <- elems[grep("EC ",elems,invert=TRUE)]
-  # if(substring(elems[1],1,3)=='EC ') {
-  #   outs$ec <- substring(elems[1],4)
-  #   elems <- elems[-1]
-  # }
   outs$remaining <- c(elems, misc_names) %>% unique %>% setdiff(c(name))
   return(outs)
 }
@@ -67,4 +63,29 @@ pathway_choices <- pathways_df %>% split(pathways_df[['Category']])
 get_pathway_genes <- function(categ,name){
   ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
   intersect(ch[[1]],ks_group$KS)
+}
+
+get_one_degree <- function(proteins) {
+  list1 <- ksi_gene %>% filter(Kinase %in% proteins) %>% pull(Substrate)
+  list2 <- ksi_gene %>% filter(Substrate %in% proteins) %>% pull(Kinase)
+  finalList <- c(proteins,list1,list2) %>% unique
+  return(finalList)
+}
+
+get_displayed_proteins <- function(proteinList, toggleOneDegree, toggleDisconnectedNodes) {
+  finalList <- proteinList
+  if(toggleOneDegree) {
+    finalList <- get_one_degree(proteinList)
+  } else {
+    finalList <- proteinList
+  }
+  if(toggleDisconnectedNodes){
+    df <- ksi_gene %>%
+      filter(Kinase %in% finalList) %>%
+      filter(Substrate %in% finalList) %>%
+      filter(Kinase != Substrate)
+    finalList <- c(df$Kinase, df$Substrate) %>% unique
+  }
+  
+  return(finalList)
 }

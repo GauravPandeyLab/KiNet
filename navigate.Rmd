@@ -64,6 +64,7 @@ output$network <- renderVisNetwork({
  V(subg)[V(subg)$name == input$centerProtein]$size = 50
 
  data <- toVisNetworkData(subg)
+ if(is.null(data$edges)){ data$edges <- data.frame()}
  visNetwork(nodes=data$nodes,edges=data$edges,physics=F) %>%
    visIgraphLayout() %>%
    visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
