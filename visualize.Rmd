@@ -13,8 +13,8 @@ checkboxInput(inputId='toggleOneDegree', "Show nodes one degree away.", value = 
 checkboxInput(inputId='toggleDisconnectedNodes', "Remove disconnected nodes.", value = FALSE)
 
 proteinList <- reactive({get_pathway_genes(input$pathwayCategory, input$pathwayName)})
-displayedProteins <- reactive({get_displayed_proteins(proteinList(), input$toggleOneDegree, input$toggleDisconnectedNodes)})
-infoProtein <- reactive({na.omit(c(input$selectProtein,displayedProteins()[[1]])[[1]])})
+#displayedProteins <- reactive({get_displayed_proteins(proteinList(), input$toggleOneDegree, input$toggleDisconnectedNodes)})
+#infoProtein <- reactive({na.omit(c(input$selectProtein,displayedProteins()[[1]])[[1]])})
 ```
 <!--Use mouse controls to pan and zoom. \
 Click on a node to display information. \

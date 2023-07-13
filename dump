@@ -147,4 +147,29 @@ if((is.null(t_k)) || (t_k == ".")) {
 
 # 
 # visNetworkOutput("mynetworkid")
+
+
+<!--
+# visNetworkOutput('network')
+# output$network <- renderVisNetwork({
+#  subg <- make_ego_graph(ks_ig, order=1, nodes=input$centerProtein)[[1]]
+#  V(subg)$color = sapply(V(subg)$name,get_color)
+#  V(subg)$size= 20
+#  V(subg)[V(subg)$name == input$centerProtein]$size = 50
+# 
+#  data <- toVisNetworkData(subg)
+#  if(is.null(data$edges)){ data$edges <- data.frame()}
+#  visNetwork(nodes=data$nodes,edges=data$edges,physics=F) %>%
+#    visIgraphLayout() %>%
+#    visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
+#    visNodes(font=list(size=30)) %>%
+#    visNodes(id=as.numeric(V(subg)[input$centerProtein]),size=50) %>%
+#    visEdges(arrows = "to",smooth=F) %>%
+#    visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
+#    visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
+# })
+
+# observeEvent(input$nextCenterProtein,{
+#   updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
+# })
 ```

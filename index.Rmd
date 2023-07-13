@@ -21,7 +21,7 @@ runtime: shiny
 library(flexdashboard)
 #library(tidyverse)
 #library(igraph)
-#library(visNetwork)
+library(visNetwork)
 
 
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
@@ -36,8 +36,7 @@ titlePanel("Hello Shiny!")
 
 ```{r child='navigate.Rmd'}
 ```
-```{r child='visualize.Rmd'}
-```
+
 
 
 ```{=html}
