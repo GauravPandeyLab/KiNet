@@ -6,12 +6,12 @@ all_edges <- read_csv('data/ksi.csv') %>%
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
-  rename(id=UniProt) %>% 
-  left_join(colors %>% rename(color=Color),by=join_by(Group == Group)) %>%
-  select(id,everything())
+  rename(id=UniProt,group=Group) %>%
+  left_join(colors %>% rename(color=Color),by=join_by(group == Group)) %>%
+  select(id,everything()) %>%
+  arrange(GeneName)
 
 synonyms <- readLines('data/synonyms.txt')
-
 #all_proteins <- all_nodes$GeneID
   
 pathways_df <- read_csv('data/pathway_gene_sets.csv')
@@ -25,13 +25,16 @@ get_pathway_genes <- function(categ,name){
   intersect(ch[[1]],all_nodes$GeneName)
 }
 
-get_one_degree <- function(proteins) {
-  list1 <- all_edges %>% filter(from %in% proteins)
-  list2 <- all_edges %>% filter(to %in% proteins)
+get_one_degree <- function(genes) {
+  proteins <- all_nodes %>% filter(GeneName %in% genes) %>% pull(id)
+  E1 <- all_edges %>% filter(from %in% proteins)
+  E2 <- all_edges %>% filter(to %in% proteins)
   g=list()
-  g$edges=rbind(list1,list2)
-  ids <-  c(list1 %>% pull(from), list2 %>% pull(from)) %>% unique
-  g$nodes <- all_nodes %>% filter(id %in% ids)
+  g$edges=rbind(E1,E2)
+  ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
+  #ids <-  c(list1 %>% pull(from), list2 %>% pull(to)) %>% unique
+  g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
+  #g$ <- list2
   return(g)
 }
 
@@ -65,4 +68,3 @@ render_gene_info <- function(geneName) {
   }
   tagList(L1,L2,L3)
 }
-

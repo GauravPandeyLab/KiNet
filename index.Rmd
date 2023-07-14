@@ -2,8 +2,6 @@
 title: "Kinase-Substrate Interaction Network"
 resource_files:
   - "./load_data.R"
-#  - "./ksi_gene.RData"
-#   - "data/temp_merged_dict.csv"
 output:
   flexdashboard::flex_dashboard:
     theme:
@@ -16,16 +14,10 @@ runtime: shiny
 ---
 
 ```{r global, file='load_data.R', cache=FALSE}
-
-
 library(flexdashboard)
-#library(tidyverse)
-#library(igraph)
 library(visNetwork)
-
-
+library(igraph)
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
-
 ```
 
 # About

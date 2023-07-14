@@ -1,4 +1,6 @@
-
+```{r}
+library(visNetwork)
+```
 # Navigate the network
 
 ##  {.sidebar data-width="300"}
@@ -24,18 +26,7 @@ Double-click on a node to recenter graph.
 
 #### Legend {data-height="210"}
 Node colors indicate kinase-group.
-```{r, cache=FALSE}
-# legend_nodes <- data.frame(
-#   id=1:length(group_names),
-#   label = group_names,
-#   color = group_colors,
-#   size = 20
-# )
-# legend_edges <- data.frame()
-# visNetwork(legend_nodes,legend_edges,width="90%") %>%
-#   visNodes(font=list(size=30)) %>%
-#   visOptions(width="90%",height="200")
-```
+
 #### Export
 
 ```{r, cache=FALSE}
@@ -43,13 +34,21 @@ Node colors indicate kinase-group.
 ```
 
 ## Main Panel
-#### Kinase-substrate interactions of `r renderText(input$centerGene)`
-###  {}
+### Kinase-substrate interactions of `r renderText(input$centerGene)`
+
 ```{r, cache=FALSE}
-#renderText(input$centerGene)
-nodes <- data.frame(id=1:10)
-edges <- data.frame(from=sample(1:10,8),to=sample(1:10,8))
-renderVisNetwork(nodes,edges,width="100%")
+#renderText(dummy(input$centerGene))
+#g <- get_one_degree('O00141')
+g <- reactive(get_one_degree(input$centerGene))
+
+#renderTable(g()$nodes)
+
+
+visNetworkOutput('network')
+output$network <- renderVisNetwork({
+  visNetwork(nodes=g()$nodes,edges=g()$edges,physics=F) %>%
+  visIgraphLayout()
+   })
 ```
 
 

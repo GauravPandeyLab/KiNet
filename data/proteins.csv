@@ -21,14 +21,14 @@ O00257,8535,1554,CBX4,Non-kinase,E3 SUMO-protein ligase CBX4
 O00267,6829,11469,SUPT5H,Non-kinase,Transcription elongation factor SPT5 
 O00291,3092,4913,HIP1,Non-kinase,Huntingtin-interacting protein 1 
 O00303,8665,3275,EIF3F,Non-kinase,Eukaryotic translation initiation factor 3 subunit F 
-O00311,8317,1745,CDC7,OTHER,Cell division cycle 7-related protein kinase 
+O00311,8317,1745,CDC7,Other,Cell division cycle 7-related protein kinase 
 O00327,406,701,BMAL1,Non-kinase,Basic helix-loop-helix ARNT-like protein 1 
 O00399,10671,16964,DCTN6,Non-kinase,Dynactin subunit 6 
 O00401,8976,12735,WASL,Non-kinase,Actin nucleation-promoting factor WASL 
-O00418,29904,24615,EEF2K,ATYPICAL,Eukaryotic elongation factor 2 kinase 
+O00418,29904,24615,EEF2K,Atypical,Eukaryotic elongation factor 2 kinase 
 O00429,10059,2973,DNM1L,Non-kinase,Dynamin-1-like protein 
 O00443,5286,8971,PIK3C2A,Non-kinase,Phosphatidylinositol 4-phosphate 3-kinase C2 domain-containing subunit alpha 
-O00444,10733,11397,PLK4,OTHER,Serine/threonine-protein kinase PLK4 
+O00444,10733,11397,PLK4,Other,Serine/threonine-protein kinase PLK4 
 O00482,2494,7984,NR5A2,Non-kinase,Nuclear receptor subfamily 5 group A member 2 
 O00499,274,1052,BIN1,Non-kinase,Myc box-dependent-interacting protein 1 
 O00506,10494,11404,STK25,STE,Serine/threonine-protein kinase 25 
@@ -60,7 +60,7 @@ O14654,8471,6128,IRS4,Non-kinase,Insulin receptor substrate 4
 O14686,8085,7133,KMT2D,Non-kinase,Histone-lysine N-methyltransferase 2D 
 O14713,9270,23927,ITGB1BP1,Non-kinase,Integrin beta-1-binding protein 1 
 O14727,317,576,APAF1,Non-kinase,Apoptotic protease-activating factor 1 
-O14730,8780,11451,RIOK3,ATYPICAL,Serine/threonine-protein kinase RIO3 
+O14730,8780,11451,RIOK3,Atypical,Serine/threonine-protein kinase RIO3 
 O14733,5609,6847,MAP2K7,STE,Dual specificity mitogen-activated protein kinase kinase 7 
 O14737,9141,8764,PDCD5,Non-kinase,Programmed cell death protein 5 
 O14744,10419,10894,PRMT5,Non-kinase,Protein arginine N-methyltransferase 5 
@@ -73,17 +73,17 @@ O14813,401,691,PHOX2A,Non-kinase,Paired mesoderm homeobox protein 2A
 O14818,5688,9536,PSMA7,Non-kinase,Proteasome subunit alpha type-7 
 O14827,5924,9876,RASGRF2,Non-kinase,Ras-specific guanine nucleotide-releasing factor 2 
 O14828,10067,10565,SCAMP3,Non-kinase,Secretory carrier-associated membrane protein 3 
-O14874,10295,16902,BCKDK,ATYPICAL,"[3-methyl-2-oxobutanoate dehydrogenase [lipoamide]] kinase, mitochondrial "
-O14920,3551,5960,IKBKB,OTHER,Inhibitor of nuclear factor kappa-B kinase subunit beta 
+O14874,10295,16902,BCKDK,Atypical,"[3-methyl-2-oxobutanoate dehydrogenase [lipoamide]] kinase, mitochondrial (EC 2.7.11.4) "
+O14920,3551,5960,IKBKB,Other,Inhibitor of nuclear factor kappa-B kinase subunit beta 
 O14929,8520,4821,HAT1,Non-kinase,Histone acetyltransferase type B catalytic subunit 
 O14936,8573,1497,CASK,CAMK,Peripheral plasma membrane protein CASK 
 O14939,5338,9068,PLD2,Non-kinase,Phospholipase D2 
 O14950,10391010627,29827,MYL12B,Non-kinase,Myosin regulatory light chain 12B 
 O14958,845,1513,CASQ2,Non-kinase,Calsequestrin-2 
 O14964,9146,4897,HGS,Non-kinase,Hepatocyte growth factor-regulated tyrosine kinase substrate 
-O14965,6790,11393,AURKA,OTHER,Aurora kinase A 
+O14965,6790,11393,AURKA,Other,Aurora kinase A 
 O14974,4659,7618,PPP1R12A,Non-kinase,Protein phosphatase 1 regulatory subunit 12A 
-O14976,2580,4113,GAK,OTHER,Cyclin-G-associated kinase 
+O14976,2580,4113,GAK,Other,Cyclin-G-associated kinase 
 O14980,7514,12825,XPO1,Non-kinase,Exportin-1 
 O14986,8395,8995,PIP5K1B,Non-kinase,Phosphatidylinositol 4-phosphate 5-kinase type-1 beta 
 O14994,8224,11496,SYN3,Non-kinase,Synapsin-3 
@@ -98,7 +98,7 @@ O15075,9201,2700,DCLK1,CAMK,Serine/threonine-protein kinase DCLK1
 O15079,9751,15931,SNPH,Non-kinase,Syntaphilin
 O15084,23243,29024,ANKRD28,Non-kinase,Serine/threonine-protein phosphatase 6 regulatory ankyrin repeat subunit A 
 O15105,4092,6773,SMAD7,Non-kinase,Mothers against decapentaplegic homolog 7 
-O15111,1147,1974,CHUK,OTHER,Inhibitor of nuclear factor kappa-B kinase subunit alpha 
+O15111,1147,1974,CHUK,Other,Inhibitor of nuclear factor kappa-B kinase subunit alpha 
 O15117,2533,4036,FYB1,Non-kinase,FYN-binding protein 1 
 O15119,6926,11602,TBX3,Non-kinase,T-box transcription factor TBX3 
 O15126,9522,10563,SCAMP1,Non-kinase,Secretory carrier-associated membrane protein 1 
@@ -106,7 +106,7 @@ O15143,10095,704,ARPC1B,Non-kinase,Actin-related protein 2/3 complex subunit 1B
 O15146,4593,7525,MUSK,TK,"Muscle, skeletal receptor tyrosine-protein kinase "
 O15151,4194,6974,MDM4,Non-kinase,Protein Mdm4 
 O15162,5359,9092,PLSCR1,Non-kinase,Phospholipid scramblase 1 
-O15164,8805,11812,TRIM24,ATYPICAL,Transcription intermediary factor 1-alpha 
+O15164,8805,11812,TRIM24,Atypical,Transcription intermediary factor 1-alpha 
 O15169,8312,903,AXIN1,Non-kinase,Axin-1 
 O15197,2051,3396,EPHB6,TK,Ephrin type-B receptor 6 
 O15198,4093,6774,SMAD9,Non-kinase,Mothers against decapentaplegic homolog 9 
@@ -191,7 +191,7 @@ O43660,5356,9089,PLRG1,Non-kinase,Pleiotropic regulator 1
 O43663,9055,9341,PRC1,Non-kinase,Protein regulator of cytokinesis 1
 O43665,6001,9992,RGS10,Non-kinase,Regulator of G-protein signaling 10 
 O43670,7756,12998,ZNF207,Non-kinase,BUB3-interacting and GLEBS motif-containing protein ZNF207 
-O43683,699,1148,BUB1,OTHER,Mitotic checkpoint serine/threonine-protein kinase BUB1 
+O43683,699,1148,BUB1,Other,Mitotic checkpoint serine/threonine-protein kinase BUB1 
 O43684,9184,1151,BUB3,Non-kinase,Mitotic checkpoint protein BUB3
 O43707,81,166,ACTN4,Non-kinase,Alpha-actinin-4 
 O43734,10758,1343,TRAF3IP2,Non-kinase,E3 ubiquitin ligase TRAF3IP2 
@@ -219,7 +219,7 @@ O60282,3800,6325,KIF5C,Non-kinase,Kinesin heavy chain isoform 5C
 O60285,9891,14311,NUAK1,CAMK,NUAK family SNF1-like kinase 1 
 O60307,23031,19036,MAST3,AGC,Microtubule-associated serine/threonine-protein kinase 3 
 O60331,23396,8996,PIP5K1C,Non-kinase,Phosphatidylinositol 4-phosphate 5-kinase type-1 gamma 
-O60341,23028,29079,KDM1A,Non-kinase,Lysine-specific histone demethylase 1A 
+O60341,23028,29079,KDM1A,Non-kinase,Lysine-specific histone demethylase 1A (EC 1.14.99.66) 
 O60343,9882,19165,TBC1D4,Non-kinase,TBC1 domain family member 4 
 O60346,23239,20610,PHLPP1,Non-kinase,PH domain leucine-rich repeat-containing protein phosphatase 1 
 O60353,8323,4044,FZD6,Non-kinase,Frizzled-6 
@@ -232,7 +232,7 @@ O60502,10724,7056,OGA,Non-kinase,Protein O-GlcNAcase
 O60504,10174,30907,SORBS3,Non-kinase,Vinexin 
 O60506,10492,16918,SYNCRIP,Non-kinase,Heterogeneous nuclear ribonucleoprotein Q 
 O60563,904,1599,CCNT1,Non-kinase,Cyclin-T1 
-O60566,701,1149,BUB1B,OTHER,Mitotic checkpoint serine/threonine-protein kinase BUB1 beta 
+O60566,701,1149,BUB1B,Other,Mitotic checkpoint serine/threonine-protein kinase BUB1 beta 
 O60602,7100,11851,TLR5,Non-kinase,Toll-like receptor 5 
 O60610,1729,2876,DIAPH1,Non-kinase,Protein diaphanous homolog 1 
 O60658,5151,8793,PDE8A,Non-kinase,"High affinity cAMP-specific and IBMX-insensitive 3',5'-cyclic phosphodiesterase 8A "
@@ -250,7 +250,7 @@ O60828,10084,9330,PQBP1,Non-kinase,Polyglutamine-binding protein 1
 O60829,9506,4108,PAGE4,Non-kinase,P antigen family member 4 
 O60869,8721,3164,EDF1,Non-kinase,Endothelial differentiation-related factor 1 
 O60879,1730,2877,DIAPH2,Non-kinase,Protein diaphanous homolog 2 
-O60885,23476,13575,BRD4,ATYPICAL,Bromodomain-containing protein 4 
+O60885,23476,13575,BRD4,Atypical,Bromodomain-containing protein 4 
 O60928,3769,6259,KCNJ13,Non-kinase,Inward rectifier potassium channel 13 
 O60934,4683,7652,NBN,Non-kinase,Nibrin 
 O60936,8996,7869,NOL3,Non-kinase,Nucleolar protein 3 
@@ -270,14 +270,14 @@ O75152,9877,29093,ZC3H11A,Non-kinase,Zinc finger CCCH domain-containing protein 
 O75154,9727,17224,RAB11FIP3,Non-kinase,Rab11 family-interacting protein 3 
 O75170,9701,19253,PPP6R2,Non-kinase,Serine/threonine-protein phosphatase 6 regulatory subunit 2 
 O75179,26057,23575,ANKRD17,Non-kinase,Ankyrin repeat domain-containing protein 17 
-O75306,4720,7708,NDUFS2,Non-kinase,"NADH dehydrogenase [ubiquinone] iron-sulfur protein 2, mitochondrial "
+O75306,4720,7708,NDUFS2,Non-kinase,"NADH dehydrogenase [ubiquinone] iron-sulfur protein 2, mitochondrial (EC 7.1.1.2) "
 O75376,9611,7672,NCOR1,Non-kinase,Nuclear receptor corepressor 1 
 O75379,8674,12645,VAMP4,Non-kinase,Vesicle-associated membrane protein 4 
 O75381,5195,8856,PEX14,Non-kinase,Peroxisomal membrane protein PEX14 
-O75385,8408,12558,ULK1,OTHER,Serine/threonine-protein kinase ULK1 
+O75385,8408,12558,ULK1,Other,Serine/threonine-protein kinase ULK1 
 O75410,6867,11522,TACC1,Non-kinase,Transforming acidic coiled-coil-containing protein 1 
 O75449,11104,6216,KATNA1,Non-kinase,Katanin p60 ATPase-containing subunit A1 
-O75460,2081,3449,ERN1,OTHER,Serine/threonine-protein kinase/endoribonuclease IRE1 
+O75460,2081,3449,ERN1,Other,Serine/threonine-protein kinase/endoribonuclease IRE1 
 O75461,1876,3120,E2F6,Non-kinase,Transcription factor E2F6 
 O75469,8856,7968,NR1I2,Non-kinase,Nuclear receptor subfamily 1 group I member 2 
 O75475,11168,9527,PSIP1,Non-kinase,PC4 and SFRS1-interacting protein 
@@ -297,7 +297,7 @@ O75674,10040,11983,TOM1L1,Non-kinase,TOM1-like protein 1
 O75676,8986,10433,RPS6KA4,AGC,Ribosomal protein S6 kinase alpha-4 
 O75688,5495,9276,PPM1B,Non-kinase,Protein phosphatase 1B 
 O75689,11033,16486,ADAP1,Non-kinase,Arf-GAP with dual PH domain-containing protein 1 
-O75716,8576,11394,STK16,OTHER,Serine/threonine-protein kinase 16 
+O75716,8576,11394,STK16,Other,Serine/threonine-protein kinase 16 
 O75717,11169,23170,WDHD1,Non-kinase,WD repeat and HMG-box DNA-binding protein 1 
 O75762,8989,497,TRPA1,Non-kinase,Transient receptor potential cation channel subfamily A member 1 
 O75791,9402,4563,GRAP2,Non-kinase,GRB2-related adapter protein 2 
@@ -328,9 +328,9 @@ O94776,9219,7411,MTA2,Non-kinase,Metastasis-associated protein MTA2
 O94782,7398,12607,USP1,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 1 
 O94804,6793,11388,STK10,STE,Serine/threonine-protein kinase 10 
 O94806,23683,9408,PRKD3,CAMK,Serine/threonine-protein kinase D3 
-O94808,9945,4242,GFPT2,Non-kinase,Glutamine--fructose-6-phosphate aminotransferase [isomerizing] 2 
+O94808,9945,4242,GFPT2,Non-kinase,Glutamine--fructose-6-phosphate aminotransferase [isomerizing] 2 (EC 2.6.1.16) 
 O94811,11076,24164,TPPP,Non-kinase,Tubulin polymerization-promoting protein 
-O94851,9645,24693,MICAL2,Non-kinase,[F-actin]-monooxygenase MICAL2 
+O94851,9645,24693,MICAL2,Non-kinase,[F-actin]-monooxygenase MICAL2 (EC 1.14.13.225) 
 O94874,23376,23039,UFL1,Non-kinase,E3 UFM1-protein ligase 1 
 O94875,8470,24098,SORBS2,Non-kinase,Sorbin and SH3 domain-containing protein 2 
 O94880,9678,22203,PHF14,Non-kinase,PHD finger protein 14
@@ -339,7 +339,7 @@ O94901,23353,18587,SUN1,Non-kinase,SUN domain-containing protein 1
 O94916,10725,7774,NFAT5,Non-kinase,Nuclear factor of activated T-cells 5 
 O94921,5218,8883,CDK14,CMGC,Cyclin-dependent kinase 14 
 O94925,2744,4331,GLS,Non-kinase,"Glutaminase kidney isoform, mitochondrial "
-O94953,23030,29136,KDM4B,Non-kinase,Lysine-specific demethylase 4B 
+O94953,23030,29136,KDM4B,Non-kinase,Lysine-specific demethylase 4B (EC 1.14.11.66) 
 O94989,22899,15590,ARHGEF15,Non-kinase,Rho guanine nucleotide exchange factor 15 
 O94992,10614,24953,HEXIM1,Non-kinase,Protein HEXIM1 
 O95071,51366,16806,UBR5,Non-kinase,E3 ubiquitin-protein ligase UBR5 
@@ -356,7 +356,7 @@ O95239,24137,13339,KIF4A,Non-kinase,Chromosome-associated kinesin KIF4A
 O95243,8930,6919,MBD4,Non-kinase,Methyl-CpG-binding domain protein 4 
 O95251,11143,17016,KAT7,Non-kinase,Histone acetyltransferase KAT7 
 O95267,10125,9878,RASGRP1,Non-kinase,RAS guanyl-releasing protein 1 
-O95271,8658,11941,TNKS,Non-kinase,Poly [ADP-ribose] polymerase tankyrase-1 
+O95271,8658,11941,TNKS,Non-kinase,Poly [ADP-ribose] polymerase tankyrase-1 (EC 2.4.2.30) 
 O95278,7957,3413,EPM2A,Non-kinase,Laforin 
 O95295,23557,17145,SNAPIN,Non-kinase,SNARE-associated protein Snapin 
 O95297,9019,7226,MPZL1,Non-kinase,Myelin protein zero-like protein 1 
@@ -400,10 +400,10 @@ P00352,216,402,ALDH1A1,Non-kinase,Aldehyde dehydrogenase 1A1
 P00374,1719,2861,DHFR,Non-kinase,Dihydrofolate reductase 
 P00390,2936,4623,GSR,Non-kinase,"Glutathione reductase, mitochondrial "
 P00439,5053,8582,PAH,Non-kinase,Phenylalanine-4-hydroxylase 
-P00441,6647,11179,SOD1,Non-kinase,Superoxide dismutase [Cu-Zn] 
+P00441,6647,11179,SOD1,Non-kinase,Superoxide dismutase [Cu-Zn] (EC 1.15.1.1) 
 P00519,25,76,ABL1,TK,Tyrosine-protein kinase ABL1 
 P00533,1956,3236,EGFR,TK,Epidermal growth factor receptor 
-P00540,4342,7199,MOS,OTHER,Proto-oncogene serine/threonine-protein kinase mos 
+P00540,4342,7199,MOS,Other,Proto-oncogene serine/threonine-protein kinase mos 
 P00558,5230,8896,PGK1,Non-kinase,Phosphoglycerate kinase 1 
 P00736,715,1246,C1R,Non-kinase,Complement C1r subcomponent 
 P00749,5328,9052,PLAU,Non-kinase,Urokinase-type plasminogen activator 
@@ -435,7 +435,7 @@ P04049,5894,9829,RAF1,TKL,RAF proto-oncogene serine/threonine-protein kinase
 P04083,301,533,ANXA1,Non-kinase,Annexin A1 
 P04150,2908,7978,NR3C1,Non-kinase,Glucocorticoid receptor 
 P04156,5621,9449,PRNP,Non-kinase,Major prion protein 
-P04179,6648,11180,SOD2,Non-kinase,"Superoxide dismutase [Mn], mitochondrial "
+P04179,6648,11180,SOD2,Non-kinase,"Superoxide dismutase [Mn], mitochondrial (EC 1.15.1.1)"
 P04183,7083,11830,TK1,Non-kinase,"Thymidine kinase, cytosolic "
 P04198,4613,7559,MYCN,Non-kinase,N-myc proto-oncogene protein 
 P04406,2597,4141,GAPDH,Non-kinase,Glyceraldehyde-3-phosphate dehydrogenase 
@@ -552,9 +552,9 @@ P09874,142,270,PARP1,Non-kinase,Poly
 P09917,240,435,ALOX5,Non-kinase,Polyunsaturated fatty acid 5-lipoxygenase 
 P09958,5045,8568,FURIN,Non-kinase,Furin 
 P0C0S8,83298330833283368969,47374725472647304735,H2AC11; H2AC13; H2AC15; H2AC16; H2AC17,Non-kinase,Histone H2A type 1 
-P0C1S8,494551,19684,WEE2,OTHER,Wee1-like protein kinase 2 
+P0C1S8,494551,19684,WEE2,Other,Wee1-like protein kinase 2 
 P0C1Z6,29844,13630,TFPT,Non-kinase,TCF3 fusion partner 
-P0C264,100130827,44121,SBK3,OTHER,Uncharacterized serine/threonine-protein kinase SBK3 
+P0C264,100130827,44121,SBK3,Other,Uncharacterized serine/threonine-protein kinase SBK3 
 P0CG48,7316,12468,UBC,Non-kinase,Polyubiquitin-C
 P0DMV8,33033304,5232,HSPA1A,Non-kinase,Heat shock 70 kDa protein 1A 
 P0DN86,10829365994115,18861645216453,CGB3; CGB5; CGB8,Non-kinase,Choriogonadotropin subunit beta 3 
@@ -594,7 +594,7 @@ P11216,5834,9723,PYGB,Non-kinase,"Glycogen phosphorylase, brain form "
 P11217,5837,9726,PYGM,Non-kinase,"Glycogen phosphorylase, muscle form "
 P11233,5898,9839,RALA,Non-kinase,Ras-related protein Ral-A 
 P11234,5899,9840,RALB,Non-kinase,Ras-related protein Ral-B 
-P11274,613,1014,BCR,ATYPICAL,Breakpoint cluster region protein 
+P11274,613,1014,BCR,Atypical,Breakpoint cluster region protein 
 P11308,2078,3446,ERG,Non-kinase,Transcriptional regulator ERG 
 P11309,5292,8986,PIM1,CAMK,Serine/threonine-protein kinase pim-1 
 P11362,2260,3688,FGFR1,TK,Fibroblast growth factor receptor 1 
@@ -644,7 +644,7 @@ P13688,634,1814,CEACAM1,Non-kinase,Carcinoembryonic antigen-related cell adhesio
 P13693,7178,12022,TPT1,Non-kinase,Translationally-controlled tumor protein 
 P13726,2152,3541,F3,Non-kinase,Tissue factor 
 P13796,3936,6528,LCP1,Non-kinase,Plastin-2 
-P13807,2997,4706,GYS1,Non-kinase,"Glycogen [starch] synthase, muscle "
+P13807,2997,4706,GYS1,Non-kinase,"Glycogen [starch] synthase, muscle (EC 2.4.1.11)"
 P13861,5576,9391,PRKAR2A,Non-kinase,cAMP-dependent protein kinase type II-alpha regulatory subunit
 P14136,2670,4235,GFAP,Non-kinase,Glial fibrillary acidic protein 
 P14317,3059,4844,HCLS1,Non-kinase,Hematopoietic lineage cell-specific protein 
@@ -678,7 +678,7 @@ P15408,2355,3798,FOSL2,Non-kinase,Fos-related antigen 2
 P15498,7409,12657,VAV1,Non-kinase,Proto-oncogene vav
 P15529,4179,6953,CD46,Non-kinase,Membrane cofactor protein 
 P15531,4830,7849,NME1,Non-kinase,Nucleoside diphosphate kinase A 
-P15559,1728,2874,NQO1,Non-kinase,NAD
+P15559,1728,2874,NQO1,Non-kinase,NAD(P)H dehydrogenase [quinone] 1 (EC 1.6.5.2) 
 P15735,5261,8931,PHKG2,CAMK,"Phosphorylase b kinase gamma catalytic chain, liver/testis isoform "
 P15822,3096,4920,HIVEP1,Non-kinase,Zinc finger protein 40 
 P15884,6925,11634,TCF4,Non-kinase,Transcription factor 4 
@@ -753,7 +753,7 @@ P18827,6382,10658,SDC1,Non-kinase,Syndecan-1
 P18846,466,783,ATF1,Non-kinase,Cyclic AMP-dependent transcription factor ATF-1 
 P18848,468,786,ATF4,Non-kinase,Cyclic AMP-dependent transcription factor ATF-4 
 P18850,22926,791,ATF6,Non-kinase,Cyclic AMP-dependent transcription factor ATF-6 alpha 
-P18858,3978,6598,LIG1,Non-kinase,DNA ligase 1 
+P18858,3978,6598,LIG1,Non-kinase,DNA ligase 1 (EC 6.5.1.1) 
 P18887,7515,12828,XRCC1,Non-kinase,DNA repair protein XRCC1 
 P19021,5066,8596,PAM,Non-kinase,Peptidyl-glycine alpha-amidating monooxygenase 
 P19022,1000,1759,CDH2,Non-kinase,Cadherin-2 
@@ -763,13 +763,13 @@ P19174,5335,9065,PLCG1,Non-kinase,"1-phosphatidylinositol 4,5-bisphosphate phosp
 P19235,2057,3416,EPOR,Non-kinase,Erythropoietin receptor 
 P19338,4691,7667,NCL,Non-kinase,Nucleolin 
 P19367,3098,4922,HK1,Non-kinase,Hexokinase-1 
-P19404,4729,7717,NDUFV2,Non-kinase,"NADH dehydrogenase [ubiquinone] flavoprotein 2, mitochondrial "
+P19404,4729,7717,NDUFV2,Non-kinase,"NADH dehydrogenase [ubiquinone] flavoprotein 2, mitochondrial (EC 7.1.1.2) "
 P19419,2002,3321,ELK1,Non-kinase,ETS domain-containing protein Elk-1
 P19429,7137,11947,TNNI3,Non-kinase,"Troponin I, cardiac muscle "
 P19438,7132,11916,TNFRSF1A,Non-kinase,Tumor necrosis factor receptor superfamily member 1A 
 P19447,2071,3435,ERCC3,Non-kinase,General transcription and DNA repair factor IIH helicase subunit XPB 
 P19484,7942,11753,TFEB,Non-kinase,Transcription factor EB 
-P19525,5610,9437,EIF2AK2,OTHER,"Interferon-induced, double-stranded RNA-activated protein kinase "
+P19525,5610,9437,EIF2AK2,Other,"Interferon-induced, double-stranded RNA-activated protein kinase "
 P19532,7030,11752,TFE3,Non-kinase,Transcription factor E3 
 P19544,7490,12796,WT1,Non-kinase,Wilms tumor protein 
 P19634,6548,11071,SLC9A1,Non-kinase,Sodium/hydrogen exchanger 1 
@@ -799,13 +799,13 @@ P20963,919,1677,CD247,Non-kinase,T-cell surface glycoprotein CD3 zeta chain
 P21127,984,1729,CDK11B,CMGC,Cyclin-dependent kinase 11B 
 P21333,2316,3754,FLNA,Non-kinase,Filamin-A 
 P21359,4763,7765,NF1,Non-kinase,Neurofibromin 
-P21397,4128,6833,MAOA,Non-kinase,Amine oxidase [flavin-containing] A 
+P21397,4128,6833,MAOA,Non-kinase,Amine oxidase [flavin-containing] A (EC 1.4.3.21) (EC 1.4.3.4) 
 P21399,48,117,ACO1,Non-kinase,Cytoplasmic aconitate hydratase 
 P21453,1901,3165,S1PR1,Non-kinase,Sphingosine 1-phosphate receptor 1 
 P21462,2357,3826,FPR1,Non-kinase,fMet-Leu-Phe receptor 
 P21580,7128,11896,TNFAIP3,Non-kinase,Tumor necrosis factor alpha-induced protein 3 
 P21673,6303,10540,SAT1,Non-kinase,Diamine acetyltransferase 1 
-P21675,6872,11535,TAF1,ATYPICAL,Transcription initiation factor TFIID subunit 1 
+P21675,6872,11535,TAF1,Atypical,Transcription initiation factor TFIID subunit 1 
 P21709,2041,3385,EPHA1,TK,Ephrin type-A receptor 1 
 P21730,728,1338,C5AR1,Non-kinase,C5a anaphylatoxin chemotactic receptor 1 
 P21731,6915,11608,TBXA2R,Non-kinase,Thromboxane A2 receptor 
@@ -874,7 +874,7 @@ P25098,156,289,GRK2,AGC,Beta-adrenergic receptor kinase 1
 P25100,146,280,ADRA1D,Non-kinase,Alpha-1D adrenergic receptor 
 P25101,1909,3179,EDNRA,Non-kinase,Endothelin-1 receptor 
 P25205,4172,6945,MCM3,Non-kinase,DNA replication licensing factor MCM3 
-P25440,6046,1103,BRD2,ATYPICAL,Bromodomain-containing protein 2 
+P25440,6046,1103,BRD2,Atypical,Bromodomain-containing protein 2 
 P25490,7528,12856,YY1,Non-kinase,Transcriptional repressor protein YY1 
 P25685,3337,5270,DNAJB1,Non-kinase,DnaJ homolog subfamily B member 1 
 P25686,3300,5228,DNAJB2,Non-kinase,DnaJ homolog subfamily B member 2 
@@ -923,7 +923,7 @@ P29323,2048,3393,EPHB2,TK,Ephrin type-B receptor 2
 P29350,5777,9658,PTPN6,Non-kinase,Tyrosine-protein phosphatase non-receptor type 6 
 P29353,6464,10840,SHC1,Non-kinase,SHC-transforming protein 1 
 P29374,5926,9885,ARID4A,Non-kinase,AT-rich interactive domain-containing protein 4A 
-P29375,5927,9886,KDM5A,Non-kinase,Lysine-specific demethylase 5A 
+P29375,5927,9886,KDM5A,Non-kinase,Lysine-specific demethylase 5A (EC 1.14.11.67) 
 P29376,4058,6721,LTK,TK,Leukocyte tyrosine kinase receptor 
 P29401,7086,11834,TKT,Non-kinase,Transketolase 
 P29466,834,1499,CASP1,Non-kinase,Caspase-1 
@@ -945,7 +945,7 @@ P30260,996,1728,CDC27,Non-kinase,Cell division cycle protein 27 homolog
 P30273,2207,3611,FCER1G,Non-kinase,High affinity immunoglobulin epsilon receptor subunit gamma 
 P30279,894,1583,CCND2,Non-kinase,G1/S-specific cyclin-D2
 P30281,896,1585,CCND3,Non-kinase,G1/S-specific cyclin-D3
-P30291,7465,12761,WEE1,OTHER,Wee1-like protein kinase 
+P30291,7465,12761,WEE1,Other,Wee1-like protein kinase 
 P30301,4284,7103,MIP,Non-kinase,Lens fiber major intrinsic protein 
 P30304,993,1725,CDC25A,Non-kinase,M-phase inducer phosphatase 1 
 P30305,994,1726,CDC25B,Non-kinase,M-phase inducer phosphatase 2 
@@ -963,7 +963,7 @@ P30626,6717,11292,SRI,Non-kinase,Sorcin
 P30679,2769,4383,GNA15,Non-kinase,Guanine nucleotide-binding protein subunit alpha-15 
 P30793,2643,4193,GCH1,Non-kinase,GTP cyclohydrolase 1 
 P30874,6752,11331,SSTR2,Non-kinase,Somatostatin receptor type 2 
-P31040,6389,10680,SDHA,Non-kinase,"Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial "
+P31040,6389,10680,SDHA,Non-kinase,"Succinate dehydrogenase [ubiquinone] flavoprotein subunit, mitochondrial (EC 1.3.5.1) "
 P31146,11151,2252,CORO1A,Non-kinase,Coronin-1A 
 P31152,5596,6878,MAPK4,CMGC,Mitogen-activated protein kinase 4 
 P31270,3207,5101,HOXA11,Non-kinase,Homeobox protein Hox-A11 
@@ -996,7 +996,7 @@ P33241,4046,6707,LSP1,Non-kinase,Lymphocyte-specific protein 1
 P33316,1854,3078,DUT,Non-kinase,"Deoxyuridine 5'-triphosphate nucleotidohydrolase, mitochondrial "
 P33527,4363,51,ABCC1,Non-kinase,Multidrug resistance-associated protein 1 
 P33778,3018,4751,H2BC3,Non-kinase,Histone H2B type 1-B 
-P33981,7272,12401,TTK,OTHER,Dual specificity protein kinase TTK 
+P33981,7272,12401,TTK,Other,Dual specificity protein kinase TTK 
 P33991,4173,6947,MCM4,Non-kinase,DNA replication licensing factor MCM4 
 P33992,4174,6948,MCM5,Non-kinase,DNA replication licensing factor MCM5 
 P33993,4176,6950,MCM7,Non-kinase,DNA replication licensing factor MCM7 
@@ -1114,7 +1114,7 @@ P42226,6778,11368,STAT6,Non-kinase,Signal transducer and activator of transcript
 P42229,6776,11366,STAT5A,Non-kinase,Signal transducer and activator of transcription 5A
 P42261,2890,4571,GRIA1,Non-kinase,Glutamate receptor 1 
 P42262,2891,4572,GRIA2,Non-kinase,Glutamate receptor 2 
-P42345,2475,3942,MTOR,ATYPICAL,Serine/threonine-protein kinase mTOR 
+P42345,2475,3942,MTOR,Atypical,Serine/threonine-protein kinase mTOR 
 P42566,2060,3419,EPS15,Non-kinase,Epidermal growth factor receptor substrate 15 
 P42568,4300,7136,MLLT3,Non-kinase,Protein AF-9 
 P42574,836,1504,CASP3,Non-kinase,Caspase-3 
@@ -1239,13 +1239,13 @@ P49795,10287,13735,RGS19,Non-kinase,Regulator of G-protein signaling 19
 P49802,6000,10003,RGS7,Non-kinase,Regulator of G-protein signaling 7 
 P49810,5664,9509,PSEN2,Non-kinase,Presenilin-2 
 P49815,7249,12363,TSC2,Non-kinase,Tuberin 
-P49821,4723,7716,NDUFV1,Non-kinase,"NADH dehydrogenase [ubiquinone] flavoprotein 1, mitochondrial "
+P49821,4723,7716,NDUFV1,Non-kinase,"NADH dehydrogenase [ubiquinone] flavoprotein 1, mitochondrial (EC 7.1.1.2) "
 P49840,2931,4616,GSK3A,CMGC,Glycogen synthase kinase-3 alpha 
 P49841,2932,4617,GSK3B,CMGC,Glycogen synthase kinase-3 beta 
-P49842,8859,11398,STK19,ATYPICAL,Serine/threonine-protein kinase 19 
-P49915,8833,4378,GMPS,Non-kinase,GMP synthase [glutamine-hydrolyzing] 
-P49916,3980,6600,LIG3,Non-kinase,DNA ligase 3 
-P49917,3981,6601,LIG4,Non-kinase,DNA ligase 4 
+P49842,8859,11398,STK19,Atypical,Serine/threonine-protein kinase 19 
+P49915,8833,4378,GMPS,Non-kinase,GMP synthase [glutamine-hydrolyzing] (EC 6.3.5.2) 
+P49916,3980,6600,LIG3,Non-kinase,DNA ligase 3 (EC 6.5.1.1) 
+P49917,3981,6601,LIG4,Non-kinase,DNA ligase 4 (EC 6.5.1.1) 
 P49918,1028,1786,CDKN1C,Non-kinase,Cyclin-dependent kinase inhibitor 1C 
 P49959,4361,7230,MRE11,Non-kinase,Double-strand break repair protein MRE11 
 P50219,3110,4979,MNX1,Non-kinase,Motor neuron and pancreas homeobox protein 1 
@@ -1290,9 +1290,9 @@ P51813,660,1079,BMX,TK,Cytoplasmic tyrosine-protein kinase BMX
 P51817,5613,9441,PRKX,AGC,cAMP-dependent protein kinase catalytic subunit PRKX 
 P51841,2986,4691,GUCY2F,RGC,Retinal guanylyl cyclase 2 
 P51946,902,1594,CCNH,Non-kinase,Cyclin-H 
-P51955,4751,7745,NEK2,OTHER,Serine/threonine-protein kinase Nek2 
-P51956,4752,7746,NEK3,OTHER,Serine/threonine-protein kinase Nek3 
-P51957,6787,11399,NEK4,OTHER,Serine/threonine-protein kinase Nek4 
+P51955,4751,7745,NEK2,Other,Serine/threonine-protein kinase Nek2 
+P51956,4752,7746,NEK3,Other,Serine/threonine-protein kinase Nek3 
+P51957,6787,11399,NEK4,Other,Serine/threonine-protein kinase Nek4 
 P52179,8736,7613,MYOM1,Non-kinase,Myomesin-1 
 P52209,5226,8891,PGD,Non-kinase,"6-phosphogluconate dehydrogenase, decarboxylating "
 P52272,4670,5046,HNRNPM,Non-kinase,Heterogeneous nuclear ribonucleoprotein M 
@@ -1316,9 +1316,9 @@ P52926,8091,5009,HMGA2,Non-kinase,High mobility group protein HMGI-C
 P52945,3651,6107,PDX1,Non-kinase,Pancreas/duodenum homeobox protein 1 
 P52948,4928,8068,NUP98,Non-kinase,Nuclear pore complex protein Nup98-Nup96 
 P52952,1482,2488,NKX2-5,Non-kinase,Homeobox protein Nkx-2.5 
-P53004,644,1062,BLVRA,ATYPICAL,Biliverdin reductase A 
+P53004,644,1062,BLVRA,Atypical,Biliverdin reductase A 
 P53041,5536,9322,PPP5C,Non-kinase,Serine/threonine-protein phosphatase 5 
-P53350,5347,9077,PLK1,OTHER,Serine/threonine-protein kinase PLK1 
+P53350,5347,9077,PLK1,Other,Serine/threonine-protein kinase PLK1 
 P53355,1612,2674,DAPK1,CAMK,Death-associated protein kinase 1 
 P53365,23647,17160,ARFIP2,Non-kinase,Arfaptin-2 
 P53367,27236,21496,ARFIP1,Non-kinase,Arfaptin-1 
@@ -1350,7 +1350,7 @@ P54760,2050,3395,EPHB4,TK,Ephrin type-B receptor 4
 P54762,2047,3392,EPHB1,TK,Ephrin type-B receptor 1 
 P54764,2043,3388,EPHA4,TK,Ephrin type-A receptor 4 
 P54829,84867,9657,PTPN5,Non-kinase,Tyrosine-protein phosphatase non-receptor type 5 
-P54840,2998,4707,GYS2,Non-kinase,"Glycogen [starch] synthase, liver "
+P54840,2998,4707,GYS2,Non-kinase,"Glycogen [starch] synthase, liver (EC 2.4.1.11)"
 P55010,1983,3299,EIF5,Non-kinase,Eukaryotic translation initiation factor 5 
 P55011,6558,10911,SLC12A2,Non-kinase,Solute carrier family 12 member 2 
 P55017,6559,10912,SLC12A3,Non-kinase,Solute carrier family 12 member 3 
@@ -1472,7 +1472,7 @@ P78356,8396,8998,PIP4K2B,Non-kinase,Phosphatidylinositol 5-phosphate 4-kinase ty
 P78362,6733,11306,SRPK2,CMGC,SRSF protein kinase 2 
 P78368,1455,2455,CSNK1G2,CK1,Casein kinase I isoform gamma-2 
 P78371,10576,1615,CCT2,Non-kinase,T-complex protein 1 subunit beta 
-P78527,5591,9413,PRKDC,ATYPICAL,DNA-dependent protein kinase catalytic subunit 
+P78527,5591,9413,PRKDC,Atypical,DNA-dependent protein kinase catalytic subunit 
 P78536,6868,195,ADAM17,Non-kinase,Disintegrin and metalloproteinase domain-containing protein 17 
 P78543,7832,1131,BTG2,Non-kinase,Protein BTG2 
 P78545,1999,3318,ELF3,Non-kinase,ETS-related transcription factor Elf-3 
@@ -1599,13 +1599,13 @@ Q05586,2902,4584,GRIN1,Non-kinase,"Glutamate receptor ionotropic, NMDA 1 "
 Q05639,1917,3192,EEF1A2,Non-kinase,Elongation factor 1-alpha 2 
 Q05655,5580,9399,PRKCD,AGC,Protein kinase C delta type 
 Q05682,800,1441,CALD1,Non-kinase,Caldesmon 
-Q05823,6041,10050,RNASEL,OTHER,2-5A-dependent ribonuclease 
+Q05823,6041,10050,RNASEL,Other,2-5A-dependent ribonuclease 
 Q05940,6571,10935,SLC18A2,Non-kinase,Synaptic vesicular amine transporter 
 Q06124,5781,9644,PTPN11,Non-kinase,Tyrosine-protein phosphatase non-receptor type 11 
 Q06187,695,1133,BTK,TK,Tyrosine-protein kinase BTK 
 Q06190,5523,9307,PPP2R3A,Non-kinase,Serine/threonine-protein phosphatase 2A regulatory subunit B'' subunit alpha 
 Q06203,5471,9238,PPAT,Non-kinase,Amidophosphoribosyltransferase 
-Q06210,2673,4241,GFPT1,Non-kinase,Glutamine--fructose-6-phosphate aminotransferase [isomerizing] 1 
+Q06210,2673,4241,GFPT1,Non-kinase,Glutamine--fructose-6-phosphate aminotransferase [isomerizing] 1 (EC 2.6.1.16) 
 Q06265,5393,9137,EXOSC9,Non-kinase,Exosome complex component RRP45 
 Q06330,3516,5724,RBPJ,Non-kinase,Recombining binding protein suppressor of hairless 
 Q06413,4208,6996,MEF2C,Non-kinase,Myocyte-specific enhancer factor 2C 
@@ -1674,7 +1674,7 @@ Q12948,2296,3800,FOXC1,Non-kinase,Forkhead box protein C1
 Q12959,1739,2900,DLG1,Non-kinase,Disks large homolog 1 
 Q12968,4775,7777,NFATC3,Non-kinase,"Nuclear factor of activated T-cells, cytoplasmic 3 "
 Q12972,5511,9296,PPP1R8,Non-kinase,Nuclear inhibitor of protein phosphatase 1 
-Q12979,29,81,ABR,ATYPICAL,Active breakpoint cluster region-related protein
+Q12979,29,81,ABR,Atypical,Active breakpoint cluster region-related protein
 Q12983,664,1084,BNIP3,Non-kinase,BCL2/adenovirus E1B 19 kDa protein-interacting protein 3
 Q13002,2898,4580,GRIK2,Non-kinase,"Glutamate receptor ionotropic, kainate 2 "
 Q13009,7074,11805,TIAM1,Non-kinase,Rho guanine nucleotide exchange factor TIAM1 
@@ -1717,14 +1717,14 @@ Q13243,6430,10787,SRSF5,Non-kinase,Serine/arginine-rich splicing factor 5
 Q13255,2911,4593,GRM1,Non-kinase,Metabotropic glutamate receptor 1 
 Q13257,4085,6763,MAD2L1,Non-kinase,Mitotic spindle assembly checkpoint protein MAD2A 
 Q13261,3601,5978,IL15RA,Non-kinase,Interleukin-15 receptor subunit alpha 
-Q13263,10155,16384,TRIM28,ATYPICAL,Transcription intermediary factor 1-beta 
+Q13263,10155,16384,TRIM28,Atypical,Transcription intermediary factor 1-beta 
 Q13283,10146,30292,G3BP1,Non-kinase,Ras GTPase-activating protein-binding protein 1 
 Q13285,2516,7983,NR5A1,Non-kinase,Steroidogenic factor 1 
 Q13291,6504,10903,SLAMF1,Non-kinase,Signaling lymphocytic activation molecule 
 Q13303,8514,6229,KCNAB2,Non-kinase,Voltage-gated potassium channel subunit beta-2 
 Q13308,5754,9618,PTK7,TK,Inactive tyrosine-protein kinase 7 
 Q13309,6502,10901,SKP2,Non-kinase,S-phase kinase-associated protein 2 
-Q13315,472,795,ATM,ATYPICAL,Serine-protein kinase ATM 
+Q13315,472,795,ATM,Atypical,Serine-protein kinase ATM 
 Q13322,2887,4564,GRB10,Non-kinase,Growth factor receptor-bound protein 10 
 Q13323,638,1051,BIK,Non-kinase,Bcl-2-interacting killer 
 Q13330,9112,7410,MTA1,Non-kinase,Metastasis-associated protein MTA1
@@ -1760,7 +1760,7 @@ Q13522,5502,9286,PPP1R1A,Non-kinase,Protein phosphatase 1 regulatory subunit 1A
 Q13523,8899,17346,PRPF4B,CMGC,Serine/threonine-protein kinase PRP4 homolog 
 Q13526,5300,8988,PIN1,Non-kinase,Peptidyl-prolyl cis-trans isomerase NIMA-interacting 1 
 Q13530,10955,11699,SERINC3,Non-kinase,Serine incorporator 3 
-Q13535,545,882,ATR,ATYPICAL,Serine/threonine-protein kinase ATR 
+Q13535,545,882,ATR,Atypical,Serine/threonine-protein kinase ATR 
 Q13541,1978,3288,EIF4EBP1,Non-kinase,Eukaryotic translation initiation factor 4E-binding protein 1 
 Q13546,8737,10019,RIPK1,TKL,Receptor-interacting serine/threonine-protein kinase 1 
 Q13547,3065,4852,HDAC1,Non-kinase,Histone deacetylase 1 
@@ -1815,7 +1815,7 @@ Q14155,8874,15607,ARHGEF7,Non-kinase,Rho guanine nucleotide exchange factor 7
 Q14157,9898,29877,UBAP2L,Non-kinase,Ubiquitin-associated protein 2-like 
 Q14160,23513,30377,SCRIB,Non-kinase,Protein scribble homolog 
 Q14161,9815,4273,GIT2,Non-kinase,ARF GTPase-activating protein GIT2 
-Q14164,9641,14552,IKBKE,OTHER,Inhibitor of nuclear factor kappa-B kinase subunit epsilon 
+Q14164,9641,14552,IKBKE,Other,Inhibitor of nuclear factor kappa-B kinase subunit epsilon 
 Q14184,8447,2986,DOC2B,Non-kinase,Double C2-like domain-containing protein beta 
 Q14185,1793,2987,DOCK1,Non-kinase,Dedicator of cytokinesis protein 1 
 Q14186,7027,11749,TFDP1,Non-kinase,Transcription factor Dp-1 
@@ -1834,7 +1834,7 @@ Q14249,2021,3346,ENDOG,Non-kinase,"Endonuclease G, mitochondrial "
 Q14254,2319,3758,FLOT2,Non-kinase,Flotillin-2 
 Q14258,7706,12932,TRIM25,Non-kinase,E3 ubiquitin/ISG15 ligase TRIM25 
 Q14289,2185,9612,PTK2B,TK,Protein-tyrosine kinase 2-beta 
-Q14296,10922,24676,FASTK,ATYPICAL,Fas-activated serine/threonine kinase 
+Q14296,10922,24676,FASTK,Atypical,Fas-activated serine/threonine kinase 
 Q14315,2318,3756,FLNC,Non-kinase,Filamin-C 
 Q14344,10672,4381,GNA13,Non-kinase,Guanine nucleotide-binding protein subunit alpha-13 
 Q14432,5139,8778,PDE3A,Non-kinase,"cGMP-inhibited 3',5'-cyclic phosphodiesterase 3A "
@@ -1898,15 +1898,15 @@ Q15047,9869,10761,SETDB1,Non-kinase,Histone-lysine N-methyltransferase SETDB1
 Q15052,9459,685,ARHGEF6,Non-kinase,Rho guanine nucleotide exchange factor 6 
 Q15054,10714,20932,POLD3,Non-kinase,DNA polymerase delta subunit 3 
 Q15058,9928,19181,KIF14,Non-kinase,Kinesin-like protein KIF14
-Q15059,8019,1104,BRD3,ATYPICAL,Bromodomain-containing protein 3 
+Q15059,8019,1104,BRD3,Atypical,Bromodomain-containing protein 3 
 Q15075,8411,3185,EEA1,Non-kinase,Early endosome antigen 1 
 Q15078,8851,1775,CDK5R1,Non-kinase,Cyclin-dependent kinase 5 activator 1 
 Q15080,4689,7662,NCF4,Non-kinase,Neutrophil cytosol factor 4 
 Q15084,10130,30168,PDIA6,Non-kinase,Protein disulfide-isomerase A6 
 Q15109,177,320,AGER,Non-kinase,Advanced glycosylation end product-specific receptor 
-Q15118,5163,8809,PDK1,ATYPICAL,[Pyruvate dehydrogenase 
-Q15119,5164,8810,PDK2,ATYPICAL,[Pyruvate dehydrogenase 
-Q15120,5165,8811,PDK3,ATYPICAL,[Pyruvate dehydrogenase 
+Q15118,5163,8809,PDK1,Atypical,"[Pyruvate dehydrogenase (acetyl-transferring)] kinase isozyme 1, mitochondrial (EC 2.7.11.2) "
+Q15119,5164,8810,PDK2,Atypical,"[Pyruvate dehydrogenase (acetyl-transferring)] kinase isozyme 2, mitochondrial (EC 2.7.11.2) "
+Q15120,5165,8811,PDK3,Atypical,"[Pyruvate dehydrogenase (acetyl-transferring)] kinase isozyme 3, mitochondrial (EC 2.7.11.2) "
 Q15121,8682,8822,PEA15,Non-kinase,Astrocytic phosphoprotein PEA-15 
 Q15131,8558,1770,CDK10,CMGC,Cyclin-dependent kinase 10 
 Q15139,5587,9407,PRKD1,CAMK,Serine/threonine-protein kinase D1 
@@ -2006,7 +2006,7 @@ Q16625,100506658,8104,OCLN,Non-kinase,Occludin
 Q16637,66066607,1111711118,SMN1; SMN2,Non-kinase,Survival motor neuron protein 
 Q16643,1627,2695,DBN1,Non-kinase,Drebrin 
 Q16644,7867,6888,MAPKAPK3,CAMK,MAP kinase-activated protein kinase 3 
-Q16654,5166,8812,PDK4,ATYPICAL,[Pyruvate dehydrogenase 
+Q16654,5166,8812,PDK4,Atypical,"[Pyruvate dehydrogenase (acetyl-transferring)] kinase isozyme 4, mitochondrial (EC 2.7.11.2) "
 Q16656,4899,7996,NRF1,Non-kinase,Nuclear respiratory factor 1 
 Q16658,6624,11148,FSCN1,Non-kinase,Fascin 
 Q16659,5597,6879,MAPK6,CMGC,Mitogen-activated protein kinase 6 
@@ -2029,7 +2029,7 @@ Q16875,5209,8874,PFKFB3,Non-kinase,"6-phosphofructo-2-kinase/fructose-2,6-bispho
 Q16891,10989,6047,IMMT,Non-kinase,MICOS complex subunit MIC60 
 Q27J81,64423,23791,INF2,Non-kinase,Inverted formin-2 
 Q2M1Z3,57514,29216,ARHGAP31,Non-kinase,Rho GTPase-activating protein 31 
-Q2M2I8,22848,19679,AAK1,OTHER,AP2-associated protein kinase 1 
+Q2M2I8,22848,19679,AAK1,Other,AP2-associated protein kinase 1 
 Q2M2Z5,55857,15865,KIZ,Non-kinase,Centrosomal protein kizuna 
 Q2NKX8,54821,20794,ERCC6L,Non-kinase,DNA excision repair protein ERCC-6-like 
 Q2PPJ7,57186,16207,RALGAPA2,Non-kinase,Ral GTPase-activating protein subunit alpha-2 
@@ -2046,20 +2046,20 @@ Q4G0J3,51574,24912,LARP7,Non-kinase,La-related protein 7
 Q4G163,286151,28521,FBXO43,Non-kinase,F-box only protein 43 
 Q4VCS5,154796,17810,AMOT,Non-kinase,Angiomotin
 Q504Q3,9924,20074,PAN2,Non-kinase,PAN2-PAN3 deadenylation complex catalytic subunit PAN2 
-Q504Y2,91461,25123,PKDCC,OTHER,Extracellular tyrosine-protein kinase PKDCC 
+Q504Y2,91461,25123,PKDCC,Other,Extracellular tyrosine-protein kinase PKDCC 
 Q53EL6,27250,8763,PDCD4,Non-kinase,Programmed cell death protein 4 
 Q53ET0,200186,27301,CRTC2,Non-kinase,CREB-regulated transcription coactivator 2 
 Q53EZ4,55165,1161,CEP55,Non-kinase,Centrosomal protein of 55 kDa 
 Q53F19,55421,24612,NCBP3,Non-kinase,Nuclear cap-binding protein subunit 3 
-Q53GL7,84875,25895,PARP10,Non-kinase,Protein mono-ADP-ribosyltransferase PARP10 
+Q53GL7,84875,25895,PARP10,Non-kinase,Protein mono-ADP-ribosyltransferase PARP10 (EC 2.4.2.-) 
 Q53GS7,2733,4315,GLE1,Non-kinase,mRNA export factor GLE1 
 Q53H47,6419,10762,SETMAR,Non-kinase,Histone-lysine N-methyltransferase SETMAR 
 Q53H80,55122,21407,AKIRIN2,Non-kinase,Akirin-2
 Q53HL2,55143,14629,CDCA8,Non-kinase,Borealin 
 Q56UN5,80122,26249,MAP3K19,STE,Mitogen-activated protein kinase kinase kinase 19 
 Q587J8,154288,33699,KHDC3L,Non-kinase,KH domain-containing protein 3 
-Q58A45,255967,29991,PAN3,OTHER,PAN2-PAN3 deadenylation complex subunit PAN3 
-Q58F21,676,1105,BRDT,ATYPICAL,Bromodomain testis-specific protein 
+Q58A45,255967,29991,PAN3,Other,PAN2-PAN3 deadenylation complex subunit PAN3 
+Q58F21,676,1105,BRDT,Atypical,Bromodomain testis-specific protein 
 Q59H18,10052683551086,19661,TNNI3K,TKL,Serine/threonine-protein kinase TNNI3K 
 Q5BJF6,4957,8114,ODF2,Non-kinase,Outer dense fiber protein 2 
 Q5FBB7,151648,25088,SGO1,Non-kinase,Shugoshin 1 
@@ -2127,12 +2127,12 @@ Q6P1M3,3993,6629,LLGL2,Non-kinase,LLGL scribble cell polarity complex component 
 Q6P1N0,54862,30237,CC2D1A,Non-kinase,Coiled-coil and C2 domain-containing protein 1A 
 Q6P2E9,23644,17157,EDC4,Non-kinase,Enhancer of mRNA-decapping protein 4 
 Q6P2M8,139728,13415,PNCK,CAMK,Calcium/calmodulin-dependent protein kinase type 1B 
-Q6P3W7,55681,19286,SCYL2,OTHER,SCY1-like protein 2 
+Q6P3W7,55681,19286,SCYL2,Other,SCY1-like protein 2 
 Q6P5Z2,29941,17999,PKN3,AGC,Serine/threonine-protein kinase N3 
 Q6PCD5,55159,25539,RFWD3,Non-kinase,E3 ubiquitin-protein ligase RFWD3 
 Q6PD62,9646,16850,CTR9,Non-kinase,RNA polymerase-associated protein CTR9 homolog 
 Q6PGQ7,79866,24724,BORA,Non-kinase,Protein aurora borealis 
-Q6PHR2,25989,19703,ULK3,OTHER,Serine/threonine-protein kinase ULK3 
+Q6PHR2,25989,19703,ULK3,Other,Serine/threonine-protein kinase ULK3 
 Q6PIY7,167153,26776,TENT2,Non-kinase,Poly
 Q6PJT7,79882,20509,ZC3H14,Non-kinase,Zinc finger CCCH domain-containing protein 14 
 Q6PKG0,23367,29531,LARP1,Non-kinase,La-related protein 1 
@@ -2154,7 +2154,7 @@ Q6UWZ7,84142,25829,ABRAXAS1,Non-kinase,BRCA1-A complex subunit Abraxas 1
 Q6VAB6,283455,18610,KSR2,TKL,Kinase suppressor of Ras 2 
 Q6VY07,55690,30032,PACS1,Non-kinase,Phosphofurin acidic cluster sorting protein 1 
 Q6WKZ4,80223,30265,RAB11FIP1,Non-kinase,Rab11 family-interacting protein 1 
-Q6XUX3,25778,29043,DSTYK,OTHER,Dual serine/threonine and tyrosine protein kinase 
+Q6XUX3,25778,29043,DSTYK,Other,Dual serine/threonine and tyrosine protein kinase 
 Q6Y7W6,26058,11960,GIGYF2,Non-kinase,GRB10-interacting GYF protein 2 
 Q6ZMG9,253782,23826,CERS6,Non-kinase,Ceramide synthase 6 
 Q6ZMQ8,9625,21,AATK,TK,Serine/threonine-protein kinase LMTK1 
@@ -2163,7 +2163,7 @@ Q6ZN17,389421,32207,LIN28B,Non-kinase,Protein lin-28 homolog B
 Q6ZNE5,22863,19962,ATG14,Non-kinase,Beclin 1-associated autophagy-related key regulator 
 Q6ZS17,79567,25836,RIPOR1,Non-kinase,Rho family-interacting cell polarization regulator 1
 Q6ZUJ8,118788,30034,PIK3AP1,Non-kinase,Phosphoinositide 3-kinase adapter protein 1 
-Q6ZWH5,152110,18592,NEK10,OTHER,Serine/threonine-protein kinase Nek10 
+Q6ZWH5,152110,18592,NEK10,Other,Serine/threonine-protein kinase Nek10 
 Q6ZWJ1,252983,19694,STXBP4,Non-kinase,Syntaxin-binding protein 4 
 Q70CQ2,9736,20066,USP34,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 34 
 Q70E73,65059,14436,RAPH1,Non-kinase,Ras-associated and pleckstrin homology domains-containing protein 1 
@@ -2174,7 +2174,7 @@ Q71F23,79682,21348,CENPU,Non-kinase,Centromere protein U
 Q71U36,7846,20766,TUBA1A,Non-kinase,Tubulin alpha-1A chain 
 Q71UM5,51065,18476,RPS27L,Non-kinase,Ribosomal protein eS27-like 
 Q76M96,151887,30649,CCDC80,Non-kinase,Coiled-coil domain-containing protein 80 
-Q76MJ5,10595,16942,ERN2,OTHER,Serine/threonine-protein kinase/endoribonuclease IRE2 
+Q76MJ5,10595,16942,ERN2,Other,Serine/threonine-protein kinase/endoribonuclease IRE2 
 Q76N32,23177,29076,CEP68,Non-kinase,Centrosomal protein of 68 kDa 
 Q7KZ85,6830,11470,SUPT6H,Non-kinase,Transcription elongation factor SPT6 
 Q7KZF4,27044,30646,SND1,Non-kinase,Staphylococcal nuclease domain-containing protein 1 
@@ -2207,17 +2207,17 @@ Q7Z699,161742,20249,SPRED1,Non-kinase,"Sprouty-related, EVH1 domain-containing p
 Q7Z6A9,151888,21087,BTLA,Non-kinase,B- and T-lymphocyte attenuator 
 Q7Z6J0,57630,17650,SH3RF1,Non-kinase,E3 ubiquitin-protein ligase SH3RF1 
 Q7Z6Z7,10075,30892,HUWE1,Non-kinase,E3 ubiquitin-protein ligase HUWE1 
-Q7Z7A4,54899,23326,PXK,OTHER,PX domain-containing protein kinase-like protein 
-Q86SG6,284086,13387,NEK8,OTHER,Serine/threonine-protein kinase Nek8 
+Q7Z7A4,54899,23326,PXK,Other,PX domain-containing protein kinase-like protein 
+Q86SG6,284086,13387,NEK8,Other,Serine/threonine-protein kinase Nek8 
 Q86T82,57695,20063,USP37,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 37 
-Q86TB3,115701,20565,ALPK2,ATYPICAL,Alpha-protein kinase 2 
+Q86TB3,115701,20565,ALPK2,Atypical,Alpha-protein kinase 2 
 Q86TB9,219988,26721,PATL1,Non-kinase,Protein PAT1 homolog 1 
 Q86TI0,23216,11578,TBC1D1,Non-kinase,TBC1 domain family member 1
-Q86TW2,57143,19038,ADCK1,ATYPICAL,AarF domain-containing protein kinase 1 
+Q86TW2,57143,19038,ADCK1,Atypical,AarF domain-containing protein kinase 1 
 Q86U44,56339,17563,METTL3,Non-kinase,N6-adenosine-methyltransferase catalytic subunit 
 Q86U86,55193,30064,PBRM1,Non-kinase,Protein polybromo-1 
 Q86UC2,83861,21054,RSPH3,Non-kinase,Radial spoke head protein 3 homolog 
-Q86UE8,11011,11842,TLK2,OTHER,Serine/threonine-protein kinase tousled-like 2 
+Q86UE8,11011,11842,TLK2,Other,Serine/threonine-protein kinase tousled-like 2 
 Q86UR1,10811,10668,NOXA1,Non-kinase,NADPH oxidase activator 1 
 Q86UR5,22999,17282,RIMS1,Non-kinase,Regulating synaptic membrane exocytosis protein 1 
 Q86UU1,23187,23697,PHLDB1,Non-kinase,Pleckstrin homology-like domain family B member 1 
@@ -2242,7 +2242,7 @@ Q86YD1,53635,9632,PTOV1,Non-kinase,Prostate tumor-overexpressed gene 1 protein
 Q86YN6,133522,30022,PPARGC1B,Non-kinase,Peroxisome proliferator-activated receptor gamma coactivator 1-beta 
 Q86YP4,54815,29989,GATAD2A,Non-kinase,Transcriptional repressor p66-alpha 
 Q86YS7,9847,29062,C2CD5,Non-kinase,C2 domain-containing protein 5 
-Q86YV5,157285,25438,PRAG1,OTHER,Inactive tyrosine-protein kinase PRAG1 
+Q86YV5,157285,25438,PRAG1,Other,Inactive tyrosine-protein kinase PRAG1 
 Q86Z02,204851,19006,HIPK1,CMGC,Homeodomain-interacting protein kinase 1 
 Q8IU85,57118,19341,CAMK1D,CAMK,Calcium/calmodulin-dependent protein kinase type 1D 
 Q8IUC6,148022,18348,TICAM1,Non-kinase,TIR domain-containing adapter molecule 1 
@@ -2263,7 +2263,7 @@ Q8IVW4,51265,15483,CDKL3,CMGC,Cyclin-dependent kinase-like 3
 Q8IW19,200558,28724,APLF,Non-kinase,Aprataxin and PNK-like factor 
 Q8IW41,8550,6889,MAPKAPK5,CAMK,MAP kinase-activated protein kinase 5 
 Q8IWA4,55669,18262,MFN1,Non-kinase,Mitofusin-1 
-Q8IWB6,56155,11737,TEX14,OTHER,Inactive serine/threonine-protein kinase TEX14 
+Q8IWB6,56155,11737,TEX14,Other,Inactive serine/threonine-protein kinase TEX14 
 Q8IWQ3,9024,11405,BRSK2,CAMK,Serine/threonine-protein kinase BRSK2 
 Q8IWR1,286827,30834,TRIM59,Non-kinase,Tripartite motif-containing protein 59 
 Q8IWS0,84295,18145,PHF6,Non-kinase,PHD finger protein 6 
@@ -2286,16 +2286,16 @@ Q8IYB8,6832,11471,SUPV3L1,Non-kinase,"ATP-dependent RNA helicase SUPV3L1, mitoch
 Q8IYD8,57697,23168,FANCM,Non-kinase,Fanconi anemia group M protein 
 Q8IYJ3,84958,15584,SYTL1,Non-kinase,Synaptotagmin-like protein 1 
 Q8IYM1,124404,26348,SEPTIN12,Non-kinase,Septin-12
-Q8IYT8,9706,13480,ULK2,OTHER,Serine/threonine-protein kinase ULK2 
+Q8IYT8,9706,13480,ULK2,Other,Serine/threonine-protein kinase ULK2 
 Q8IYU2,57531,21033,HACE1,Non-kinase,E3 ubiquitin-protein ligase HACE1 
 Q8IZD2,55904,18541,KMT2E,Non-kinase,Inactive histone-lysine N-methyltransferase 2E 
-Q8IZE3,57147,19285,SCYL3,OTHER,Protein-associating with the carboxyl-terminal domain of ezrin 
+Q8IZE3,57147,19285,SCYL3,Other,Protein-associating with the carboxyl-terminal domain of ezrin 
 Q8IZJ1,219699,12568,UNC5B,Non-kinase,Netrin receptor UNC5B 
 Q8IZL8,27043,30134,PELP1,Non-kinase,"Proline-, glutamic acid- and leucine-rich protein 1 "
 Q8IZL9,23552,21420,CDK20,CMGC,Cyclin-dependent kinase 20 
 Q8IZP0,10006,11320,ABI1,Non-kinase,Abl interactor 1 
 Q8IZQ8,93649,16067,MYOCD,Non-kinase,Myocardin
-Q8IZX4,138474,18056,TAF1L,ATYPICAL,Transcription initiation factor TFIID subunit 1-like 
+Q8IZX4,138474,18056,TAF1L,Atypical,Transcription initiation factor TFIID subunit 1-like 
 Q8N0W4,57502,14287,NLGN4X,Non-kinase,"Neuroligin-4, X-linked "
 Q8N0Z6,91875,19274,TTC5,Non-kinase,Tetratricopeptide repeat protein 5 
 Q8N122,57521,30287,RPTOR,Non-kinase,Regulatory-associated protein of mTOR 
@@ -2319,7 +2319,7 @@ Q8N568,166614,19002,DCLK2,CAMK,Serine/threonine-protein kinase DCLK2
 Q8N5B7,91012,23749,CERS5,Non-kinase,Ceramide synthase 5 
 Q8N5C8,257397,30681,TAB3,Non-kinase,TGF-beta-activated kinase 1 and MAP3K7-binding protein 3 
 Q8N5P1,84524,30941,ZC3H8,Non-kinase,Zinc finger CCCH domain-containing protein 8
-Q8N5S9,84254,1469,CAMKK1,OTHER,Calcium/calmodulin-dependent protein kinase kinase 1 
+Q8N5S9,84254,1469,CAMKK1,Other,Calcium/calmodulin-dependent protein kinase kinase 1 
 Q8N5V2,25791,7807,NGEF,Non-kinase,Ephexin-1 
 Q8N680,57621,20868,ZBTB2,Non-kinase,Zinc finger and BTB domain-containing protein 2
 Q8N6F7,257144,20253,GCSAM,Non-kinase,Germinal center-associated signaling and motility protein 
@@ -2356,20 +2356,20 @@ Q8NFG4,201163,27310,FLCN,Non-kinase,Folliculin
 Q8NFH8,9185,9963,REPS2,Non-kinase,RalBP1-associated Eps domain-containing protein 2 
 Q8NFJ5,9052,9836,GPRC5A,Non-kinase,Retinoic acid-induced protein 3 
 Q8NG31,57082,24054,KNL1,Non-kinase,Kinetochore scaffold 1 
-Q8NG66,79858,18593,NEK11,OTHER,Serine/threonine-protein kinase Nek11 
+Q8NG66,79858,18593,NEK11,Other,Serine/threonine-protein kinase Nek11 
 Q8NHG8,223082,22316,ZNRF2,Non-kinase,E3 ubiquitin-protein ligase ZNRF2 
 Q8NHV4,121441,7723,NEDD1,Non-kinase,Protein NEDD1 
 Q8NHW3,389692,23145,MAFA,Non-kinase,Transcription factor MafA 
 Q8NHY2,64326,17440,COP1,Non-kinase,E3 ubiquitin-protein ligase COP1 
 Q8NHZ8,246184,17839,CDC26,Non-kinase,Anaphase-promoting complex subunit CDC26 
-Q8NI60,56997,16812,COQ8A,ATYPICAL,"Atypical kinase COQ8A, mitochondrial "
+Q8NI60,56997,16812,COQ8A,Atypical,"Atypical kinase COQ8A, mitochondrial "
 Q8TA86,6100,10288,RP9,Non-kinase,Retinitis pigmentosa 9 protein 
 Q8TAE8,90480,29996,GADD45GIP1,Non-kinase,Large ribosomal subunit protein mL64 
 Q8TAP6,79959,25727,CEP76,Non-kinase,Centrosomal protein of 76 kDa 
 Q8TAP8,221908,28320,PPP1R35,Non-kinase,Protein phosphatase 1 regulatory subunit 35
 Q8TAP9,136647,16002,MPLKIP,Non-kinase,M-phase-specific PLK1-interacting protein 
 Q8TAQ2,6601,11105,SMARCC2,Non-kinase,SWI/SNF complex subunit SMARCC2 
-Q8TAS1,127933,19683,UHMK1,OTHER,Serine/threonine-protein kinase Kist 
+Q8TAS1,127933,19683,UHMK1,Other,Serine/threonine-protein kinase Kist 
 Q8TB45,64798,22953,DEPTOR,Non-kinase,DEP domain-containing mTOR-interacting protein 
 Q8TBX8,79837,23786,PIP4K2C,Non-kinase,Phosphatidylinositol 5-phosphate 4-kinase type-2 gamma 
 Q8TCG1,57650,29302,CIP2A,Non-kinase,Protein CIP2A 
@@ -2377,7 +2377,7 @@ Q8TCJ0,26260,13596,FBXO25,Non-kinase,F-box only protein 25
 Q8TCS8,87178,23166,PNPT1,Non-kinase,"Polyribonucleotide nucleotidyltransferase 1, mitochondrial "
 Q8TCU6,57580,32594,PREX1,Non-kinase,"Phosphatidylinositol 3,4,5-trisphosphate-dependent Rac exchanger 1 protein "
 Q8TD08,225689,24667,MAPK15,CMGC,Mitogen-activated protein kinase 15 
-Q8TD19,91754,18591,NEK9,OTHER,Serine/threonine-protein kinase Nek9 
+Q8TD19,91754,18591,NEK9,Other,Serine/threonine-protein kinase Nek9 
 Q8TD43,54795,17993,TRPM4,Non-kinase,Transient receptor potential cation channel subfamily M member 4 
 Q8TDC3,84446,18994,BRSK1,CAMK,Serine/threonine-protein kinase BRSK1 
 Q8TDD2,121340,17321,SP7,Non-kinase,Transcription factor Sp7 
@@ -2385,13 +2385,13 @@ Q8TDM6,9231,2904,DLG5,Non-kinase,Disks large homolog 5
 Q8TDN4,91768,25097,CABLES1,Non-kinase,CDK5 and ABL1 enzyme substrate 1 
 Q8TDQ0,84868,18437,HAVCR2,Non-kinase,Hepatitis A virus cellular receptor 2 
 Q8TDQ1,146722,29883,CD300LF,Non-kinase,CMRF35-like molecule 1 
-Q8TDR2,140901,16254,STK35,OTHER,Serine/threonine-protein kinase 35 
-Q8TDX7,140609,13386,NEK7,OTHER,Serine/threonine-protein kinase Nek7 
+Q8TDR2,140901,16254,STK35,Other,Serine/threonine-protein kinase 35 
+Q8TDX7,140609,13386,NEK7,Other,Serine/threonine-protein kinase Nek7 
 Q8TDY2,9821,15574,RB1CC1,Non-kinase,RB1-inducible coiled-coil protein 1 
 Q8TDY4,55616,14987,ASAP3,Non-kinase,"Arf-GAP with SH3 domain, ANK repeat and PH domain-containing protein 3 "
 Q8TE77,54961,30581,SSH3,Non-kinase,Protein phosphatase Slingshot homolog 3 
 Q8TE85,57822,25839,GRHL3,Non-kinase,Grainyhead-like protein 3 homolog 
-Q8TEA7,93627,28261,TBCK,OTHER,TBC domain-containing protein kinase-like protein
+Q8TEA7,93627,28261,TBCK,Other,TBC domain-containing protein kinase-like protein
 Q8TEA8,92675,16219,DTD1,Non-kinase,D-aminoacyl-tRNA deacylase 1 
 Q8TEM1,23225,30052,NUP210,Non-kinase,Nuclear pore membrane glycoprotein 210 
 Q8TEP8,55125,25515,CEP192,Non-kinase,Centrosomal protein of 192 kDa 
@@ -2399,7 +2399,7 @@ Q8TER0,25992,24696,SNED1,Non-kinase,"Sushi, nidogen and EGF-like domain-containi
 Q8TEV9,140775,17921,SMCR8,Non-kinase,Guanine nucleotide exchange protein SMCR8 
 Q8TEW0,56288,16051,PARD3,Non-kinase,Partitioning defective 3 homolog 
 Q8TF40,96459,29418,FNIP1,Non-kinase,Folliculin-interacting protein 1
-Q8TF76,83903,19682,HASPIN,OTHER,Serine/threonine-protein kinase haspin 
+Q8TF76,83903,19682,HASPIN,Other,Serine/threonine-protein kinase haspin 
 Q8WTQ7,131890,17031,GRK7,AGC,Rhodopsin kinase GRK7 
 Q8WTX7,652968,34423,CASTOR1,Non-kinase,Cytosolic arginine sensor for mTORC1 subunit 1 
 Q8WU08,202374,28317,STK32A,AGC,Serine/threonine-protein kinase 32A 
@@ -2520,7 +2520,7 @@ Q96BN8,90268,25118,OTULIN,Non-kinase,Ubiquitin thioesterase otulin
 Q96BR1,10053310523678,10812,SGK3,AGC,Serine/threonine-protein kinase Sgk3 
 Q96BY7,55102,20187,ATG2B,Non-kinase,Autophagy-related protein 2 homolog B
 Q96C36,29920,30262,PYCR2,Non-kinase,Pyrroline-5-carboxylate reductase 2 
-Q96C45,54986,15784,ULK4,OTHER,Serine/threonine-protein kinase ULK4 
+Q96C45,54986,15784,ULK4,Other,Serine/threonine-protein kinase ULK4 
 Q96CF2,92421,30599,CHMP4C,Non-kinase,Charged multivesicular body protein 4c 
 Q96CG3,92610,19075,TIFA,Non-kinase,TRAF-interacting protein with FHA domain-containing protein A 
 Q96CN5,201255,28302,LRRC45,Non-kinase,Leucine-rich repeat-containing protein 45
@@ -2528,7 +2528,7 @@ Q96CV9,10133,17142,OPTN,Non-kinase,Optineurin
 Q96CW1,1173,564,AP2M1,Non-kinase,AP-2 complex subunit mu 
 Q96D21,23551,18229,RASD2,Non-kinase,GTP-binding protein Rhes 
 Q96D31,84876,25896,ORAI1,Non-kinase,Calcium release-activated calcium channel protein 1 
-Q96D53,79934,19041,COQ8B,ATYPICAL,"Atypical kinase COQ8B, mitochondrial "
+Q96D53,79934,19041,COQ8B,Atypical,"Atypical kinase COQ8B, mitochondrial "
 Q96D71,85021,15578,REPS1,Non-kinase,RalBP1-associated Eps domain-containing protein 1 
 Q96D96,84329,28240,HVCN1,Non-kinase,Voltage-gated hydrogen channel 1 
 Q96E09,116224,23490,PABIR1,Non-kinase,PPP2R1A-PPP2R2A-interacting phosphatase regulator 1 
@@ -2547,7 +2547,7 @@ Q96FI4,79661,18448,NEIL1,Non-kinase,Endonuclease 8-like 1
 Q96FW1,55611,23077,OTUB1,Non-kinase,Ubiquitin thioesterase OTUB1 
 Q96G01,636,1049,BICD1,Non-kinase,Protein bicaudal D homolog 1 
 Q96G74,55593,25402,OTUD5,Non-kinase,OTU domain-containing protein 5 
-Q96GD4,9212,11390,AURKB,OTHER,Aurora kinase B 
+Q96GD4,9212,11390,AURKB,Other,Aurora kinase B 
 Q96GX5,84930,19042,MASTL,AGC,Serine/threonine-protein kinase greatwall 
 Q96HP0,57572,19189,DOCK6,Non-kinase,Dedicator of cytokinesis protein 6
 Q96HZ4,55502,18254,HES6,Non-kinase,Transcription cofactor HES-6 
@@ -2557,13 +2557,13 @@ Q96II8,84859,28637,LRCH3,Non-kinase,DISP complex protein LRCH3
 Q96IZ0,5074,8614,PAWR,Non-kinase,PRKC apoptosis WT1 regulator protein 
 Q96J02,83737,13890,ITCH,Non-kinase,E3 ubiquitin-protein ligase Itchy homolog 
 Q96J84,55243,15734,KIRREL1,Non-kinase,Kin of IRRE-like protein 1 
-Q96J92,65266,14544,WNK4,OTHER,Serine/threonine-protein kinase WNK4 
+Q96J92,65266,14544,WNK4,Other,Serine/threonine-protein kinase WNK4 
 Q96JH7,80124,30897,VCPIP1,Non-kinase,Deubiquitinating protein VCPIP1 
 Q96JJ3,63916,17233,ELMO2,Non-kinase,Engulfment and cell motility protein 2 
 Q96K21,84936,20758,ZFYVE19,Non-kinase,Abscission/NoCut checkpoint regulator 
-Q96KB5,55872,18282,PBK,OTHER,Lymphokine-activated killer T-cell-originated protein kinase 
+Q96KB5,55872,18282,PBK,Other,Lymphokine-activated killer T-cell-originated protein kinase 
 Q96KG7,84466,29634,MEGF10,Non-kinase,Multiple epidermal growth factor-like domains protein 10 
-Q96KG9,57410,14372,SCYL1,OTHER,N-terminal kinase-like protein 
+Q96KG9,57410,14372,SCYL1,Other,N-terminal kinase-like protein 
 Q96KK5,85235,13671,H2AC12,Non-kinase,Histone H2A type 1-H 
 Q96KQ7,10919,14129,EHMT2,Non-kinase,Histone-lysine N-methyltransferase EHMT2 
 Q96KR7,116154,15833,PHACTR3,Non-kinase,Phosphatase and actin regulator 3 
@@ -2571,7 +2571,7 @@ Q96KS0,112398,14660,EGLN2,Non-kinase,Prolyl hydroxylase EGLN2
 Q96L34,57787,13538,MARK4,CAMK,MAP/microtubule affinity-regulating kinase 4 
 Q96L91,57634,11958,EP400,Non-kinase,E1A-binding protein p400 
 Q96L92,81609,20073,SNX27,Non-kinase,Sorting nexin-27
-Q96L96,57538,17574,ALPK3,ATYPICAL,Alpha-protein kinase 3 
+Q96L96,57538,17574,ALPK3,Atypical,Alpha-protein kinase 3 
 Q96LC7,89790,15620,SIGLEC10,Non-kinase,Sialic acid-binding Ig-like lectin 10 
 Q96LC9,90427,24132,BMF,Non-kinase,Bcl-2-modifying factor
 Q96LL9,84277,16410,DNAJC30,Non-kinase,"DnaJ homolog subfamily C member 30, mitochondrial "
@@ -2594,9 +2594,9 @@ Q96PU5,23327,7728,NEDD4L,Non-kinase,E3 ubiquitin-protein ligase NEDD4-like
 Q96PV0,8831,11497,SYNGAP1,Non-kinase,Ras/Rap GTPase-activating protein SynGAP 
 Q96PX8,114798,20297,SLITRK1,Non-kinase,SLIT and NTRK-like protein 1 
 Q96PY5,114793,18267,FMNL2,Non-kinase,Formin-like protein 2 
-Q96PY6,4750,7744,NEK1,OTHER,Serine/threonine-protein kinase Nek1 
+Q96PY6,4750,7744,NEK1,Other,Serine/threonine-protein kinase Nek1 
 Q96Q04,,19295,LMTK3,TK,Serine/threonine-protein kinase LMTK3 
-Q96Q15,23049,30045,SMG1,ATYPICAL,Serine/threonine-protein kinase SMG1 
+Q96Q15,23049,30045,SMG1,Atypical,Serine/threonine-protein kinase SMG1 
 Q96Q27,51676,16012,ASB2,Non-kinase,Ankyrin repeat and SOCS box protein 2 
 Q96Q40,65061,14434,CDK15,CMGC,Cyclin-dependent kinase 15 
 Q96Q89,9585,7212,KIF20B,Non-kinase,Kinesin-like protein KIF20B 
@@ -2604,10 +2604,10 @@ Q96QB1,10395,2897,DLC1,Non-kinase,Rho GTPase-activating protein 7
 Q96QD9,84248,25407,FYTTD1,Non-kinase,UAP56-interacting factor 
 Q96QE3,79915,25752,ATAD5,Non-kinase,ATPase family AAA domain-containing protein 5 
 Q96QF0,117177,16508,RAB3IP,Non-kinase,Rab-3A-interacting protein 
-Q96QP1,80216,20917,ALPK1,ATYPICAL,Alpha-protein kinase 1 
+Q96QP1,80216,20917,ALPK1,Atypical,Alpha-protein kinase 1 
 Q96QS3,170302,18060,ARX,Non-kinase,Homeobox protein ARX 
 Q96QS6,85481,18997,PSKH2,CAMK,Serine/threonine-protein kinase H2 
-Q96QT4,54822,17994,TRPM7,ATYPICAL,Transient receptor potential cation channel subfamily M member 7 
+Q96QT4,54822,17994,TRPM7,Atypical,Transient receptor potential cation channel subfamily M member 7 
 Q96QV6,221613,18729,H2AC1,Non-kinase,Histone H2A type 1-A 
 Q96QZ7,9223,946,MAGI1,Non-kinase,"Membrane-associated guanylate kinase, WW and PDZ domain-containing protein 1 "
 Q96R06,10615,13452,SPAG5,Non-kinase,Sperm-associated antigen 5 
@@ -2616,14 +2616,14 @@ Q96RG2,23178,17270,PASK,CAMK,PAS domain-containing serine/threonine-protein kina
 Q96RI1,9971,7967,NR1H4,Non-kinase,Bile acid receptor 
 Q96RK0,23152,14214,CIC,Non-kinase,Protein capicua homolog
 Q96RL1,51720,30298,UIMC1,Non-kinase,BRCA1-A complex subunit RAP80 
-Q96RR4,10645,1470,CAMKK2,OTHER,Calcium/calmodulin-dependent protein kinase kinase 2 
+Q96RR4,10645,1470,CAMKK2,Other,Calcium/calmodulin-dependent protein kinase kinase 2 
 Q96RS0,96764,17843,TGS1,Non-kinase,Trimethylguanosine synthase 
 Q96RT7,85378,18127,TUBGCP6,Non-kinase,Gamma-tubulin complex component 6 
 Q96RU2,57646,12625,USP28,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 28 
 Q96RU7,57761,16228,TRIB3,CAMK,Tribbles homolog 3 
 Q96RU8,10221,16891,TRIB1,CAMK,Tribbles homolog 1 
 Q96S38,26750,10439,RPS6KC1,AGC,Ribosomal protein S6 kinase delta-1 
-Q96S44,112858,16197,TP53RK,OTHER,EKC/KEOPS complex subunit TP53RK 
+Q96S44,112858,16197,TP53RK,Other,EKC/KEOPS complex subunit TP53RK 
 Q96S53,10420,11732,TESK2,TKL,Dual specificity testis-specific protein kinase 2 
 Q96S59,10048,13727,RANBP9,Non-kinase,Ran-binding protein 9 
 Q96S94,81669,20570,CCNL2,Non-kinase,Cyclin-L2 
@@ -2657,13 +2657,13 @@ Q99523,6272,11186,SORT1,Non-kinase,Sortilin
 Q99538,5641,9472,LGMN,Non-kinase,Legumain 
 Q99541,123,248,PLIN2,Non-kinase,Perilipin-2 
 Q99558,9020,6853,MAP3K14,STE,Mitogen-activated protein kinase kinase kinase 14 
-Q99570,30849,8982,PIK3R4,OTHER,Phosphoinositide 3-kinase regulatory subunit 4 
+Q99570,30849,8982,PIK3R4,Other,Phosphoinositide 3-kinase regulatory subunit 4 
 Q99590,9169,10784,SCAF11,Non-kinase,Protein SCAF11 
 Q99607,2000,3319,ELF4,Non-kinase,ETS-related transcription factor Elf-4 
 Q99623,11331,30306,PHB2,Non-kinase,Prohibitin-2 
 Q99626,1045,1806,CDX2,Non-kinase,Homeobox protein CDX-2 
 Q99638,5883,9827,RAD9A,Non-kinase,Cell cycle checkpoint control protein RAD9A 
-Q99640,9088,29650,PKMYT1,OTHER,Membrane-associated tyrosine- and threonine-specific cdc2-inhibitory kinase 
+Q99640,9088,29650,PKMYT1,Other,Membrane-associated tyrosine- and threonine-specific cdc2-inhibitory kinase 
 Q99661,11004,6393,KIF2C,Non-kinase,Kinesin-like protein KIF2C 
 Q99683,4217,6857,MAP3K5,STE,Mitogen-activated protein kinase kinase kinase 5 
 Q99684,2672,4237,GFI1,Non-kinase,Zinc finger protein Gfi-1 
@@ -2701,7 +2701,7 @@ Q9BQ15,79035,28412,NABP2,Non-kinase,SOSS complex subunit B1
 Q9BQA1,79084,29652,WDR77,Non-kinase,Methylosome protein WDR77 
 Q9BQE3,84790,20768,TUBA1C,Non-kinase,Tubulin alpha-1C chain 
 Q9BQG0,10514,7546,MYBBP1A,Non-kinase,Myb-binding protein 1A
-Q9BQI3,27102,24921,EIF2AK1,OTHER,Eukaryotic translation initiation factor 2-alpha kinase 1 
+Q9BQI3,27102,24921,EIF2AK1,Other,Eukaryotic translation initiation factor 2-alpha kinase 1 
 Q9BQQ3,64689,16769,GORASP1,Non-kinase,Golgi reassembly-stacking protein 1 
 Q9BR01,25830,14903,SULT4A1,Non-kinase,Sulfotransferase 4A1 
 Q9BR39,57158,14202,JPH2,Non-kinase,Junctophilin-2 
@@ -2710,7 +2710,7 @@ Q9BRD0,84811,28199,BUD13,Non-kinase,BUD13 homolog
 Q9BRK0,51308,17975,REEP2,Non-kinase,Receptor expression-enhancing protein 2
 Q9BRK4,84445,29381,LZTS2,Non-kinase,Leucine zipper putative tumor suppressor 2 
 Q9BRQ0,90780,30257,PYGO2,Non-kinase,Pygopus homolog 2
-Q9BRS2,83732,18656,RIOK1,ATYPICAL,Serine/threonine-protein kinase RIO1 
+Q9BRS2,83732,18656,RIOK1,Atypical,Serine/threonine-protein kinase RIO1 
 Q9BRS8,55323,24012,LARP6,Non-kinase,La-related protein 6 
 Q9BRV8,80143,26119,SIKE1,Non-kinase,Suppressor of IKBKE 1 
 Q9BRZ2,81844,19028,TRIM56,Non-kinase,E3 ubiquitin-protein ligase TRIM56 
@@ -2732,7 +2732,7 @@ Q9BUR4,55135,25522,WRAP53,Non-kinase,Telomerase Cajal body protein 1
 Q9BUZ4,9618,12034,TRAF4,Non-kinase,TNF receptor-associated factor 4 
 Q9BV73,11190,1859,CEP250,Non-kinase,Centrosome-associated protein CEP250 
 Q9BVI0,51230,16098,PHF20,Non-kinase,PHD finger protein 20 
-Q9BVS4,55781,18999,RIOK2,ATYPICAL,Serine/threonine-protein kinase RIO2 
+Q9BVS4,55781,18999,RIOK2,Atypical,Serine/threonine-protein kinase RIO2 
 Q9BW19,3833,6389,KIFC1,Non-kinase,Kinesin-like protein KIFC1 
 Q9BW61,79016,28360,DDA1,Non-kinase,DET1- and DDB1-associated protein 1 
 Q9BWF3,5936,9901,RBM4,Non-kinase,RNA-binding protein 4 
@@ -2740,19 +2740,19 @@ Q9BWT1,83879,14628,CDCA7,Non-kinase,Cell division cycle-associated protein 7
 Q9BWU1,23097,19338,CDK19,CMGC,Cyclin-dependent kinase 19 
 Q9BWW4,23648,15674,SSBP3,Non-kinase,Single-stranded DNA-binding protein 3 
 Q9BX66,10580,14565,SORBS1,Non-kinase,Sorbin and SH3 domain-containing protein 1 
-Q9BX84,140803,17995,TRPM6,ATYPICAL,Transient receptor potential cation channel subfamily M member 6 
+Q9BX84,140803,17995,TRPM6,Atypical,Transient receptor potential cation channel subfamily M member 6 
 Q9BXA6,83983,30410,TSSK6,CAMK,Testis-specific serine/threonine-protein kinase 6 
 Q9BXA7,83942,14968,TSSK1B,CAMK,Testis-specific serine/threonine-protein kinase 1 
 Q9BXB4,114885,16397,OSBPL11,Non-kinase,Oxysterol-binding protein-related protein 11 
 Q9BXF6,26056,24845,RAB11FIP5,Non-kinase,Rab11 family-interacting protein 5 
 Q9BXH1,27113,17868,BBC3,Non-kinase,"Bcl-2-binding component 3, isoforms 1/2 "
 Q9BXL7,84433,16393,CARD11,Non-kinase,Caspase recruitment domain-containing protein 11 
-Q9BXM7,65018,14581,PINK1,OTHER,"Serine/threonine-protein kinase PINK1, mitochondrial "
+Q9BXM7,65018,14581,PINK1,Other,"Serine/threonine-protein kinase PINK1, mitochondrial "
 Q9BXP5,51593,24101,SRRT,Non-kinase,Serrate RNA effector molecule homolog 
 Q9BXR0,81890,23797,QTRT1,Non-kinase,Queuine tRNA-ribosyltransferase catalytic subunit 1 
 Q9BXS5,8907,13667,AP1M1,Non-kinase,AP-1 complex subunit mu-1 
 Q9BXS6,51203,18538,NUSAP1,Non-kinase,Nucleolar and spindle-associated protein 1 
-Q9BXU1,56164,11407,STK31,OTHER,Serine/threonine-protein kinase 31 
+Q9BXU1,56164,11407,STK31,Other,Serine/threonine-protein kinase 31 
 Q9BXW4,440738,13353,MAP1LC3C,Non-kinase,Microtubule-associated proteins 1A/1B light chain 3C 
 Q9BXW9,2177,3585,FANCD2,Non-kinase,Fanconi anemia group D2 protein 
 Q9BY11,29993,8570,PACSIN1,Non-kinase,Protein kinase C and casein kinase substrate in neurons protein 1 
@@ -2763,7 +2763,7 @@ Q9BY84,80824,17909,DUSP16,Non-kinase,Dual specificity protein phosphatase 16
 Q9BYE7,84108,21156,PCGF6,Non-kinase,Polycomb group RING finger protein 6 
 Q9BYF1,59272,13557,ACE2,Non-kinase,Angiotensin-converting enzyme 2 
 Q9BYG3,84365,17838,NIFK,Non-kinase,MKI67 FHA domain-interacting nucleolar phosphoprotein 
-Q9BYP7,65267,14543,WNK3,OTHER,Serine/threonine-protein kinase WNK3 
+Q9BYP7,65267,14543,WNK3,Other,Serine/threonine-protein kinase WNK3 
 Q9BYT3,65975,14568,STK33,CAMK,Serine/threonine-protein kinase 33 
 Q9BYV9,60468,14078,BACH2,Non-kinase,Transcription regulator protein BACH2 
 Q9BYX4,64135,18873,IFIH1,Non-kinase,Interferon-induced helicase C domain-containing protein 1 
@@ -2824,16 +2824,16 @@ Q9H3D4,8626,15979,TP63,Non-kinase,Tumor protein 63
 Q9H3M7,10628,16952,TXNIP,Non-kinase,Thioredoxin-interacting protein 
 Q9H3P2,7469,12768,NELFA,Non-kinase,Negative elongation factor A 
 Q9H3Q1,23580,17147,CDC42EP4,Non-kinase,Cdc42 effector protein 4 
-Q9H3R0,23081,17071,KDM4C,Non-kinase,Lysine-specific demethylase 4C 
+Q9H3R0,23081,17071,KDM4C,Non-kinase,Lysine-specific demethylase 4C (EC 1.14.11.66) 
 Q9H3Y6,6725,11298,SRMS,TK,Tyrosine-protein kinase Srms 
 Q9H3Z4,80331,16235,DNAJC5,Non-kinase,DnaJ homolog subfamily C member 5 
 Q9H410,79980,16165,DSN1,Non-kinase,Kinetochore-associated protein DSN1 homolog
 Q9H422,10114,4915,HIPK3,CMGC,Homeodomain-interacting protein kinase 3 
 Q9H467,79004,28352,CUEDC2,Non-kinase,CUE domain-containing protein 2
 Q9H492,84557,6838,MAP1LC3A,Non-kinase,Microtubule-associated proteins 1A/1B light chain 3A 
-Q9H4A3,65125,14540,WNK1,OTHER,Serine/threonine-protein kinase WNK1 
+Q9H4A3,65125,14540,WNK1,Other,Serine/threonine-protein kinase WNK1 
 Q9H4A6,64083,15452,GOLPH3,Non-kinase,Golgi phosphoprotein 3 
-Q9H4B4,1263,2154,PLK3,OTHER,Serine/threonine-protein kinase PLK3 
+Q9H4B4,1263,2154,PLK3,Other,Serine/threonine-protein kinase PLK3 
 Q9H4B6,60485,17795,SAV1,Non-kinase,Protein salvador homolog 1 
 Q9H4E7,50619,2760,DEF6,Non-kinase,Differentially expressed in FDCP 6 homolog 
 Q9H4G4,152007,18007,GLIPR2,Non-kinase,Golgi-associated plant pathogenesis-related protein 1 
@@ -2841,7 +2841,7 @@ Q9H4L4,26168,17862,SENP3,Non-kinase,Sentrin-specific protease 3
 Q9H4P4,10193,18401,RNF41,Non-kinase,E3 ubiquitin-protein ligase NRDP1 
 Q9H4X1,28984,20369,RGCC,Non-kinase,Regulator of cell cycle RGCC 
 Q9H5H4,79724,26273,ZNF768,Non-kinase,Zinc finger protein 768
-Q9H5K3,84197,26267,POMK,OTHER,Protein O-mannose kinase 
+Q9H5K3,84197,26267,POMK,Other,Protein O-mannose kinase 
 Q9H5V8,64866,24357,CDCP1,Non-kinase,CUB domain-containing protein 1 
 Q9H6E5,64852,26184,TUT1,Non-kinase,Speckle targeted PIP5K1A-regulated poly
 Q9H6K1,64771,21215,ILRUN,Non-kinase,Protein ILRUN 
@@ -2851,7 +2851,7 @@ Q9H6T3,79657,26151,RPAP3,Non-kinase,RNA polymerase II-associated protein 3
 Q9H6Z4,8498,9850,RANBP3,Non-kinase,Ran-binding protein 3 
 Q9H714,80183,20420,RUBCNL,Non-kinase,Protein associated with UVRAG as autophagy enhancer 
 Q9H788,63898,26102,SH2D4A,Non-kinase,SH2 domain-containing protein 4A 
-Q9H792,79834,29431,PEAK1,OTHER,Inactive tyrosine-protein kinase PEAK1 
+Q9H792,79834,29431,PEAK1,Other,Inactive tyrosine-protein kinase PEAK1 
 Q9H7L9,64426,29545,SUDS3,Non-kinase,Sin3 histone deacetylase corepressor complex component SDS3 
 Q9H7P9,64857,29515,PLEKHG2,Non-kinase,Pleckstrin homology domain-containing family G member 2 
 Q9H7Z6,84148,17933,KAT8,Non-kinase,Histone acetyltransferase KAT8 
@@ -2887,7 +2887,7 @@ Q9HC35,27436,1316,EML4,Non-kinase,Echinoderm microtubule-associated protein-like
 Q9HC52,57332,15962,CBX8,Non-kinase,Chromobox protein homolog 8 
 Q9HC62,59343,23116,SENP2,Non-kinase,Sentrin-specific protease 2 
 Q9HC77,55835,17272,CENPJ,Non-kinase,Centromere protein J 
-Q9HC98,10783,7749,NEK6,OTHER,Serine/threonine-protein kinase Nek6 
+Q9HC98,10783,7749,NEK6,Other,Serine/threonine-protein kinase Nek6 
 Q9HCC9,57732,29334,ZFYVE28,Non-kinase,Lateral signaling target protein 2 homolog 
 Q9HCH0,57701,29321,NCKAP5L,Non-kinase,Nck-associated protein 5-like 
 Q9HCJ2,57689,29317,LRRC4C,Non-kinase,Leucine-rich repeat-containing protein 4C 
@@ -2939,10 +2939,10 @@ Q9NRF8,56474,2520,CTPS2,Non-kinase,CTP synthase 2
 Q9NRH2,54861,30598,SNRK,CAMK,SNF-related serine/threonine-protein kinase 
 Q9NRH3,27175,12419,TUBG2,Non-kinase,Tubulin gamma-2 chain 
 Q9NRI5,27185,2888,DISC1,Non-kinase,Disrupted in schizophrenia 1 protein
-Q9NRL2,11177,960,BAZ1A,ATYPICAL,Bromodomain adjacent to zinc finger domain protein 1A 
+Q9NRL2,11177,960,BAZ1A,Atypical,Bromodomain adjacent to zinc finger domain protein 1A 
 Q9NRM6,55540,18015,IL17RB,Non-kinase,Interleukin-17 receptor B 
 Q9NRM7,26524,6515,LATS2,AGC,Serine/threonine-protein kinase LATS2 
-Q9NRP7,27148,17209,STK36,OTHER,Serine/threonine-protein kinase 36 
+Q9NRP7,27148,17209,STK36,Other,Serine/threonine-protein kinase 36 
 Q9NRQ2,57088,16497,PLSCR4,Non-kinase,Phospholipid scramblase 4 
 Q9NRR4,29102,17904,DROSHA,Non-kinase,Ribonuclease 3 
 Q9NRR5,56893,1237,UBQLN4,Non-kinase,Ubiquilin-4 
@@ -2957,7 +2957,7 @@ Q9NSC5,9454,17514,HOMER3,Non-kinase,Homer protein homolog 3
 Q9NSG2,55732,25565,FIRRM,Non-kinase,FIGNL1-interacting regulator of recombination and mitosis 
 Q9NSK0,89953,21624,KLC4,Non-kinase,Kinesin light chain 4 
 Q9NSV4,81624,15480,DIAPH3,Non-kinase,Protein diaphanous homolog 3 
-Q9NSY1,55589,18041,BMP2K,OTHER,BMP-2-inducible protein kinase 
+Q9NSY1,55589,18041,BMP2K,Other,BMP-2-inducible protein kinase 
 Q9NTG7,23410,14931,SIRT3,Non-kinase,"NAD-dependent protein deacetylase sirtuin-3, mitochondrial "
 Q9NTI5,23047,20418,PDS5B,Non-kinase,Sister chromatid cohesion protein PDS5 homolog B 
 Q9NTW7,55734,15940,ZFP64,Non-kinase,Zinc finger protein 64 
@@ -2988,7 +2988,7 @@ Q9NYL2,51776,17797,MAP3K20,TKL,Mitogen-activated protein kinase kinase kinase 20
 Q9NYP9,54069,1286,MIS18A,Non-kinase,Protein Mis18-alpha 
 Q9NYV4,51755,24224,CDK12,CMGC,Cyclin-dependent kinase 12 
 Q9NYV6,54700,30346,RRN3,Non-kinase,RNA polymerase I-specific transcription initiation factor RRN3 
-Q9NYY3,10769,19699,PLK2,OTHER,Serine/threonine-protein kinase PLK2 
+Q9NYY3,10769,19699,PLK2,Other,Serine/threonine-protein kinase PLK2 
 Q9NYZ3,51512,13698,GTSE1,Non-kinase,G2 and S phase-expressed protein 1 
 Q9NZ72,50861,15926,STMN3,Non-kinase,Stathmin-3 
 Q9NZA1,53405,13517,CLIC5,Non-kinase,Chloride intracellular channel protein 5
@@ -2997,7 +2997,7 @@ Q9NZC9,50485,11102,SMARCAL1,Non-kinase,SWI/SNF-related matrix-associated actin-d
 Q9NZI5,29841,17923,GRHL1,Non-kinase,Grainyhead-like protein 1 homolog 
 Q9NZI6,29842,17925,TFCP2L1,Non-kinase,Transcription factor CP2-like protein 1 
 Q9NZJ0,51514,30288,DTL,Non-kinase,Denticleless protein homolog 
-Q9NZJ5,9451,3255,EIF2AK3,OTHER,Eukaryotic translation initiation factor 2-alpha kinase 3 
+Q9NZJ5,9451,3255,EIF2AK3,Other,Eukaryotic translation initiation factor 2-alpha kinase 3 
 Q9NZM5,29997,4333,NOP53,Non-kinase,Ribosome biogenesis protein NOP53 
 Q9NZN8,4848,7878,CNOT2,Non-kinase,CCR4-NOT transcription complex subunit 2 
 Q9NZQ3,51517,15486,NCKIPSD,Non-kinase,NCK-interacting protein with SH3 domain 
@@ -3021,7 +3021,7 @@ Q9P2B4,55917,25330,CTTNBP2NL,Non-kinase,CTTNBP2 N-terminal-like protein
 Q9P2D0,25998,17853,IBTK,Non-kinase,Inhibitor of Bruton tyrosine kinase 
 Q9P2D1,55636,20626,CHD7,Non-kinase,Chromodomain-helicase-DNA-binding protein 7 
 Q9P2J5,51520,6512,LARS1,Non-kinase,"Leucine--tRNA ligase, cytoplasmic "
-Q9P2K8,440275,19687,EIF2AK4,OTHER,eIF-2-alpha kinase GCN2 
+Q9P2K8,440275,19687,EIF2AK4,Other,eIF-2-alpha kinase GCN2 
 Q9P2M7,57530,17429,CGN,Non-kinase,Cingulin
 Q9P2Y5,7405,12640,UVRAG,Non-kinase,UV radiation resistance-associated gene protein 
 Q9UBB4,25814,10549,ATXN10,Non-kinase,Ataxin-10 
@@ -3049,7 +3049,7 @@ Q9UFC0,222229,21769,LRWD1,Non-kinase,Leucine-rich repeat and WD repeat-containin
 Q9UFW8,8545,1888,CGGBP1,Non-kinase,CGG triplet repeat-binding protein 1 
 Q9UGI0,54764,18224,ZRANB1,Non-kinase,Ubiquitin thioesterase ZRANB1 
 Q9UGK3,55620,30430,STAP2,Non-kinase,Signal-transducing adaptor protein 2 
-Q9UGL1,10765,18039,KDM5B,Non-kinase,Lysine-specific demethylase 5B 
+Q9UGL1,10765,18039,KDM5B,Non-kinase,Lysine-specific demethylase 5B (EC 1.14.11.67) 
 Q9UGP4,8994,6612,LIMD1,Non-kinase,LIM domain-containing protein 1
 Q9UGP5,27343,9184,POLL,Non-kinase,DNA polymerase lambda 
 Q9UGP8,11231,21082,SEC63,Non-kinase,Translocation protein SEC63 homolog
@@ -3059,17 +3059,17 @@ Q9UH77,26249,6354,KLHL3,Non-kinase,Kelch-like protein 3
 Q9UH99,25777,14210,SUN2,Non-kinase,SUN domain-containing protein 2 
 Q9UHB6,51474,24636,LIMA1,Non-kinase,LIM domain and actin-binding protein 1 
 Q9UHC3,9311,101,ASIC3,Non-kinase,Acid-sensing ion channel 3 
-Q9UHD2,29110,11584,TBK1,OTHER,Serine/threonine-protein kinase TBK1 
+Q9UHD2,29110,11584,TBK1,Other,Serine/threonine-protein kinase TBK1 
 Q9UHD8,10801,7323,SEPTIN9,Non-kinase,Septin-9 
 Q9UHH9,51447,17313,IP6K2,Non-kinase,Inositol hexakisphosphate kinase 2 
 Q9UHL0,29118,18698,DDX25,Non-kinase,ATP-dependent RNA helicase DDX25 
 Q9UHP3,29761,12624,USP25,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 25 
 Q9UHR4,55971,21649,BAIAP2L1,Non-kinase,Brain-specific angiogenesis inhibitor 1-associated protein 2-like protein 1 
 Q9UHW9,9990,10914,SLC12A6,Non-kinase,Solute carrier family 12 member 6 
-Q9UHY1,29959,7993,NRBP1,OTHER,Nuclear receptor-binding protein
+Q9UHY1,29959,7993,NRBP1,Other,Nuclear receptor-binding protein
 Q9UI09,55967,23987,NDUFA12,Non-kinase,NADH dehydrogenase [ubiquinone] 1 alpha subcomplex subunit 12 
 Q9UIF9,11176,962,BAZ2A,Non-kinase,Bromodomain adjacent to zinc finger domain protein 2A 
-Q9UIG0,9031,961,BAZ1B,ATYPICAL,Tyrosine-protein kinase BAZ1B 
+Q9UIG0,9031,961,BAZ1B,Atypical,Tyrosine-protein kinase BAZ1B 
 Q9UII2,93974,871,ATP5IF1,Non-kinase,"ATPase inhibitor, mitochondrial "
 Q9UIK4,23604,2675,DAPK2,CAMK,Death-associated protein kinase 2 
 Q9UIW2,5361,9099,PLXNA1,Non-kinase,Plexin-A1 
@@ -3094,7 +3094,7 @@ Q9UKC9,25827,13598,FBXL2,Non-kinase,F-box/LRR-repeat protein 2
 Q9UKE5,23043,30765,TNIK,STE,TRAF2 and NCK-interacting protein kinase 
 Q9UKF7,26207,21045,PITPNC1,Non-kinase,Cytoplasmic phosphatidylinositol transfer protein 1 
 Q9UKG1,26060,24035,APPL1,Non-kinase,DCC-interacting protein 13-alpha 
-Q9UKI8,9874,11841,TLK1,OTHER,Serine/threonine-protein kinase tousled-like 1 
+Q9UKI8,9874,11841,TLK1,Other,Serine/threonine-protein kinase tousled-like 1 
 Q9UKM9,22913,15921,RALY,Non-kinase,RNA-binding protein Raly 
 Q9UKT4,26271,13584,FBXO5,Non-kinase,F-box only protein 5 
 Q9UKT5,26272,13583,FBXO4,Non-kinase,F-box only protein 4
@@ -3143,8 +3143,8 @@ Q9UP95,6560,10913,SLC12A4,Non-kinase,Solute carrier family 12 member 4
 Q9UPE1,26576,11402,SRPK3,CMGC,SRSF protein kinase 3 
 Q9UPN3,23499,13664,MACF1,Non-kinase,"Microtubule-actin cross-linking factor 1, isoforms 1/2/3/4/5 "
 Q9UPN4,22994,29511,CEP131,Non-kinase,Centrosomal protein of 131 kDa 
-Q9UPN9,51592,16290,TRIM33,ATYPICAL,E3 ubiquitin-protein ligase TRIM33 
-Q9UPP1,23133,20672,PHF8,Non-kinase,Histone lysine demethylase PHF8 
+Q9UPN9,51592,16290,TRIM33,Atypical,E3 ubiquitin-protein ligase TRIM33 
+Q9UPP1,23133,20672,PHF8,Non-kinase,Histone lysine demethylase PHF8 (EC 1.14.11.27) (EC 1.14.11.65) 
 Q9UPT5,23265,23214,EXOC7,Non-kinase,Exocyst complex component 7 
 Q9UPT6,23162,6884,MAPK8IP3,Non-kinase,C-Jun-amino-terminal kinase-interacting protein 3 
 Q9UPT8,23211,17808,ZC3H4,Non-kinase,Zinc finger CCCH domain-containing protein 4
@@ -3162,7 +3162,7 @@ Q9UQ84,9156,3511,EXO1,Non-kinase,Exonuclease 1
 Q9UQ88,728642,1730,CDK11A,CMGC,Cyclin-dependent kinase 11A 
 Q9UQB3,1501,2516,CTNND2,Non-kinase,Catenin delta-2 
 Q9UQB8,10458,947,BAIAP2,Non-kinase,Brain-specific angiogenesis inhibitor 1-associated protein 2 
-Q9UQB9,6795,11391,AURKC,OTHER,Aurora kinase C 
+Q9UQB9,6795,11391,AURKC,Other,Aurora kinase C 
 Q9UQC2,9846,14458,GAB2,Non-kinase,GRB2-associated-binding protein 2 
 Q9UQD0,6334,10596,SCN8A,Non-kinase,Sodium channel protein type 8 subunit alpha 
 Q9UQE7,9126,2468,SMC3,Non-kinase,Structural maintenance of chromosomes protein 3 
@@ -3198,7 +3198,7 @@ Q9Y2J2,23136,3380,EPB41L3,Non-kinase,Band 4.1-like protein 3
 Q9Y2J4,51421,17812,AMOTL2,Non-kinase,Angiomotin-like protein 2 
 Q9Y2K2,23387,29165,SIK3,CAMK,Serine/threonine-protein kinase SIK3 
 Q9Y2K6,10868,12619,USP20,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 20 
-Q9Y2K7,22992,13606,KDM2A,Non-kinase,Lysine-specific demethylase 2A 
+Q9Y2K7,22992,13606,KDM2A,Non-kinase,Lysine-specific demethylase 2A (EC 1.14.11.27) 
 Q9Y2N7,64344,15825,HIF3A,Non-kinase,Hypoxia-inducible factor 3-alpha 
 Q9Y2R2,26191,9652,PTPN22,Non-kinase,Tyrosine-protein phosphatase non-receptor type 22 
 Q9Y2R4,11056,20038,DDX52,Non-kinase,Probable ATP-dependent RNA helicase DDX52 
@@ -3222,7 +3222,7 @@ Q9Y3F4,11171,30796,STRAP,Non-kinase,Serine-threonine kinase receptor-associated 
 Q9Y3I0,51493,26935,RTCB,Non-kinase,RNA-splicing ligase RtcB homolog 
 Q9Y3M2,25776,1307,CBY1,Non-kinase,Protein chibby homolog 1 
 Q9Y3Q4,10021,16882,HCN4,Non-kinase,Potassium/sodium hyperpolarization-activated cyclic nucleotide-gated channel 4
-Q9Y3S1,65268,14542,WNK2,OTHER,Serine/threonine-protein kinase WNK2 
+Q9Y3S1,65268,14542,WNK2,Other,Serine/threonine-protein kinase WNK2 
 Q9Y3Y2,26097,24511,CHTOP,Non-kinase,Chromatin target of PRMT1 protein 
 Q9Y3Z3,25939,15925,SAMHD1,Non-kinase,Deoxynucleoside triphosphate triphosphohydrolase SAMHD1 
 Q9Y446,11187,9025,PKP3,Non-kinase,Plakophilin-3
@@ -3231,8 +3231,8 @@ Q9Y463,9149,3092,DYRK1B,CMGC,Dual specificity tyrosine-phosphorylation-regulated
 Q9Y478,5564,9378,PRKAB1,Non-kinase,5'-AMP-activated protein kinase subunit beta-1 
 Q9Y490,7094,11845,TLN1,Non-kinase,Talin-1
 Q9Y496,11127,6319,KIF3A,Non-kinase,Kinesin-like protein KIF3A 
-Q9Y4A5,8295,12347,TRRAP,ATYPICAL,Transformation/transcription domain-associated protein 
-Q9Y4C1,55818,20815,KDM3A,Non-kinase,Lysine-specific demethylase 3A 
+Q9Y4A5,8295,12347,TRRAP,Atypical,Transformation/transcription domain-associated protein 
+Q9Y4C1,55818,20815,KDM3A,Non-kinase,Lysine-specific demethylase 3A (EC 1.14.11.65) 
 Q9Y4D1,23002,18142,DAAM1,Non-kinase,Disheveled-associated activator of morphogenesis 1
 Q9Y4D2,747,1165,DAGLA,Non-kinase,Diacylglycerol lipase-alpha 
 Q9Y4E8,9958,12613,USP15,Non-kinase,Ubiquitin carboxyl-terminal hydrolase 15 
@@ -3253,7 +3253,7 @@ Q9Y5A9,51441,31675,YTHDF2,Non-kinase,YTH domain-containing family protein 2
 Q9Y5B0,9150,2498,CTDP1,Non-kinase,RNA polymerase II subunit A C-terminal domain phosphatase 
 Q9Y5B9,11198,11465,SUPT16H,Non-kinase,FACT complex subunit SPT16 
 Q9Y5N6,23594,17151,ORC6,Non-kinase,Origin recognition complex subunit 6
-Q9Y5P4,10087,2205,CERT1,ATYPICAL,Ceramide transfer protein 
+Q9Y5P4,10087,2205,CERT1,Atypical,Ceramide transfer protein 
 Q9Y5Q3,9935,6408,MAFB,Non-kinase,Transcription factor MafB 
 Q9Y5S2,9578,1738,CDC42BPB,AGC,Serine/threonine-protein kinase MRCK beta 
 Q9Y5S9,9939,9905,RBM8A,Non-kinase,RNA-binding protein 8A 
@@ -3300,7 +3300,7 @@ O43930,,9444,PRKY,AGC,Putative serine/threonine-protein kinase PRKY
 O60234,9535,4374,GMFG,Non-kinase,Glia maturation factor gamma 
 O94913,51585,30097,PCF11,Non-kinase,Pre-mRNA cleavage complex 2 protein Pcf11 
 O95625,27107,16740,ZBTB11,Non-kinase,Zinc finger and BTB domain-containing protein 11
-P0C263,,34416,SBK2,OTHER,Serine/threonine-protein kinase SBK2 
+P0C263,,34416,SBK2,Other,Serine/threonine-protein kinase SBK2 
 P32314,3344,5281,FOXN2,Non-kinase,Forkhead box protein N2 
 P51911,1264,2155,CNN1,Non-kinase,Calponin-1 
 P57058,30811,13326,HUNK,CAMK,Hormonally up-regulated neu tumor-associated kinase 
@@ -3310,7 +3310,7 @@ Q01995,6876,11553,TAGLN,Non-kinase,Transgelin
 Q05D32,51496,26936,CTDSPL2,Non-kinase,CTD small phosphatase-like protein 2 
 Q2M1V0,91464,28084,ISX,Non-kinase,Intestine-specific homeobox 
 Q2NL82,55720,25542,TSR1,Non-kinase,Pre-rRNA-processing protein TSR1 homolog
-Q52WX2,388228,17699,SBK1,OTHER,Serine/threonine-protein kinase SBK1 
+Q52WX2,388228,17699,SBK1,Other,Serine/threonine-protein kinase SBK1 
 Q53QZ3,55843,21030,ARHGAP15,Non-kinase,Rho GTPase-activating protein 15 
 Q5JR12,333926,20785,PPM1J,Non-kinase,Protein phosphatase 1J 
 Q5JSZ5,84726,28121,PRRC2B,Non-kinase,Protein PRRC2B 
@@ -3319,12 +3319,12 @@ Q5MAI5,344387,19287,CDKL4,CMGC,Cyclin-dependent kinase-like 4
 Q5T8P6,64062,20327,RBM26,Non-kinase,RNA-binding protein 26 
 Q6P996,23042,28995,PDXDC1,Non-kinase,Pyridoxal-dependent decarboxylase domain-containing protein 1 
 Q6ZN28,346389,30215,MACC1,Non-kinase,Metastasis-associated in colon cancer protein 1 
-Q7Z695,90956,19039,ADCK2,ATYPICAL,Uncharacterized aarF domain-containing protein kinase 2 
+Q7Z695,90956,19039,ADCK2,Atypical,Uncharacterized aarF domain-containing protein kinase 2 
 Q86YV6,340156,27972,MYLK4,CAMK,Myosin light chain kinase family member 4 
 Q8IY67,125950,30296,RAVER1,Non-kinase,Ribonucleoprotein PTB-binding 1 
 Q8N103,117289,15669,TAGAP,Non-kinase,T-cell activation Rho GTPase-activating protein 
-Q8N165,149420,18981,PDIK1L,OTHER,Serine/threonine-protein kinase PDIK1L 
-Q8NE28,169436,28669,STKLD1,OTHER,Serine/threonine kinase-like domain-containing protein STKLD1 
+Q8N165,149420,18981,PDIK1L,Other,Serine/threonine-protein kinase PDIK1L 
+Q8NE28,169436,28669,STKLD1,Other,Serine/threonine kinase-like domain-containing protein STKLD1 
 Q8TAE6,81706,14952,PPP1R14C,Non-kinase,Protein phosphatase 1 regulatory subunit 14C 
 Q8TAQ5,147923,20649,ZNF420,Non-kinase,Zinc finger protein 420
 Q8WXD9,57524,20879,CASKIN1,Non-kinase,Caskin-1 
@@ -3348,7 +3348,7 @@ Q9HB09,83596,13787,BCL2L12,Non-kinase,Bcl-2-like protein 12
 Q9NQS1,57099,13509,AVEN,Non-kinase,Cell death regulator Aven
 Q9NS28,64407,14261,RGS18,Non-kinase,Regulator of G-protein signaling 18 
 Q9NSI2,85395,15811,SLX9,Non-kinase,Ribosome biogenesis protein SLX9 homolog
-Q9NSY0,340371,19339,NRBP2,OTHER,Nuclear receptor-binding protein 2 
+Q9NSY0,340371,19339,NRBP2,Other,Nuclear receptor-binding protein 2 
 Q9NXH3,54866,14953,PPP1R14D,Non-kinase,Protein phosphatase 1 regulatory subunit 14D 
 Q9NY57,55351,14217,STK32B,AGC,Serine/threonine-protein kinase 32B 
 Q9NZH5,10744,9691,PTTG2,Non-kinase,Securin-2 
@@ -3369,10 +3369,10 @@ O96001,10842,16973,PPP1R17,Non-kinase,Protein phosphatase 1 regulatory subunit 1
 P52943,1397,2361,CRIP2,Non-kinase,Cysteine-rich protein 2 
 Q14761,5790,9667,PTPRCAP,Non-kinase,Protein tyrosine phosphatase receptor type C-associated protein 
 Q16559,6887,11557,TAL2,Non-kinase,T-cell acute lymphocytic leukemia protein 2 
-Q3MIX3,203054,21738,ADCK5,ATYPICAL,Uncharacterized aarF domain-containing protein kinase 5 
+Q3MIX3,203054,21738,ADCK5,Atypical,Uncharacterized aarF domain-containing protein kinase 5 
 Q52LA3,91750,19856,LIN52,Non-kinase,Protein lin-52 homolog
 Q53SF7,22837,23571,COBLL1,Non-kinase,Cordon-bleu protein-like 1
-Q6P3R8,341676,7748,NEK5,OTHER,Serine/threonine-protein kinase Nek5 
+Q6P3R8,341676,7748,NEK5,Other,Serine/threonine-protein kinase Nek5 
 Q6P589,79626,26277,TNFAIP8L2,Non-kinase,Tumor necrosis factor alpha-induced protein 8-like protein 2 
 Q7Z3J3,285190,32417,RGPD4,Non-kinase,RanBP2-like and GRIP domain-containing protein 4
 Q86V87,64760,16492,FHIP2B,Non-kinase,FHF complex subunit HOOK-interacting protein 2B 
