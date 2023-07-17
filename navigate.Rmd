@@ -3,7 +3,7 @@ library(visNetwork)
 ```
 # Navigate the network
 
-##  {.sidebar data-width="300"}
+##  {.sidebar data-width="200"}
 
 #### Controls
 
@@ -15,15 +15,11 @@ infoGene <- reactive({na.omit(c(input$selectGene,input$centerGene)[[1]])})
 ``` 
 Use mouse controls to pan and zoom. \
 Click on a node to display information. \
-Double-click on a node to recenter graph. 
+Double-click on a node to recenter graph. \
 
-
-#### Selected node `r renderText(infoGene())`
-```{r,cache=FALSE}
-  renderUI({render_gene_info(infoGene())})
+``` {r,cache=FALSE}
+sliderInput("fontSize", "Change fontsize:",min = 10, max = 50, value = 30)
 ```
-
-
 #### Legend {data-height="210"}
 Node colors indicate kinase-group.
 
@@ -47,8 +43,26 @@ g <- reactive(get_one_degree(input$centerGene))
 visNetworkOutput('network')
 output$network <- renderVisNetwork({
   visNetwork(nodes=g()$nodes,edges=g()$edges,physics=F) %>%
-  visIgraphLayout()
+  visIgraphLayout() %>% 
+  visNodes(font=list(size=30)) %>% 
+  visEdges(arrows="to") %>%
+  visEvents(click = "function(e){output$dummy <- e.nodes}")
    })
+
+observeEvent(input$fontSize, {visNetworkProxy("network") %>% visNodes(font=list(size=input$fontSize))})
+
 ```
+### Dummy
+```{r,cache=FALSE}
+textOutput('dummy',infoGene())
+```
+
+
+##  {data-width="150"}
+#### Selected node `r renderText(infoGene())`
+```{r,cache=FALSE}
+  renderUI({render_gene_info(infoGene())})
+```
+
 
 
