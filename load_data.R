@@ -24,7 +24,9 @@ get_pathway_genes <- function(categ,name){
   ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
   intersect(ch[[1]],all_nodes$GeneName)
 }
-
+get_gene_name <- function(protein) {
+  all_nodes %>% filter(id==protein) %>% pull(GeneName)
+}
 get_one_degree <- function(genes) {
   proteins <- all_nodes %>% filter(GeneName %in% genes) %>% pull(id)
   E1 <- all_edges %>% filter(from %in% proteins)

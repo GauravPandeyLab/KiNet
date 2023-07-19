@@ -11,7 +11,6 @@ Pick a protein to display its interactions:
 
 ```{r, cache = FALSE}
 selectInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F)
-infoGene <- reactive({na.omit(c(input$selectGene,input$centerGene)[[1]])})
 ``` 
 Use mouse controls to pan and zoom. \
 Click on a node to display information. \
@@ -19,6 +18,12 @@ Double-click on a node to recenter graph. \
 
 ``` {r,cache=FALSE}
 sliderInput("fontSize", "Change fontsize:",min = 10, max = 50, value = 30)
+```
+```{r,cache=FALSE}
+choices <- reactive({g()$nodes$group})
+selectInput("highlightGroup",label="Highlight a kinase-group:",choices=c("",colors$Group),selected=F,multiple=F,selectize=F)
+observe({updateSelectInput(inputId='highlightGroup',choices = c("None",g()$nodes %>% pull(group) %>% unique),selected="None")})
+renderText(input$network_selected)
 ```
 #### Legend {data-height="210"}
 Node colors indicate kinase-group.
@@ -33,32 +38,34 @@ Node colors indicate kinase-group.
 ### Kinase-substrate interactions of `r renderText(input$centerGene)`
 
 ```{r, cache=FALSE}
-#renderText(dummy(input$centerGene))
-#g <- get_one_degree('O00141')
 g <- reactive(get_one_degree(input$centerGene))
-
-#renderTable(g()$nodes)
-
-
 visNetworkOutput('network')
 output$network <- renderVisNetwork({
   visNetwork(nodes=g()$nodes,edges=g()$edges,physics=F) %>%
   visIgraphLayout() %>% 
   visNodes(font=list(size=30)) %>% 
   visEdges(arrows="to") %>%
-  visEvents(click = "function(e){output$dummy <- e.nodes}")
+  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
+  visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") 
+#  %>%visOptions(selectedBy=list(variable="group",main="Highlight by kinase-group",style="width: 200px")) 
    })
 
 observeEvent(input$fontSize, {visNetworkProxy("network") %>% visNodes(font=list(size=input$fontSize))})
-
+infoGene <- reactive({
+  if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
+  })
+observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
+observeEvent(input$highlightGroup,{
+  if(input$highlightGroup != "None") {
+    ids <- g()$nodes %>% filter(group==input$highlightGroup) %>% pull(id)
+    visNetworkProxy("network") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T)
+  }
+  })
 ```
-### Dummy
-```{r,cache=FALSE}
-textOutput('dummy',infoGene())
-```
 
 
-##  {data-width="150"}
+##  {data-width="200"}
 #### Selected node `r renderText(infoGene())`
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
