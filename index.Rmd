@@ -28,6 +28,9 @@ titlePanel("Hello Shiny!")
 
 ```{r child='navigate.Rmd'}
 ```
+```{r child='visualize.Rmd'}
+```
+
 
 
 

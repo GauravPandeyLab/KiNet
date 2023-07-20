@@ -1,74 +1,58 @@
-
+```{r}
+library(shiny)
+library(visNetwork)
+```
 # Visualize pathways
-##  {.sidebar data-width="300"}
-#### Controls
+##  {.sidebar data-width="200"}
+##### Select a pathway category and pathway
 ```{r, cache = FALSE}
-selectInput(inputId='pathwayCategory',label="Select a pathway category:", choices=pathway_categories,selected=default_pathway_category)
-selectInput(inputId='pathwayName',label="Select a pathway:",choices=pathway_choices[[default_pathway_category]] %>% pull(Term))
+selectInput(inputId='pathwayCategory',label=NULL, choices=pathway_categories,selected=default_pathway_category)
+selectInput(inputId='pathwayName',label=NULL,choices=pathway_choices[[default_pathway_category]] %>% pull(Term))
 observeEvent(input$pathwayCategory,{
   updateSelectInput(inputId='pathwayName',choices = pathway_choices[[input$pathwayCategory]] %>% pull(Term))
 })
 
 checkboxInput(inputId='toggleOneDegree', "Show nodes one degree away.", value = FALSE)
-checkboxInput(inputId='toggleDisconnectedNodes', "Remove disconnected nodes.", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected', "Remove disconnected nodes.", value = FALSE)
+initialGeneList <- reactive({get_pathway_genes(input$pathwayCategory, input$pathwayName)})
 
-proteinList <- reactive({get_pathway_genes(input$pathwayCategory, input$pathwayName)})
 #displayedProteins <- reactive({get_displayed_proteins(proteinList(), input$toggleOneDegree, input$toggleDisconnectedNodes)})
 #infoProtein <- reactive({na.omit(c(input$selectProtein,displayedProteins()[[1]])[[1]])})
 ```
-<!--Use mouse controls to pan and zoom. \
-Click on a node to display information. \
-Double-click on a node, then click on "Navigate the network" to view its interactions.
--->
-#### Legend {data-height="210"}
 
-```{r, cache=FALSE}
-legend_nodes <- data.frame(
-  id=1:length(group_names),
-  label = group_names,
-  color = group_colors,
-  size = 20
-)
-legend_edges <- data.frame()
-#visNetwork(legend_nodes,legend_edges,width="90%") %>%
-#  visNodes(font=list(size=30)) %>%
-#  visOptions(width="90%",height="200")
+##### Change font-size
+``` {r,cache=FALSE}
+sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
 ```
+## Main Panel
+### Kinase-substrate interactions in `r renderText(input$pathwayName)`
+```{r,cache=FALSE}
+g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree,input$toggleRemoveDisconnected)})
+visNetworkOutput('network2')
+output$network2 <- renderVisNetwork({
+  visNetwork(nodes=g2()$nodes,edges=g2()$edges,physics=F) %>%
+  visIgraphLayout() %>% 
+  visNodes(font=list(size=30)) %>% 
+  visEdges(arrows="to") %>%
+  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
+  visEvents(select="function(nodes){Shiny.onInputChange('selectNode2',nodes.nodes);}") %>%
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") 
+   })
 
-## Main Panel 
-#### Kinase-substrate interactions of `r renderText(input$pathwayName)`
-### {data-height="800"}
-
-```{r,cache = FALSE}
-
-renderVisNetwork({
- subg1 = induced_subgraph(ks_ig,displayedProteins())
- V(subg1)$color = sapply(V(subg1)$name,get_color)
- data <- toVisNetworkData(subg1)
- visNetwork(nodes=data$nodes,edges=data$edges,physics=F) %>%
-   visIgraphLayout() %>%
-   visOptions(highlightNearest = list(enabled = T, hover = T)) %>%
-   visNodes(size=20,font=list(size=30)) %>%
-   visEdges(arrows = "to",smooth=F) %>%
-   visEvents(doubleClick = "function(nodes) {Shiny.onInputChange('nextCenterProtein', nodes.nodes);}") %>%
-   visEvents(click = "function(nodes){Shiny.onInputChange('selectProtein', nodes.nodes);}") 
-})
-```
-
-## Right sidebar { data-width="200"}
-
-#### Selected node `r renderText(infoProtein())`
-
-```{r, cache=FALSE}
-  renderUI({
-    info <- get_protein_info(infoProtein())
-    unip_url <- 'https://www.uniprot.org/uniprotkb/%s/entry'
-    L1 <-  list(tags$b(info$fullname),tags$br())
-    L2 <- list('UniProt: ',tags$a(info$uniprot,href= sprintf(unip_url,info$uniprot)), tags$br())
-    L3 <- list()
-    for(x in info$remaining) {
-      L3 <- c(L3,list(x,tags$br()))
-    }
-    tagList(L1,L2,L3)
+infoGene1 <- reactive({
+  if(is.null(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   })
+observe({visNetworkProxy("network2") %>% visNodes(font=list(size=input$fontSize2))})
+
+```
+
+##  {data-width="200"}
+##### Click on a node to see its information 
+```{r,cache=FALSE}
+# observe({
+#   if(!is.null(input$selectNode1)) {
+#     renderUI({render_gene_info(get_gene_name(input$selectNode1))})
+#   }
+# })
+renderUI({render_gene_info(infoGene1())})
 ```

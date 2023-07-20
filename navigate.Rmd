@@ -4,44 +4,59 @@ library(visNetwork)
 ```
 # Navigate the network
 ##  {.sidebar data-width="200"}
-###### Pick a protein to display its interactions
+##### Pick a protein to display its interactions
 ```{r, cache = FALSE}
 selectInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F)
 ``` 
-###### Node colors indicate group membership
+##### Node colors indicate group membership
 ```{r}
 imageOutput('legend',height="auto")
 output$legend <- renderImage({
   list(src='kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
-###### Highlight a group
+##### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup",label=NULL,choices=NULL,selected=NULL)
 observe({
-  choices <- c("None selected",colors %>% filter(Group %in% g()$nodes$group) %>% pull(Group))
+  choices <- c("None selected",colors %>% filter(Group %in% g1()$nodes$group) %>% pull(Group))
   updateSelectizeInput(inputId = 'highlightGroup',choices=choices)
   })
 ```
-###### Change font-size
+##### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 ```
-
-
 ##### Export
 ```{r, cache=FALSE}
-  actionButton("export","Export")
+  export_choices <- c("Nodes as CSV","Edges as CSV")
+  selectizeInput('download_choice',label=NULL,choices=export_choices)
+  filename <- reactive({switch(input$download_choice,"Nodes as CSV"='nodes.csv', "Edges as CSV"='edges.csv')})
+  (downloadButton('download1',"Download"))
+  
+  output$download1 <- downloadHandler(
+    filename=function() {filename()},
+    content = function(file) {
+      if(filename()=='nodes.csv') {write.csv(g1()$nodes,file,row.names=F)}
+      if(filename()=='edges.csv') {
+        from_names <- sapply(g1()$edges %>% pull(from), get_gene_name)
+        to_names <- sapply(g1()$edges %>% pull(to), get_gene_name)
+        data <- g1()$edges %>% mutate(from_label = from_names,to_label=to_names)
+        write.csv(data,file,row.names=F)
+      }
+    }
+  )
+  
 ```
 
 ## Main Panel
 ### Kinase-substrate interactions of `r renderText(input$centerGene)`
 
 ```{r, cache=FALSE}
-g <- reactive(get_one_degree(input$centerGene))
+g1 <- reactive(get_one_degree(input$centerGene))
 visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
-  visNetwork(nodes=g()$nodes,edges=g()$edges,physics=F) %>%
+  visNetwork(nodes=g1()$nodes,edges=g1()$edges,physics=F) %>%
   visIgraphLayout() %>% 
   visNodes(font=list(size=30)) %>% 
   visEdges(arrows="to") %>%
@@ -57,7 +72,7 @@ infoGene <- reactive({
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
 observeEvent(input$highlightGroup,{
   if(input$highlightGroup != "None selected") {
-    ids <- g()$nodes %>% filter(group==input$highlightGroup) %>% filter(GeneName!=input$centerGene) %>% pull(id)
+    ids <- g1()$nodes %>% filter(group==input$highlightGroup) %>% filter(GeneName!=input$centerGene) %>% pull(id)
     visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
   } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
   })
@@ -67,7 +82,8 @@ observe({print(input$network_selectedNodes)})
 
 
 ##  {data-width="200"}
-#### Selected node `r renderText(infoGene())`
+##### Click on a node to see its information 
+####
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
 ```
