@@ -34,9 +34,13 @@ get_one_degree <- function(genes) {
   g=list()
   g$edges=rbind(E1,E2)
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
-  #ids <-  c(list1 %>% pull(from), list2 %>% pull(to)) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
-  #g$ <- list2
+  return(g)
+}
+
+get_legend_graph <- function(){
+  nodes <- colors %>% mutate(id=Group) %>% rename(label=Group,color=Color) %>% select(id,everything())
+  g <- list(nodes=nodes,edges=data.frame())
   return(g)
 }
 
@@ -51,7 +55,6 @@ get_synonyms <- function(id) {
 render_gene_info <- function(geneName) {
   info <- all_nodes %>% filter(GeneName == geneName)
   L1 <-  list(tags$h5('Name'),tags$b(info$FullName))
-  
   L2 <- list(tags$h5('Synonyms'))
   for(x in get_synonyms(info$id)) {
     L2 <- c(L2,list(x,tags$br()))

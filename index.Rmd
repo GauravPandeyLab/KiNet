@@ -16,7 +16,7 @@ runtime: shiny
 ```{r global, file='load_data.R', cache=FALSE}
 library(flexdashboard)
 library(visNetwork)
-library(igraph)
+
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```
 

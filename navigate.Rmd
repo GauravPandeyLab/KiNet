@@ -1,35 +1,35 @@
 ```{r}
+library(shiny)
 library(visNetwork)
 ```
 # Navigate the network
-
 ##  {.sidebar data-width="200"}
-
-#### Controls
-
-Pick a protein to display its interactions:
-
+###### Pick a protein to display its interactions
 ```{r, cache = FALSE}
 selectInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F)
 ``` 
-Use mouse controls to pan and zoom. \
-Click on a node to display information. \
-Double-click on a node to recenter graph. \
-
-``` {r,cache=FALSE}
-sliderInput("fontSize", "Change fontsize:",min = 10, max = 50, value = 30)
+###### Node colors indicate group membership
+```{r}
+imageOutput('legend',height="auto")
+output$legend <- renderImage({
+  list(src='kinase_families_legend2.png',width="100%")
+},deleteFile=FALSE)
 ```
+###### Highlight a group
 ```{r,cache=FALSE}
-choices <- reactive({g()$nodes$group})
-selectInput("highlightGroup",label="Highlight a kinase-group:",choices=c("",colors$Group),selected=F,multiple=F,selectize=F)
-observe({updateSelectInput(inputId='highlightGroup',choices = c("None",g()$nodes %>% pull(group) %>% unique),selected="None")})
-renderText(input$network_selected)
+selectizeInput("highlightGroup",label=NULL,choices=NULL,selected=NULL)
+observe({
+  choices <- c("None selected",colors %>% filter(Group %in% g()$nodes$group) %>% pull(Group))
+  updateSelectizeInput(inputId = 'highlightGroup',choices=choices)
+  })
 ```
-#### Legend {data-height="210"}
-Node colors indicate kinase-group.
+###### Change font-size
+``` {r,cache=FALSE}
+sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
+```
 
-#### Export
 
+##### Export
 ```{r, cache=FALSE}
   actionButton("export","Export")
 ```
@@ -39,8 +39,8 @@ Node colors indicate kinase-group.
 
 ```{r, cache=FALSE}
 g <- reactive(get_one_degree(input$centerGene))
-visNetworkOutput('network')
-output$network <- renderVisNetwork({
+visNetworkOutput('network1')
+output$network1 <- renderVisNetwork({
   visNetwork(nodes=g()$nodes,edges=g()$edges,physics=F) %>%
   visIgraphLayout() %>% 
   visNodes(font=list(size=30)) %>% 
@@ -48,20 +48,21 @@ output$network <- renderVisNetwork({
   visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") 
-#  %>%visOptions(selectedBy=list(variable="group",main="Highlight by kinase-group",style="width: 200px")) 
    })
 
-observeEvent(input$fontSize, {visNetworkProxy("network") %>% visNodes(font=list(size=input$fontSize))})
+observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
 infoGene <- reactive({
   if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
   })
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
 observeEvent(input$highlightGroup,{
-  if(input$highlightGroup != "None") {
-    ids <- g()$nodes %>% filter(group==input$highlightGroup) %>% pull(id)
-    visNetworkProxy("network") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T)
-  }
+  if(input$highlightGroup != "None selected") {
+    ids <- g()$nodes %>% filter(group==input$highlightGroup) %>% filter(GeneName!=input$centerGene) %>% pull(id)
+    visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
+  } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
   })
+observe({visNetworkProxy('network1') %>% visGetSelectedNodes()})
+observe({print(input$network_selectedNodes)})
 ```
 
 
@@ -70,6 +71,4 @@ observeEvent(input$highlightGroup,{
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
 ```
-
-
 

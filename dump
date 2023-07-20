@@ -173,3 +173,10 @@ if((is.null(t_k)) || (t_k == ".")) {
 #   updateSelectInput(inputId='centerProtein',selected=input$nextCenterProtein)
 # })
 ```
+
+  options <- list(maxItems=1,render=I(
+      '{
+      item: function(item,escape) {return "<div style=\\"background-color:" + escape(item.Color) + "\\">" + escape(item.Group) + "</div>";},
+      option: function(item,escape) {return "<div style=\\"background-color:" + escape(item.Color) + "\\">" + escape(item.Group) + "</div>";},
+      }'
+    ))
