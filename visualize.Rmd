@@ -1,31 +1,60 @@
 ```{r}
 library(shiny)
 library(visNetwork)
+options(shiny.trace = TRUE)
 ```
 # Visualize pathways
 ##  {.sidebar data-width="200"}
-##### Select a pathway category and pathway
-```{r, cache = FALSE}
-selectInput(inputId='pathwayCategory',label=NULL, choices=pathway_categories,selected=default_pathway_category)
-selectInput(inputId='pathwayName',label=NULL,choices=pathway_choices[[default_pathway_category]] %>% pull(Term))
-observeEvent(input$pathwayCategory,{
-  updateSelectInput(inputId='pathwayName',choices = pathway_choices[[input$pathwayCategory]] %>% pull(Term))
-})
-
+##### Options
+```{r,cache=FALSE}
 checkboxInput(inputId='toggleOneDegree', "Show nodes one degree away.", value = FALSE)
 checkboxInput(inputId='toggleRemoveDisconnected', "Remove disconnected nodes.", value = FALSE)
-initialGeneList <- reactive({get_pathway_genes(input$pathwayCategory, input$pathwayName)})
-
-#displayedProteins <- reactive({get_displayed_proteins(proteinList(), input$toggleOneDegree, input$toggleDisconnectedNodes)})
-#infoProtein <- reactive({na.omit(c(input$selectProtein,displayedProteins()[[1]])[[1]])})
 ```
 
+##### Node colors indicate group membership
+```{r}
+imageOutput('legend2',height="auto")
+output$legend2 <- renderImage({
+  list(src='kinase_families_legend2.png',width="100%")
+},deleteFile=FALSE)
+```
+##### Highlight a group
+```{r,cache=FALSE}
+selectizeInput("highlightGroup2",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
+```
 ##### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
 ```
+##### Export
+```{r, cache=FALSE}
+  export_choices <- c("Nodes as CSV","Edges as CSV")
+  selectizeInput('download_choice2',label=NULL,choices=export_choices)
+  filename2 <- reactive({switch(input$download_choice2,"Nodes as CSV"='nodes.csv', "Edges as CSV"='edges.csv')})
+  (downloadButton('download2',"Download"))
+  
+  output$download2 <- downloadHandler(
+    filename=function() {filename2()},
+    content = function(file) {
+      if(filename2()=='nodes.csv') {write.csv(g1()$nodes,file,row.names=F)}
+      if(filename2()=='edges.csv') {
+        from_names <- sapply(g2()$edges %>% pull(from), get_gene_name)
+        to_names <- sapply(g2()$edges %>% pull(to), get_gene_name)
+        data <- g2()$edges %>% mutate(from_label = from_names,to_label=to_names)
+        write.csv(data,file,row.names=F)
+      }
+    }
+  )
+```
+
 ## Main Panel
-### Kinase-substrate interactions in `r renderText(input$pathwayName)`
+##### Select a pathway to show its kinase-substrate interactions
+```{r, cache = FALSE}
+selectInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway")
+initialGeneList <- reactive({get_pathway_genes(input$pathway)})
+```
+
+### {}
 ```{r,cache=FALSE}
 g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree,input$toggleRemoveDisconnected)})
 visNetworkOutput('network2')
@@ -39,20 +68,21 @@ output$network2 <- renderVisNetwork({
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") 
    })
 
-infoGene1 <- reactive({
+infoGene2 <- reactive({
   if(is.null(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   })
 observe({visNetworkProxy("network2") %>% visNodes(font=list(size=input$fontSize2))})
+observeEvent(input$highlightGroup2,{
+  if(input$highlightGroup2 != "None selected") {
+    ids <- g2()$nodes %>% filter(group==input$highlightGroup2) %>% pull(id)
+    visNetworkProxy("network2") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
+  } else {visNetworkProxy("network2") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
+  })
 
 ```
 
 ##  {data-width="200"}
 ##### Click on a node to see its information 
 ```{r,cache=FALSE}
-# observe({
-#   if(!is.null(input$selectNode1)) {
-#     renderUI({render_gene_info(get_gene_name(input$selectNode1))})
-#   }
-# })
-renderUI({render_gene_info(infoGene1())})
+renderUI({render_gene_info(infoGene2())})
 ```

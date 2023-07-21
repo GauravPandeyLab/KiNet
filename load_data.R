@@ -20,10 +20,19 @@ pathway_categories <- pathways_df$Category %>% unique
 default_pathway_category <- "Environmental Information Processing"
 pathway_choices <- pathways_df %>% split(pathways_df[['Category']])
 
-get_pathway_genes <- function(categ,name){
+pathways2 <- pathways_df %>% select(Category,Term)
+all_pathways <- lapply(split(pathways2, pathways2$Category), function(d) {d$Term})
+
+get_pathway_genes2 <- function(categ,name){
   ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
   intersect(ch[[1]],all_nodes$GeneName)
 }
+
+get_pathway_genes <- function(pathway) {
+  ch <- pathways_df %>% filter(Term==pathway) %>% pull(Genes) %>% strsplit(split=" ")
+  intersect(ch[[1]],all_nodes$GeneName)
+}
+
 get_gene_name <- function(protein) {
   all_nodes %>% filter(id==protein) %>% pull(GeneName)
 }
