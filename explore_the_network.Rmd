@@ -2,7 +2,7 @@
 library(shiny)
 library(visNetwork)
 ```
-# Navigate the network
+# Explore the network
 ##  {.sidebar data-width="200"}
 ##### Node colors indicate group membership
 ```{r}
@@ -35,21 +35,16 @@ sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 
 ##### Select a protein to display its kinase-substrate interactions
 ```{r, cache = FALSE}
-selectInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F)
+selectizeInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F,options=list(maxOptions=4000))
 ``` 
 ### {}
 ```{r, cache=FALSE}
 g1 <- reactive(get_one_degree(input$centerGene))
 visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
-  visNetwork(nodes=g1()$nodes,edges=g1()$edges,physics=F) %>%
-  visIgraphLayout() %>% 
-  visNodes(font=list(size=30)) %>% 
-  visEdges(arrows="to") %>%
-  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
+  vis_default(g1()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
-  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visExport(type="png",label="Screenshot visible region as PNG")
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}")
    })
 
 observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})

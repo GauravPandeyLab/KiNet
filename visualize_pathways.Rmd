@@ -7,8 +7,8 @@ options(shiny.trace = TRUE)
 ##  {.sidebar data-width="200"}
 ##### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree', "Show nodes one degree away.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected', "Remove disconnected nodes.", value = FALSE)
+checkboxInput(inputId='toggleOneDegree2', "Show nodes one degree away.", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected2', "Remove disconnected nodes.", value = FALSE)
 ```
 
 ##### Node colors indicate group membership
@@ -41,23 +41,18 @@ sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
 ## Main Panel
 ##### Select a pathway to show its kinase-substrate interactions
 ```{r, cache = FALSE}
-selectInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway")
+selectizeInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway",options=list(maxOptions=300))
 initialGeneList <- reactive({get_pathway_genes(input$pathway)})
 ```
 
 ### {}
 ```{r,cache=FALSE}
-g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree,input$toggleRemoveDisconnected)})
+g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree2,input$toggleRemoveDisconnected2)})
 visNetworkOutput('network2')
 output$network2 <- renderVisNetwork({
-  visNetwork(nodes=g2()$nodes,edges=g2()$edges,physics=F) %>%
-  visIgraphLayout() %>% 
-  visNodes(font=list(size=30)) %>% 
-  visEdges(arrows="to") %>%
-  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
+  vis_default(g2()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode2',nodes.nodes);}") %>%
-  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>% 
-  visExport(type="png",label="Screenshot visible region as PNG")
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}")
    })
 
 infoGene2 <- reactive({

@@ -1,0 +1,90 @@
+```{r}
+library(shiny)
+library(visNetwork)
+options(shiny.trace = TRUE)
+```
+# Visualize custom gene sets
+##  {.sidebar data-width="200"}
+##### Options
+```{r,cache=FALSE}
+checkboxInput(inputId='toggleOneDegree3', "Show nodes one degree away.", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected3', "Remove disconnected nodes.", value = FALSE)
+```
+
+##### Node colors indicate group membership
+```{r}
+imageOutput('legend3',height="auto")
+output$legend3 <- renderImage({
+  list(src='kinase_families_legend2.png',width="100%")
+},deleteFile=FALSE)
+```
+##### Highlight a group
+```{r,cache=FALSE}
+selectizeInput("highlightGroup3",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
+```
+##### Change font-size
+``` {r,cache=FALSE}
+sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
+```
+##### Export
+```{r, cache=FALSE}
+  selectizeInput('download_choice3',label=NULL,choices=names(export_choices))
+  filename3 <- reactive({export_choices[[input$download_choice3]]})
+  (downloadButton('download3',"Download"))
+  
+  output$download3 <- downloadHandler(
+    filename=function() {filename3()},
+    content = function(file) {export_method(filename3(),g3(),file)}
+  )
+```
+
+## Main Panel
+##### Paste a set of gene names, then click Submit
+```{r,cache=FALSE}
+textAreaInput('customGeneList', label=NULL, value = "", height="100px",width = "98%")
+actionButton('submit', "Submit")
+initialGeneList3 <- reactiveVal('')
+notFound <- reactiveVal(c())
+
+textOutput('displayNotFound',inline=TRUE)
+output$displayNotFound <- renderText({
+  if(length(notFound())==0) {""} else {paste(c("Warning! Genes not found: ",notFound()))}
+})
+
+observeEvent(input$submit,{
+  s <- gsub(",","",toupper(isolate(input$customGeneList)))
+  genes <- unique(base::scan(text=s,what=""))
+  initialGeneList3(intersect(genes,all_nodes$GeneName))
+  notFound(setdiff(genes,all_nodes$GeneName))
+  })
+
+```
+##### {}
+### {}
+```{r,cache=FALSE}
+g3 <- reactive({get_pathway_graph(initialGeneList3(),input$toggleOneDegree3,input$toggleRemoveDisconnected3)})
+visNetworkOutput('network3')
+output$network3 <- renderVisNetwork({
+  vis_default(g3()) %>%
+  visEvents(select="function(nodes){Shiny.onInputChange('selectNode3',nodes.nodes);}") %>%
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}")
+   })
+
+infoGene3 <- reactive({
+  if(is.null(input$selectNode3)) {NULL} else {get_gene_name(input$selectNode3)}
+  })
+observe({visNetworkProxy("network3") %>% visNodes(font=list(size=input$fontSize3))})
+observeEvent(input$highlightGroup3,{
+  if(input$highlightGroup3 != "None selected") {
+    ids <- g3()$nodes %>% filter(group==input$highlightGroup3) %>% pull(id)
+    visNetworkProxy("network3") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
+  } else {visNetworkProxy("network3") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
+  })
+
+```
+
+##  {data-width="200"}
+##### Click on a node to see its information 
+```{r,cache=FALSE}
+renderUI({render_gene_info(infoGene3())})
+```

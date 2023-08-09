@@ -27,9 +27,11 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 titlePanel("Hello Shiny!")
 ```
 
-```{r child='navigate.Rmd'}
+```{r child='explore_the_network.Rmd'}
 ```
-```{r child='visualize.Rmd'}
+```{r child='visualize_pathways.Rmd'}
+```
+```{r child='visualize_custom_gene_sets.Rmd'}
 ```
 
 

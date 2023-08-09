@@ -8,7 +8,7 @@ colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
   rename(id=UniProt,group=Group) %>%
-  left_join(colors %>% rename(color=Color),by=join_by(group == Group)) %>%
+  left_join(colors %>% rename(color=Color),by=join_by(group == Group)) %>% 
   select(id,everything()) %>%
   arrange(GeneName)
 
@@ -130,7 +130,15 @@ get_gml <- function(h) {
   lines <- c("graph","[","directed 1",nodelines,edgelines,"]")
   return(lines)
 } 
-
+####### VIS
+vis_default <- function(g) {
+  visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
+  visIgraphLayout() %>% 
+  visNodes(font=list(size=30)) %>% 
+  visEdges(arrows="to") %>%
+  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
+  visExport(type="png",label="Screenshot visible region as PNG")
+}
 ####### EXPORT
 export_choices <- list("Nodes as CSV"='nodes.csv',
                        "Edges as CSV"='edges.csv',
