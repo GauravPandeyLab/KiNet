@@ -21,22 +21,13 @@ sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 ```
 ##### Export
 ```{r, cache=FALSE}
-  export_choices <- c("Nodes as CSV","Edges as CSV")
-  selectizeInput('download_choice1',label=NULL,choices=export_choices)
-  filename1 <- reactive({switch(input$download_choice1,"Nodes as CSV"='nodes.csv', "Edges as CSV"='edges.csv')})
+  selectizeInput('download_choice1',label=NULL,choices=names(export_choices))
+  filename1 <- reactive({export_choices[[input$download_choice1]]})
   (downloadButton('download1',"Download"))
   
   output$download1 <- downloadHandler(
     filename=function() {filename1()},
-    content = function(file) {
-      if(filename1()=='nodes.csv') {write.csv(g1()$nodes,file,row.names=F)}
-      if(filename1()=='edges.csv') {
-        from_names <- sapply(g1()$edges %>% pull(from), get_gene_name)
-        to_names <- sapply(g1()$edges %>% pull(to), get_gene_name)
-        data <- g1()$edges %>% mutate(from_label = from_names,to_label=to_names)
-        write.csv(data,file,row.names=F)
-      }
-    }
+    content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
 
@@ -57,7 +48,8 @@ output$network1 <- renderVisNetwork({
   visEdges(arrows="to") %>%
   visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F))  %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
-  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") 
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
+  visExport(type="png",label="Screenshot visible region as PNG")
    })
 
 observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
@@ -80,4 +72,5 @@ observeEvent(input$highlightGroup1,{
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
 ```
+
 

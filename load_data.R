@@ -1,4 +1,5 @@
 library(tidyverse)
+library(igraph)
 
 
 all_edges <- read_csv('data/ksi.csv') %>% 
@@ -109,3 +110,63 @@ render_gene_info <- function(geneName) {
   }
   tagList(L0,L1,L2,L3)
 }
+
+
+get_igraph <-function(g) {
+  nodes <- g$nodes
+  edges <- g$edges
+  n <- nodes %>% mutate(name=label) %>% select(name,label,color,group)
+  e <- data.frame(from=sapply(edges %>% pull(from),get_gene_name),to=sapply(edges %>% pull(to),get_gene_name))
+  h<- graph.data.frame(e,directed=TRUE,vertices=n)
+  E(h)$color <- tail_of(h,E(h))$color
+  return(h)
+}
+
+get_gml <- function(h) {
+  ndf <- data.frame(id = seq(1,length(V(h))),label = V(h)$label,fill = V(h)$color)
+  edf <- data.frame(source=head_of(h,E(h)), target=tail_of(h,E(h)), color=E(h)$color)
+  nodelines <- do.call("sprintf",c('node [ id %s label "%s" graphics [ fill "%s" ] ]', ndf))
+  edgelines <- do.call("sprintf",c('edge [ source %s target %s graphics [ fill "%s" targetArrow "standard"] ]',edf))
+  lines <- c("graph","[","directed 1",nodelines,edgelines,"]")
+  return(lines)
+} 
+
+####### EXPORT
+export_choices <- list("Nodes as CSV"='nodes.csv',
+                       "Edges as CSV"='edges.csv',
+                       "Graph as GML"='network.gml',
+                       "Graph as GRAPHML"='network.graphml',
+                       "Graph as DOT"='network.dot')
+
+export_method <- function(filename,g,file) {
+  if(filename=='nodes.csv') {write.csv(g$nodes,file,row.names=F)}
+  if(filename=='edges.csv') {export_edges_csv(g$edges,file)}
+  if(filename=='network.gml') {export_network_gml(g,file)}
+  if(filename=='network.graphml') {export_network_graphml(g,file)}
+  if(filename=='network.dot') {export_network_dot(g,file)}
+
+}
+
+export_edges_csv <- function(edges,file) {
+  from_names <- sapply(edges %>% pull(from), get_gene_name)
+  to_names <- sapply(edges %>% pull(to), get_gene_name)
+  data <- edges %>% mutate(from_label = from_names,to_label=to_names)
+  write.csv(data,file,row.names=F)
+}
+
+export_network_gml <- function(g,file) {
+  h <- get_igraph(g)
+  lines <- get_gml(h)
+  writeLines(lines,con=file,sep="\n")
+}
+
+export_network_graphml <- function(g,file) {
+  h <- get_igraph(g)
+  write_graph(h,file,format="graphml")
+}
+
+export_network_dot <- function(g,file) {
+  h <- get_igraph(g)
+  write_graph(h,file,format="dot")
+}
+
