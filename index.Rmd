@@ -23,8 +23,7 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
 # About
 
-```{r}
-titlePanel("Hello Shiny!")
+```{r child='about.Rmd'}
 ```
 
 ```{r child='explore_the_network.Rmd'}

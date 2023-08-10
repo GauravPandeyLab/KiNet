@@ -1,0 +1,23 @@
+
+
+## Hello Shiny!
+### Introduction 
+
+The kinase-substrate interaction network collects information about kinase-substrate interactions from publicly available data sources.
+
+### Workflows 
+
+##### Exploring the network
+The "Explore the network" tab shows the kinase-substrate interactions that involve a specific protein as either kinase or substrate. To explore the network, select a new protein or double-click on the node for an existing protein.
+
+##### Visualize pathways
+The "Visualize pathways" tab shows kinases and substrates from selected pathways in KEGG database.
+
+##### Visualize custom gene sets
+On the "Visualize custom gene sets" tab, you can examine any chosen subset of genes in the network.
+
+### Sources
+Our database draws kinase-substrate interactions from PhosphoSitePlus, EPSD and iPTMNet databases. Gene-names and protein names are standardized against the UniProt Reference Human Proteome (9606).
+
+### Contact
+Please contact us.
