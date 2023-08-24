@@ -8,7 +8,7 @@ all_edges <- read_csv('data/ksi.csv') %>%
   mutate(width=ntile(HighConfidenceSites,10))
 
 edge_info <- read_csv('data/ksi_expanded.csv') %>%
-  rename(from=Kinase,to=Substrate) %>%
+  rename(from=Kinase,to=Substrate) 
   
 colors <- read_csv('data/groups.csv')
 

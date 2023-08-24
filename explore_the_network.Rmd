@@ -72,7 +72,7 @@ infoEdge <- reactive({
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
 ```
-##### Click on a node to see its information 
+##### Click on an edge to see its information 
 ```{r,cache=FALSE}
   renderText(infoEdge())
 ```
