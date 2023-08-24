@@ -39,12 +39,13 @@ selectizeInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,select
 ``` 
 ### {}
 ```{r, cache=FALSE}
-g1 <- reactive(get_one_degree(input$centerGene))
+g1 <- reactive(get_one_degree(input$centerGene,TRUE))
 visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
   vis_default(g1()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
-  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}")
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
+  visEvents(selectEdge="function(properties){Shiny.onInputChange('selectedEdge', properties.edges);}")
    })
 
 observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
@@ -58,6 +59,10 @@ observeEvent(input$highlightGroup1,{
     visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
   } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
   })
+
+infoEdge <- reactive({
+  if (length(input$selectedEdge)==1) {}
+  })
 ```
 
 
@@ -67,5 +72,8 @@ observeEvent(input$highlightGroup1,{
 ```{r,cache=FALSE}
   renderUI({render_gene_info(infoGene())})
 ```
-
+##### Click on a node to see its information 
+```{r,cache=FALSE}
+  renderText(infoEdge())
+```
 

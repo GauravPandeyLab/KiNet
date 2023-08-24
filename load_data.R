@@ -3,14 +3,21 @@ library(igraph)
 
 
 all_edges <- read_csv('data/ksi.csv') %>% 
-  rename(from=Kinase,to=Substrate)
+  rename(from=Kinase,to=Substrate) %>%
+  filter(HighConfidenceSites > 0) %>%
+  mutate(width=ntile(HighConfidenceSites,10))
+
+edge_info <- read_csv('data/ksi_expanded.csv') %>%
+  rename(from=Kinase,to=Substrate) %>%
+  
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
   rename(id=UniProt,group=Group) %>%
   left_join(colors %>% rename(color=Color),by=join_by(group == Group)) %>% 
   select(id,everything()) %>%
-  arrange(GeneName)
+  arrange(GeneName) %>%
+  mutate(size=20)
 
 synonyms <- readLines('data/synonyms.txt')
 #all_proteins <- all_nodes$GeneID
@@ -42,7 +49,7 @@ get_edges <- function(proteins) {
   E2 <- all_edges %>% filter(to %in% proteins)
   return(rbind(E1,E2))
 }
-get_one_degree <- function(genes) {
+get_one_degree <- function(genes,largeCenterNode=FALSE) {
   proteins <- all_nodes %>% filter(GeneName %in% genes) %>% pull(id)
   E1 <- all_edges %>% filter(from %in% proteins)
   E2 <- all_edges %>% filter(to %in% proteins)
@@ -50,6 +57,10 @@ get_one_degree <- function(genes) {
   g$edges=rbind(E1,E2)
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
+  if(largeCenterNode) {
+    condition <- g$nodes$label %in% genes
+    g$nodes$size[condition] <- 50
+  }
   return(g)
 }
 get_zero_degree <- function(genes) {
