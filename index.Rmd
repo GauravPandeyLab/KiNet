@@ -4,6 +4,7 @@ resource_files:
   - "./load_data.R"
 output:
   flexdashboard::flex_dashboard:
+    vertical_layout: fill
     theme:
       version: 3
       bootswatch: cerulean

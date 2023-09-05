@@ -2,13 +2,9 @@ library(tidyverse)
 library(igraph)
 
 
-all_edges <- read_csv('data/ksi.csv') %>% 
+all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate) %>%
-  filter(HighConfidenceSites > 0) %>%
-  mutate(width=ntile(HighConfidenceSites,10))
-
-edge_info <- read_csv('data/ksi_expanded.csv') %>%
-  rename(from=Kinase,to=Substrate) 
+  mutate(width=ntile(NSites,20))
   
 colors <- read_csv('data/groups.csv')
 
