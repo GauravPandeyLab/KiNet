@@ -60,7 +60,7 @@ margin-right: 3%;
 .chart-title {
   font-size: 20px;
   font-weight: bold;
-}
+<!-- } -->
 li {font-size: 15px;}
 
 .shiny-plot-output{

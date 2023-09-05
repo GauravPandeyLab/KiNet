@@ -4,7 +4,9 @@ library(igraph)
 
 all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate) %>%
-  mutate(width=ntile(NSites,20))
+  mutate(width=ntile(NSites,10)+5) 
+  #mutate(id=row_number()) %>%
+  #select(id,everything())
   
 colors <- read_csv('data/groups.csv')
 
@@ -50,7 +52,7 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   E1 <- all_edges %>% filter(from %in% proteins)
   E2 <- all_edges %>% filter(to %in% proteins)
   g=list()
-  g$edges=rbind(E1,E2)
+  g$edges=rbind(E1,E2) %>% mutate(id=row_number())
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
   if(largeCenterNode) {
