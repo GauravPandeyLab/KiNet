@@ -52,7 +52,8 @@ visNetworkOutput('network2')
 output$network2 <- renderVisNetwork({
   vis_default(g2()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode2',nodes.nodes);}") %>%
-  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}")
+  visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges2', edges);}")
    })
 
 infoGene2 <- reactive({
@@ -65,11 +66,18 @@ observeEvent(input$highlightGroup2,{
     visNetworkProxy("network2") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
   } else {visNetworkProxy("network2") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
   })
-
+infoEdge2 <- reactive({
+  if (!is.null(input$selectedEdges2) & length(input$selectedEdges2$edges)==1) {
+        edge_id <- input$selectedEdges2$edges
+        e <- g2()$edges %>% filter(id == edge_id)
+        #return(paste(e))
+        render_edge_info(e)
+      }
+})
 ```
 
 ##  {data-width="200"}
-##### Click on a node to see its information 
+##### Click on an edge to see its information 
 ```{r,cache=FALSE}
-renderUI({render_gene_info(infoGene2())})
+  renderUI({infoEdge2()})
 ```

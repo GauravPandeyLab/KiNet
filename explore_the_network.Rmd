@@ -45,8 +45,7 @@ output$network1 <- renderVisNetwork({
   vis_default(g1()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges', edges);}")
-  #visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdge', edges.edges);}")
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}")
    })
 
 observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
@@ -61,32 +60,18 @@ observeEvent(input$highlightGroup1,{
   } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
   })
 
-output$selectedEdgesInfo <- renderText({
-    selectedEdges <- input$selectedEdges
-    if (is.null(selectedEdges)) {
-      "No edges selected."
-    } else {
-        e <- g1()$edges %>% filter(id %in% selectedEdges$edges)
-        source <- e %>% pull(from)
-        target <- e %>% pull(to)
-        paste("Selected edges: ",source,target,sites)
+infoEdge1 <- reactive({
+  if (!is.null(input$selectedEdges1) & length(input$selectedEdges1$edges)==1) {
+        edge_id <- input$selectedEdges1$edges
+        e <- g1()$edges %>% filter(id %in% edge_id)
+        render_edge_info(e)
       }
-  })
-
-
-
-
-
+})
 ```
 
 
 ##  {data-width="200"}
-### {}
-##### Click on a node to see its information 
-```{r,cache=FALSE}
-  renderUI({render_gene_info(infoGene())})
-```
 ##### Click on an edge to see its information 
 ```{r,cache=FALSE}
-  textOutput("selectedEdgesInfo")
+  renderUI({infoEdge1()})
 ```

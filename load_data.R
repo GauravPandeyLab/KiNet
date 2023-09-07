@@ -3,8 +3,10 @@ library(igraph)
 
 
 all_edges <- read_csv('data/ksi_display.csv') %>% 
-  rename(from=Kinase,to=Substrate) %>%
-  mutate(width=ntile(NSites,10)+5) 
+  rename(from=Kinase,to=Substrate)
+widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
+all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
+  #mutate(width=ntile(NSites,10)+5) 
   #mutate(id=row_number()) %>%
   #select(id,everything())
   
@@ -77,8 +79,9 @@ get_pathway_graph <- function(genes,bool_one_degree,bool_remove_disconnected) {
     nonself <- g$edges %>% filter(from != to)
     ids <- c(nonself %>% pull(from),nonself %>% pull(to))
     g$nodes <- g$nodes %>% filter(id %in% ids)
-    g$edges <- g$edges %>% filter(from %in% ids) %>% filter(to %in% ids)
+    g$edges <- g$edges %>% filter(from %in% ids) %>% filter(to %in% ids) 
   }
+  g$edges <- g$edges %>% mutate(id=row_number())
   return(g)
 }
 
@@ -120,6 +123,36 @@ render_gene_info <- function(geneName) {
   tagList(L0,L1,L2,L3)
 }
 
+render_line_break_separated <- function(elems){
+  L <- list()
+  for(elem in elems) {
+    L <- c(L,list(elem,tags$br()))
+  }
+  return(L)
+}
+
+render_edge_link <- function(idx) {
+  info <- all_nodes %>% filter(id==idx)
+  unip_url <- 'https://www.uniprot.org/uniprotkb/%s/entry'
+  L1 <- tags$a(info$GeneName,href= sprintf(unip_url,info$id))
+  list(L1,tags$p(info$FullName))
+  #L1 <- render_line_break_separated(get_synonyms(info$id))
+  #L1 <- info %>% pull(FullName)
+  #list(L0,tags$br(),L1)
+}
+
+render_edge_info <- function(edge) {
+  if (is.null(edge)) {return('')}
+  kinase <- edge %>% pull(from)
+  substrate <- edge %>% pull(to)
+  L1 <- tags$div(tags$h6('Kinase ',style="display: inline;"),render_edge_link(kinase))
+  L2 <- tags$div(tags$h6('Substrate ',style="display: inline;"),render_edge_link(substrate))
+  
+  sites <- edge %>% pull(SitesBySource) %>% str_split('\n') 
+  sites_div <- sites[[1]] %>% lapply(tags$p,style="white-space: pre-line;")
+  L3 <- list(tags$h6('Sites, attested by Source'),tags$div(sites_div))
+  tagList(L1,L2,L3)
+}
 
 get_igraph <-function(g) {
   nodes <- g$nodes
@@ -144,7 +177,7 @@ vis_default <- function(g) {
   visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
   visIgraphLayout() %>% 
   visNodes(font=list(size=30)) %>% 
-  visEdges(arrows="to") %>%
+  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic')) %>%
   visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
