@@ -1,5 +1,5 @@
 ---
-title: "Kinase-Substrate Interaction Network"
+title: Kinase-Substrate Interaction (KSI) Visualization Portal
 resource_files:
   - "./load_data.R"
 output:
@@ -22,7 +22,7 @@ library(visNetwork)
 shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```
 
-# About
+
 
 ```{r child='about.Rmd'}
 ```

@@ -1,23 +1,28 @@
 
+# About 
 
-## Hello Shiny!
-### Introduction 
+## Image {data-width="300px"}
+### {}
 
-The kinase-substrate interaction network collects information about kinase-substrate interactions from publicly available data sources.
 
-### Workflows 
+## Content
+##### Introduction
+The KSI Visualization Portal enables graphical visualization of publicly-available data on interactions between protein kinases and their substrates in the human genome. Currently, our sources include [PhosphoSitePlus](https://www.phosphosite.org), [iPTMNet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](http://epsd.biocuckoo.cn/), cross-referenced with reviewed entries from [UniProt](https://www.uniprot.org/).
 
-##### Exploring the network
-The "Explore the network" tab shows the kinase-substrate interactions that involve a specific protein as either kinase or substrate. To explore the network, select a new protein or double-click on the node for an existing protein.
+##### Examine a protein's kinase-substrate interactions
+The "Examine a protein" tab lets you select a single protein and visualize its interactions, whether as the kinase or as the substrate. 
 
-##### Visualize pathways
-The "Visualize pathways" tab shows kinases and substrates from selected pathways in KEGG database.
+##### Visualize cellular pathways
+The "Visualize pathways" tab lets you select a cellular pathway (from [KEGG](https://www.genome.jp/kegg/pathway.html) database) and visualize the kinase-substrate interactions that are available about proteins in that pathway.
 
 ##### Visualize custom gene sets
-On the "Visualize custom gene sets" tab, you can examine any chosen subset of genes in the network.
+The "Visualize custom gene sets" tab lets you examine the kinase-substrate interactions on any input gene-set.
 
-### Sources
-Our database draws kinase-substrate interactions from PhosphoSitePlus, EPSD and iPTMNet databases. Gene-names and protein names are standardized against the UniProt Reference Human Proteome (9606).
+##### Information about sources
+On each of our visualizations, clicking on a particular interaction displays more information about it: which two proteins are involved, what sites are relevant and which sources document them.
 
-### Contact
-Please contact us.
+##### Navigating the interaction network
+On the "Examine a protein" tab, you can walk through the interaction network by double-clicking on a different protein, which re-centers the visualization. You can also double-click on a protein on any other tab and click on the "Examine a protein" tab to examine its interactions.
+
+##### Contact
+The KSI Visualization portal is maintained by [Pandey lab](https://gpandeylab.org/) at Mt. Sinai School of Medicine, Dept. Genetics and Genomic Sciences.

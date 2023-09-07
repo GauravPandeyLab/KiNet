@@ -2,7 +2,7 @@
 library(shiny)
 library(visNetwork)
 ```
-# Explore the network
+# Examine a protein
 ##  {.sidebar data-width="200"}
 ##### Node colors indicate group membership
 ```{r}
