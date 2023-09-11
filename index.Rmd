@@ -1,5 +1,5 @@
 ---
-title: Kinase-Substrate Interaction (KSI) Visualization Portal
+title: <span class="title">KinNetVis</span>
 resource_files:
   - "./load_data.R"
 output:
@@ -39,6 +39,12 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
 ```{=html}
 <style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.title {
+  font-family: 'Righteous', cursive;
+}
+
 .nav-tabs-custom .nav-tabs li.active a{
   font-weight: bold;
 }
@@ -66,6 +72,7 @@ li {font-size: 15px;}
 .shiny-plot-output{
   height: 100%
 }
+
 
 </style>
 ```
