@@ -11,8 +11,7 @@ checkboxInput(inputId='toggleOneDegree2', "Include proteins connected to those i
 checkboxInput(inputId='toggleRemoveDisconnected2', "Hide proteins with no known interactions in the pathway", value = TRUE)
 ```
 
-#### Legend
-The colour of a node indicates the kinase-group of the protein.
+#### Kinase groups
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
