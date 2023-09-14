@@ -7,11 +7,12 @@ options(shiny.trace = TRUE)
 ##  {.sidebar data-width="200"}
 #### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree2', "Show proteins connected to those in the pathway", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected2', "Remove disconnected proteins", value = TRUE)
+checkboxInput(inputId='toggleOneDegree2', "Include proteins connected to those in the pathway", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected2', "Hide proteins with no known interactions in the pathway", value = TRUE)
 ```
 
-#### Kinase groups
+#### Legend
+The colour of a node indicates the kinase-group of the protein.
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
@@ -38,11 +39,8 @@ sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
   )
 ```
 ## Main Panel
-#### Instructions
-#### {.other-page-text}
-The visualization below shows proteins as <i>nodes</i> and kinase-substrate interactions as <i>directed edges</i> from kinase to substrate. Nodes are colored according to the kinase group of the protein. You can use the mouse to select nodes, edges, drag and zoom the visualization, as well as use the additional controls on the left to highlight the interactions of a kinase group. When you click on an edge, information about the interaction will be displayed on the right.
-
-The visualization <b>shows a KEGG pathway</b> enriched in kinases and substrates. To select the pathway, use the drop-down menu. On the left, there are additional controls to remove proteins from the visualization that are not connected to any other protein. Additionally, you can explore interactions locally by displaying nodes that are connected to those in the pathway.
+#### Description
+The visualization shows a <b>curated pathway</b> from [KEGG](https://www.genome.jp/kegg/pathway.html) and its kinase-substrate interactions. On the left, there are additional controls to display fewer or more proteins than those in the pathway.
 
 #### Select a pathway
 ```{r, cache = FALSE}
@@ -82,7 +80,8 @@ infoEdge2 <- reactive({
 ```
 
 ##  {data-width="200"}
-#### Selected Interaction
+#### Select an interaction
+Click on an edge to display information about it.
 ```{r,cache=FALSE}
   renderUI({infoEdge2()})
 ```

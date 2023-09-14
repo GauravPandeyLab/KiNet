@@ -7,8 +7,8 @@ options(shiny.trace = TRUE)
 ##  {.sidebar data-width="200"}
 #### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree3', "Show proteins connected to those in the pathway", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected3', "Remove disconnected proteins", value = TRUE)
+checkboxInput(inputId='toggleOneDegree3', "Include proteins connected to those in the gene set", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected3', "Hide proteins with no known interactions in the gene set", value = TRUE)
 ```
 
 #### Kinase Groups
@@ -39,18 +39,17 @@ sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
 ```
 
 ## Main Panel
-#### Instructions
-#### {.other-page-text}
-The visualization below shows proteins as <i>nodes</i> and kinase-substrate interactions as <i>directed edges</i> from kinase to substrate. Nodes are colored according to the kinase group of the protein. You can use the mouse to select nodes, edges, drag and zoom the visualization, as well as use the additional controls on the left to highlight the interactions of a kinase group. When you click on an edge, information about the interaction will be displayed on the right.
-
-In the text box below, import a <b>custom gene set</b>. On the left, there are additional controls to remove proteins from the visualization that are not connected to any other protein. Additionally, you can explore interactions locally by displaying nodes that are connected to those in the pathway.
+#### Description
+This visualization shows the kinase-substrate interactions between genes in a <b>custom gene set</b> input by the user in the text box below. On the left, there are additional controls to display fewer or more proteins than those in the pathway.
 
 #### Paste a set of gene names, then click Submit
 ```{r,cache=FALSE}
-default_gene_set = "ABL1 ANAPC1 ANAPC4 ANAPC7 ATM ATR BUB1 BUB1B BUB3 CCNA2 CCNB1 CCND1 CCND2 CCND3 CCNE1 CDC14A CDC16 CDC20 CDC23 CDC25A CDC25B CDC25C CDC27 CDC6 CDC7 CDK1 CDK2 CDK4 CDK6 CDK7 CDKN1A CDKN1B CDKN2A CDKN2D CHEK1 CHEK2 DBF4 E2F1 E2F3 EP300 ESPL1 FZR1 GSK3B HDAC2 MAD1L1 MAD2L1 MCM2 MCM3 MCM4 MCM5 MCM7 MDM2 MYC ORC1 ORC2 ORC6 PKMYT1 PLK1 PRKDC PTTG1 PTTG2 RAD21 RB1 RBL1 RBL2 SKP2 SMAD2 SMAD3 SMAD4 SMC1A SMC3 TFDP1 TP53 TTK WEE1 WEE2"
 
-textAreaInput('customGeneList', label=NULL, value = default_gene_set, height="100px",width = "98%")
+
+textAreaInput('customGeneList', label=NULL, value = NULL, height="100px",width = "98%")
 actionButton('submit', "Submit")
+actionButton('example',"Load an example")
+actionButton('clear',"Clear")
 initialGeneList3 <- reactiveVal('')
 notFound <- reactiveVal(c())
 
@@ -58,6 +57,11 @@ textOutput('displayNotFound',inline=TRUE)
 output$displayNotFound <- renderText({
   if(length(notFound())==0) {""} else {paste(c("Warning! Genes not found: ",notFound()))}
 })
+
+default_gene_set <- "ABL1 ANAPC1 ANAPC4 ANAPC7 ATM ATR BUB1 BUB1B BUB3 CCNA2 CCNB1 CCND1 CCND2 CCND3 CCNE1 CDC14A CDC16 CDC20 CDC23 CDC25A CDC25B CDC25C CDC27 CDC6 CDC7 CDK1 CDK2 CDK4 CDK6 CDK7 CDKN1A CDKN1B CDKN2A CDKN2D CHEK1 CHEK2 DBF4 E2F1 E2F3 EP300 ESPL1 FZR1 GSK3B HDAC2 MAD1L1 MAD2L1 MCM2 MCM3 MCM4 MCM5 MCM7 MDM2 MYC ORC1 ORC2 ORC6 PKMYT1 PLK1 PRKDC PTTG1 PTTG2 RAD21 RB1 RBL1 RBL2 SKP2 SMAD2 SMAD3 SMAD4 SMC1A SMC3 TFDP1 TP53 TTK WEE1 WEE2"
+
+observeEvent(input$example,{updateTextAreaInput(session,'customGeneList', value=paste(default_gene_set))})
+observeEvent(input$clear,{updateTextAreaInput(session,'customGeneList', value="")})
 
 observeEvent(input$submit,{
   s <- gsub(",","",toupper(isolate(input$customGeneList)))
