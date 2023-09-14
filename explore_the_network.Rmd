@@ -2,38 +2,43 @@
 library(shiny)
 library(visNetwork)
 ```
-# Examine a protein
+# Examine proteins
 ##  {.sidebar data-width="200"}
-##### Node colors indicate group membership
+#### Kinase groups
 ```{r}
 imageOutput('legend',height="auto")
 output$legend <- renderImage({
   list(src='kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
-##### Highlight a group
+#### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup1",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
-##### Change font-size
+#### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 ```
-##### Export
+#### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice1',label=NULL,choices=names(export_choices))
   filename1 <- reactive({export_choices[[input$download_choice1]]})
   (downloadButton('download1',"Download"))
   
-  output$download1 <- downloadHandler(
+   output$download1 <- downloadHandler(
     filename=function() {filename1()},
     content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
 
 ## Main Panel
+#### Instructions
+#### {.other-page-text}
+The visualization below shows proteins as <i>nodes</i> and kinase-substrate interactions as <i>directed edges</i> from kinase to substrate. Nodes are colored according to the kinase group of the protein. You can use the mouse to select nodes, edges, drag and zoom the visualization, as well as use the additional controls on the left to highlight the interactions of a kinase group. When you click on an edge, information about the interaction will be displayed on the right.
 
-##### Select a protein to display its kinase-substrate interactions
+The visualization <b>shows a single protein at the center and all of its interactions</b>. You can traverse the network by selecting a new protein, either from the drop-down menu, or by double-clicking a node.
+
+#### Select a protein
 ```{r, cache = FALSE}
 selectizeInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F,options=list(maxOptions=4000))
 ``` 
@@ -71,7 +76,7 @@ infoEdge1 <- reactive({
 
 
 ##  {data-width="200"}
-##### Click on an edge to see its information 
+#### Selected interaction
 ```{r,cache=FALSE}
   renderUI({infoEdge1()})
 ```

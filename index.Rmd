@@ -1,5 +1,5 @@
 ---
-title: <span class="title">KinNetVis</span>
+title: <span class="title">KinAce</span>
 resource_files:
   - "./load_data.R"
 output:
@@ -39,14 +39,33 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
 ```{=html}
 <style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Playfair+Display:wght@500&display=swap');
 
-.title {
+.opening-page-text {
+  font-size: 18px;
+}
+
+.opening-page-text li {
+  font-size: 18px;
+}
+
+.other-page-text {
+  font-size: 14px;
+}
+
+.navbar-brand {
   font-family: 'Righteous', cursive;
+  font-weight: thin;
+  font-size: 24px;
+}
+
+.navbar-nav li a {
+    font-size: 18px; /* Change to your desired font size */
 }
 
 .nav-tabs-custom .nav-tabs li.active a{
   font-weight: bold;
+  font-size: 40px;
 }
 
 .nav-tabs-custom .nav-tabs li:not(.active) a{

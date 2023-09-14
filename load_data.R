@@ -60,6 +60,7 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   if(largeCenterNode) {
     condition <- g$nodes$label %in% genes
     g$nodes$size[condition] <- 50
+    g$nodes$shape[condition] <- "circle"
   }
   return(g)
 }
@@ -145,12 +146,12 @@ render_edge_info <- function(edge) {
   if (is.null(edge)) {return('')}
   kinase <- edge %>% pull(from)
   substrate <- edge %>% pull(to)
-  L1 <- tags$div(tags$h6('Kinase ',style="display: inline;"),render_edge_link(kinase))
-  L2 <- tags$div(tags$h6('Substrate ',style="display: inline;"),render_edge_link(substrate))
+  L1 <- tags$div(tags$h4('Kinase ',style="display: inline;"),render_edge_link(kinase))
+  L2 <- tags$div(tags$h4('Substrate ',style="display: inline;"),render_edge_link(substrate))
   
   sites <- edge %>% pull(SitesBySource) %>% str_split('\n') 
   sites_div <- sites[[1]] %>% lapply(tags$p,style="white-space: pre-line;")
-  L3 <- list(tags$h6('Sites, attested by Source'),tags$div(sites_div))
+  L3 <- list(tags$h4('Sites, attested by Source'),tags$div(sites_div))
   tagList(L1,L2,L3)
 }
 

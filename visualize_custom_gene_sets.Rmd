@@ -5,28 +5,28 @@ options(shiny.trace = TRUE)
 ```
 # Visualize custom gene sets
 ##  {.sidebar data-width="200"}
-##### Options
+#### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree3', "Show nodes one degree away.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected3', "Remove disconnected nodes.", value = FALSE)
+checkboxInput(inputId='toggleOneDegree3', "Show proteins connected to those in the pathway", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected3', "Remove disconnected proteins", value = TRUE)
 ```
 
-##### Node colors indicate group membership
+#### Kinase Groups
 ```{r}
 imageOutput('legend3',height="auto")
 output$legend3 <- renderImage({
   list(src='kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
-##### Highlight a group
+#### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup3",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
-##### Change font-size
+#### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
 ```
-##### Export
+#### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice3',label=NULL,choices=names(export_choices))
   filename3 <- reactive({export_choices[[input$download_choice3]]})
@@ -39,7 +39,13 @@ sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
 ```
 
 ## Main Panel
-##### Paste a set of gene names, then click Submit
+#### Instructions
+#### {.other-page-text}
+The visualization below shows proteins as <i>nodes</i> and kinase-substrate interactions as <i>directed edges</i> from kinase to substrate. Nodes are colored according to the kinase group of the protein. You can use the mouse to select nodes, edges, drag and zoom the visualization, as well as use the additional controls on the left to highlight the interactions of a kinase group. When you click on an edge, information about the interaction will be displayed on the right.
+
+In the text box below, import a <b>custom gene set</b>. On the left, there are additional controls to remove proteins from the visualization that are not connected to any other protein. Additionally, you can explore interactions locally by displaying nodes that are connected to those in the pathway.
+
+#### Paste a set of gene names, then click Submit
 ```{r,cache=FALSE}
 default_gene_set = "ABL1 ANAPC1 ANAPC4 ANAPC7 ATM ATR BUB1 BUB1B BUB3 CCNA2 CCNB1 CCND1 CCND2 CCND3 CCNE1 CDC14A CDC16 CDC20 CDC23 CDC25A CDC25B CDC25C CDC27 CDC6 CDC7 CDK1 CDK2 CDK4 CDK6 CDK7 CDKN1A CDKN1B CDKN2A CDKN2D CHEK1 CHEK2 DBF4 E2F1 E2F3 EP300 ESPL1 FZR1 GSK3B HDAC2 MAD1L1 MAD2L1 MCM2 MCM3 MCM4 MCM5 MCM7 MDM2 MYC ORC1 ORC2 ORC6 PKMYT1 PLK1 PRKDC PTTG1 PTTG2 RAD21 RB1 RBL1 RBL2 SKP2 SMAD2 SMAD3 SMAD4 SMC1A SMC3 TFDP1 TP53 TTK WEE1 WEE2"
 
@@ -95,7 +101,7 @@ infoEdge3 <- reactive({
 ```
 
 ##  {data-width="200"}
-##### Click on an edge to see its information 
+#### Selected interaction
 ```{r,cache=FALSE}
 renderUI({infoEdge3()})
 ```

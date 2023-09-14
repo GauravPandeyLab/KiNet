@@ -5,28 +5,28 @@ options(shiny.trace = TRUE)
 ```
 # Visualize pathways
 ##  {.sidebar data-width="200"}
-##### Options
+#### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree2', "Show nodes one degree away.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected2', "Remove disconnected nodes.", value = FALSE)
+checkboxInput(inputId='toggleOneDegree2', "Show proteins connected to those in the pathway", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected2', "Remove disconnected proteins", value = TRUE)
 ```
 
-##### Node colors indicate group membership
+#### Kinase groups
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
   list(src='kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
-##### Highlight a group
+#### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup2",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
-##### Change font-size
+#### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
 ```
-##### Export
+#### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice2',label=NULL,choices=names(export_choices))
   filename2 <- reactive({export_choices[[input$download_choice2]]})
@@ -37,9 +37,14 @@ sliderInput("fontSize2",label=NULL,min = 10, max = 50, value = 30)
     content = function(file) {export_method(filename2(),g2(),file)}
   )
 ```
-
 ## Main Panel
-##### Select a pathway to show its kinase-substrate interactions
+#### Instructions
+#### {.other-page-text}
+The visualization below shows proteins as <i>nodes</i> and kinase-substrate interactions as <i>directed edges</i> from kinase to substrate. Nodes are colored according to the kinase group of the protein. You can use the mouse to select nodes, edges, drag and zoom the visualization, as well as use the additional controls on the left to highlight the interactions of a kinase group. When you click on an edge, information about the interaction will be displayed on the right.
+
+The visualization <b>shows a KEGG pathway</b> enriched in kinases and substrates. To select the pathway, use the drop-down menu. On the left, there are additional controls to remove proteins from the visualization that are not connected to any other protein. Additionally, you can explore interactions locally by displaying nodes that are connected to those in the pathway.
+
+#### Select a pathway
 ```{r, cache = FALSE}
 selectizeInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway",options=list(maxOptions=300))
 initialGeneList <- reactive({get_pathway_genes(input$pathway)})
@@ -77,7 +82,7 @@ infoEdge2 <- reactive({
 ```
 
 ##  {data-width="200"}
-##### Click on an edge to see its information 
+#### Selected Interaction
 ```{r,cache=FALSE}
   renderUI({infoEdge2()})
 ```

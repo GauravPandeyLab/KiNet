@@ -1,11 +1,26 @@
 # About 
 
-## Image {data-width="50%"}
-### {}
+## Content {data-width=50}
+### {.opening-page-text}
+<p style="font-family: 'Righteous', cursive; font-size: 80px;">KinAce</p>
+
+Welcome to the KinAce visualization portal! Our goal is to enable visualizing the network of <b>kinase-substrate interactions</b> in the human genome. On this portal, you will be able to:
+
+* <b>examine a single protein</b> and its interactions with other kinases and substrates,
+* <b>visualize a pathway</b> and its kinase-substrate interactions,
+* import and <b>visualize a custom gene set</b> and its kinase-substrate interactions.
+
+<h3>FAQ</h3>
+<h4>Where is the data from?</h4>
+We aggregate interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/). 
+<h4>Who maintains the site?</h4>
+The portal is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). For more information, contact [John Sekar](mailto:john.sekar@mssm.edu).
+
+## Image {data-width=50}
+![](wordcloud.png){width="500px"}
+<p style="text-align:center; font-weight:bold;">Word cloud of names of pathways<br>enriched in kinases and their substrates</p>
+![](sankey.png){width="500px"}
+<p style="text-align:center; font-weight:bold;">Flow diagram of kinase-kinase interactions across kinase groups,<br>showing targeting kinase on the left and the targeted kinase (substrate) on the right." </p>
 
 
-## Content {data-width="50%"}
-### {}
-<p style="font-family: 'Righteous', cursive; font-size: 40px;">
-    KinNetVis
-</p>
+
