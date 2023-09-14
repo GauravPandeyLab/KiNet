@@ -27,7 +27,7 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```{r child='about.Rmd'}
 ```
 
-```{r child='explore_the_network.Rmd'}
+```{r child='examine_proteins.Rmd'}
 ```
 ```{r child='visualize_pathways.Rmd'}
 ```
@@ -47,10 +47,6 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 
 .opening-page-text li {
   font-size: 18px;
-}
-
-.other-page-text {
-  font-size: 14px;
 }
 
 .navbar-brand {

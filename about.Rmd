@@ -19,10 +19,10 @@ The portal is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schle
 
 ## Image {data-width=30}
 ##### Word cloud of names of pathways enriched in kinases and their substrates
-![](wordcloud.png){width="400px"}
+![](img/wordcloud.png){width="400px"}
 
 ##### Flow diagram of kinase-kinase interactions (left-kinase, right-targeted kinase), organized by kinase-group
-![](sankey.png){width="400px"}
+![](img/sankey.png){width="400px"}
 
 
 

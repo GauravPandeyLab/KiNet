@@ -6,10 +6,6 @@ all_edges <- read_csv('data/ksi_display.csv') %>%
   rename(from=Kinase,to=Substrate)
 widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
 all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
-  #mutate(width=ntile(NSites,10)+5) 
-  #mutate(id=row_number()) %>%
-  #select(id,everything())
-  
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
@@ -20,8 +16,6 @@ all_nodes <- read_csv('data/proteins.csv') %>%
   mutate(size=20)
 
 synonyms <- readLines('data/synonyms.txt')
-#all_proteins <- all_nodes$GeneID
-  
 pathways_df <- read_csv('data/pathway_gene_sets.csv')
 
 pathway_categories <- pathways_df$Category %>% unique
@@ -137,9 +131,6 @@ render_edge_link <- function(idx) {
   unip_url <- 'https://www.uniprot.org/uniprotkb/%s/entry'
   L1 <- tags$a(info$GeneName,href= sprintf(unip_url,info$id))
   list(L1,tags$p(info$FullName))
-  #L1 <- render_line_break_separated(get_synonyms(info$id))
-  #L1 <- info %>% pull(FullName)
-  #list(L0,tags$br(),L1)
 }
 
 render_edge_info <- function(edge) {
@@ -183,11 +174,11 @@ vis_default <- function(g) {
   visExport(type="png",label="Screenshot visible region as PNG")
 }
 ####### EXPORT
-export_choices <- list("Nodes as CSV"='nodes.csv',
-                       "Edges as CSV"='edges.csv',
-                       "Graph as GML"='network.gml',
-                       "Graph as GRAPHML"='network.graphml',
-                       "Graph as DOT"='network.dot')
+export_choices <- list("Proteins as CSV"='nodes.csv',
+                       "Interactions as CSV"='edges.csv',
+                       "Network as GML"='network.gml',
+                       "Network as GRAPHML"='network.graphml',
+                       "Network as DOT"='network.dot')
 
 export_method <- function(filename,g,file) {
   if(filename=='nodes.csv') {write.csv(g$nodes,file,row.names=F)}

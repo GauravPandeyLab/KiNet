@@ -16,7 +16,7 @@ The colour of a node indicates the kinase-group of the protein.
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
-  list(src='kinase_families_legend2.png',width="100%")
+  list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
 #### Highlight a group

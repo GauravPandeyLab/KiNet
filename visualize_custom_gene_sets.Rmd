@@ -15,7 +15,7 @@ checkboxInput(inputId='toggleRemoveDisconnected3', "Hide proteins with no known 
 ```{r}
 imageOutput('legend3',height="auto")
 output$legend3 <- renderImage({
-  list(src='kinase_families_legend2.png',width="100%")
+  list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
 #### Highlight a group
