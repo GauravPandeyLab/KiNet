@@ -4,8 +4,10 @@ library(igraph)
 
 all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate)
-widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
+#widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
+widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
 all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
+epsdrefs <- read_csv('data/EPSDReference.csv') 
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
@@ -139,11 +141,30 @@ render_edge_info <- function(edge) {
   substrate <- edge %>% pull(to)
   L1 <- tags$div(tags$h4('Kinase ',style="display: inline;"),render_edge_link(kinase))
   L2 <- tags$div(tags$h4('Substrate ',style="display: inline;"),render_edge_link(substrate))
+  nsites <- edge %>% pull(NSites)
+  if(nsites==1) {
+    L3 <- list(tags$h4('Sites'),tags$p('1 site known'))
+    } else {
+      L3 <- list(tags$h4('Sites'),tags$p(nsites,'sites known'))
+    }
+  sites <- edge %>% pull(Sites)
+  L4 <- tags$p(gsub('"','',sites))
+  ppp_url <- 'https://www.phosphosite.org/uniprotAccAction?id=%s'
+  L50 <- tags$h4('Sources')
+  L51 <- tags$a('PhosphoSitePlus',href= sprintf(ppp_url,substrate))
+  ipt_url <- 'https://research.bioinformatics.udel.edu/iptmnet/entry/%s/'
+  L52 <- tags$a('iPTMNet',href= sprintf(ipt_url,substrate))
   
-  sites <- edge %>% pull(SitesBySource) %>% str_split('\n') 
-  sites_div <- sites[[1]] %>% lapply(tags$p,style="white-space: pre-line;")
-  L3 <- list(tags$h4('Sites, attested by Source'),tags$div(sites_div))
-  tagList(L1,L2,L3)
+  epsd <- epsdrefs %>% filter(Substrate==substrate) %>% pull('EPSD')
+  L53 <- ''
+  if(length(epsd)>=1) {
+    epsd_url <- 'https://epsd.biocuckoo.cn/View.php?id=%s'
+    L53 <- tags$a('EPSD',href=sprintf(epsd_url,epsd[[1]]))
+  }
+  Lbr <- tags$br()
+  L5 <- tags$div(L50,L51,Lbr,L52,Lbr,L53)
+  
+  tagList(L1,L2,L3,L4,L5)
 }
 
 get_igraph <-function(g) {
