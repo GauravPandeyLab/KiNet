@@ -4,7 +4,8 @@ library(igraph)
 
 all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate)
-widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
+#widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
+widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
 all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
 epsdrefs <- read_csv('data/EPSDReference.csv') 
 colors <- read_csv('data/groups.csv')
