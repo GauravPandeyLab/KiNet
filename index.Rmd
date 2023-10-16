@@ -10,7 +10,7 @@ output:
       bootswatch: cerulean
     # includes:
     #   after_body: ./footer.html
-  orientation: columns
+    orientation: columns
 runtime: shiny
 ---
 
