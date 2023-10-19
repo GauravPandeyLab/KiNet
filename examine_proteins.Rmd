@@ -17,11 +17,12 @@ output$legend <- renderImage({
 selectizeInput("highlightGroup1",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
 -->
-
+<!--
 #### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 ```
+-->
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice1',label=NULL,choices=names(export_choices))
@@ -48,12 +49,13 @@ g1 <- reactive(get_one_degree(input$centerGene,TRUE))
 visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
   vis_default(g1()) %>%
+  visNodes(scaling=list(label=list(min=60,max=80))) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
   visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}")
    })
 
-observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
+#observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
 infoGene <- reactive({
   if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
   })

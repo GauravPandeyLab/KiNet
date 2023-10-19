@@ -53,10 +53,12 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   g$edges=rbind(E1,E2) %>% mutate(id=row_number())
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
+  g$value <- 2
   if(largeCenterNode) {
     condition <- g$nodes$label %in% genes
-    g$nodes$size[condition] <- 50
+    #g$nodes$size[condition] <- 50
     g$nodes$shape[condition] <- "circle"
+    g$nodes$value[condition] <- 5
   }
   return(g)
 }
@@ -189,8 +191,8 @@ get_gml <- function(h) {
 vis_default <- function(g) {
   visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
   visIgraphLayout() %>% 
-  visNodes(font=list(size=30)) %>% 
-  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic')) %>%
+  visNodes(font=list(size=50),opacity=0.8) %>% 
+  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5)) %>%
   visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }

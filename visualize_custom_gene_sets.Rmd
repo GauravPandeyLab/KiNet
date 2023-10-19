@@ -24,10 +24,12 @@ output$legend3 <- renderImage({
 selectizeInput("highlightGroup3",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
 -->
+<!--
 #### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
 ```
+-->
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice3',label=NULL,choices=names(export_choices))
@@ -88,7 +90,7 @@ output$network3 <- renderVisNetwork({
 infoGene3 <- reactive({
   if(is.null(input$selectNode3)) {NULL} else {get_gene_name(input$selectNode3)}
   })
-observe({visNetworkProxy("network3") %>% visNodes(font=list(size=input$fontSize3))})
+#observe({visNetworkProxy("network3") %>% visNodes(font=list(size=input$fontSize3))})
 # observeEvent(input$highlightGroup3,{
 #   if(input$highlightGroup3 != "None selected") {
 #     ids <- g3()$nodes %>% filter(group==input$highlightGroup3) %>% pull(id)
