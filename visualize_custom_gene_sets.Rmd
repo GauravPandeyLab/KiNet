@@ -18,10 +18,12 @@ output$legend3 <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
+<!--
 #### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup3",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
+-->
 #### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize3",label=NULL,min = 10, max = 50, value = 30)
@@ -58,7 +60,7 @@ output$displayNotFound <- renderText({
   if(length(notFound())==0) {""} else {paste(c("Warning! Genes not found: ",notFound()))}
 })
 
-default_gene_set <- "ABL1 ANAPC1 ANAPC4 ANAPC7 ATM ATR BUB1 BUB1B BUB3 CCNA2 CCNB1 CCND1 CCND2 CCND3 CCNE1 CDC14A CDC16 CDC20 CDC23 CDC25A CDC25B CDC25C CDC27 CDC6 CDC7 CDK1 CDK2 CDK4 CDK6 CDK7 CDKN1A CDKN1B CDKN2A CDKN2D CHEK1 CHEK2 DBF4 E2F1 E2F3 EP300 ESPL1 FZR1 GSK3B HDAC2 MAD1L1 MAD2L1 MCM2 MCM3 MCM4 MCM5 MCM7 MDM2 MYC ORC1 ORC2 ORC6 PKMYT1 PLK1 PRKDC PTTG1 PTTG2 RAD21 RB1 RBL1 RBL2 SKP2 SMAD2 SMAD3 SMAD4 SMC1A SMC3 TFDP1 TP53 TTK WEE1 WEE2"
+default_gene_set <- "BRAF RAF1 MAP2K1 MAP2K2 MAPK1 MAPK3"
 
 observeEvent(input$example,{updateTextAreaInput(session,'customGeneList', value=paste(default_gene_set))})
 observeEvent(input$clear,{updateTextAreaInput(session,'customGeneList', value="")})
@@ -87,19 +89,19 @@ infoGene3 <- reactive({
   if(is.null(input$selectNode3)) {NULL} else {get_gene_name(input$selectNode3)}
   })
 observe({visNetworkProxy("network3") %>% visNodes(font=list(size=input$fontSize3))})
-observeEvent(input$highlightGroup3,{
-  if(input$highlightGroup3 != "None selected") {
-    ids <- g3()$nodes %>% filter(group==input$highlightGroup3) %>% pull(id)
-    visNetworkProxy("network3") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
-  } else {visNetworkProxy("network3") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
-  })
+# observeEvent(input$highlightGroup3,{
+#   if(input$highlightGroup3 != "None selected") {
+#     ids <- g3()$nodes %>% filter(group==input$highlightGroup3) %>% pull(id)
+#     visNetworkProxy("network3") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
+#   } else {visNetworkProxy("network3") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
+#   })
 
 infoEdge3 <- reactive({
   if (!is.null(input$selectedEdges3) & length(input$selectedEdges3$edges)==1) {
         edge_id <- input$selectedEdges3$edges
         e <- g3()$edges %>% filter(id %in% edge_id)
         render_edge_info(e)
-      }
+  } else {tags$p('')}
 })
 
 ```

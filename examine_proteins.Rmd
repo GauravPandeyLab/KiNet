@@ -11,10 +11,13 @@ output$legend <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
+<!--
 #### Highlight a group
 ```{r,cache=FALSE}
 selectizeInput("highlightGroup1",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
 ```
+-->
+
 #### Change font-size
 ``` {r,cache=FALSE}
 sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
@@ -55,19 +58,20 @@ infoGene <- reactive({
   if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
   })
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
-observeEvent(input$highlightGroup1,{
-  if(input$highlightGroup1 != "None selected") {
-    ids <- g1()$nodes %>% filter(group==input$highlightGroup1) %>% filter(GeneName!=input$centerGene) %>% pull(id)
-    visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
-  } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
-  })
+# 
+# observeEvent(input$highlightGroup1,{
+#   if(input$highlightGroup1 != "None selected") {
+#     ids <- g1()$nodes %>% filter(group==input$highlightGroup1) %>% filter(GeneName!=input$centerGene) %>% pull(id)
+#     visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
+#   } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
+#   })
 
 infoEdge1 <- reactive({
   if (!is.null(input$selectedEdges1) & length(input$selectedEdges1$edges)==1) {
         edge_id <- input$selectedEdges1$edges
         e <- g1()$edges %>% filter(id %in% edge_id)
         render_edge_info(e)
-      }
+      } else {tags$p('')}
 })
 ```
 
