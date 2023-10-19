@@ -192,7 +192,7 @@ vis_default <- function(g) {
   visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
   visIgraphLayout() %>% 
   visNodes(font=list(size=50),opacity=0.8) %>% 
-  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5)) %>%
+  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5),selectionWidth=10) %>%
   visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
