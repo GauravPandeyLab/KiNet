@@ -191,9 +191,10 @@ vis_default <- function(g) {
   visIgraphLayout() %>% 
   visNodes(font=list(size=30)) %>% 
   visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic')) %>%
-  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
+  visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
+#visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
 ####### EXPORT
 export_choices <- list("Proteins as CSV"='nodes.csv',
                        "Interactions as CSV"='edges.csv',
