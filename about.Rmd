@@ -3,25 +3,36 @@
 ## Content {data-width=50}
 ### {.opening-page-text}
 <p style="font-family: 'Righteous', cursive; font-size: 80px;">KinAce</p>
-Welcome to the KinAce visualization portal! Our goal is to visualize the network of <b>kinase-substrate interactions</b> in the human genome. Click on the tabs above to:
+Welcome to the KinAce web app for exploring the network of <b>kinase-substrate interactions</b> in the human genome.
 
-* examine the interactions of <b>individual proteins</b> to other kinases and substrates,
-* visualize kinase-substrate interactions in <b>curated pathways</b>,
-* import a <b>custom gene set</b> and visualize its kinase-substrate interactions.
-
-In each of these visualizations, proteins are represented as nodes and interactions are represented as directed edges from the kinase to the substrate. Use the mouse to select nodes and edges, move nodes, pan and zoom into the network. There are additional controls in the sidebar to highlight kinase groups and customize the selection of proteins on display. When you click on an edge, information about that interaction will be displayed on the right. 
-
-<h3>FAQ</h3>
 <h4>Where is the data from?</h4>
-We aggregate interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/). 
+KinAce aggregates interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/). We also use kinase information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/). Protein names and gene symbols are from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) and [HGNC](https://www.genenames.org/) respectively. Gene set enrichment analysis for [KEGG](https://www.genome.jp/kegg/pathway.html) and [InterPro](https://www.ebi.ac.uk/interpro/) terms was performed using [Enrichr](https://maayanlab.cloud/Enrichr/).
+
+<h4>How do I use the site?</h4>
+KinAce provides different ways to examine functional context of kinase-substrate interactions. To examine interactions
+
+* of individual proteins, use the <b>Proteins</b> tab,
+* between proteins in a curated KEGG pathway, use the <b>Pathways</b> tab,
+* of proteins enriched in specific InterPro domains, use the <b>Domains</b> tab,
+* in a custom gene set, use the <b>Input</b> tab.
+
+Each tab displays a network of proteins, both kinases (colored by kinase group) and non-kinases (colored gray). Each interaction is indicated by a directed edge from the respective kinase to the substrate. Try...
+
+* interacting with the network by moving nodes around, zooming and panning,
+* selecting an edge and following the displayed links to the original sources,
+* toggling the <u>Include adjacent proteins</u> and <u>Exclude disconnected proteins</u> options.
+
+<h4>How do I download the data?</h4>
+On each tab, use the <u>Export</u> options to download the visualized network as a table (CSV) or in selected graph visualization formats (DOT, GML, GraphML). To download the entire dataset, click <a href="./data/2023-10-30-kinace-dataset.zip" download>here</a>.
+
 <h4>Who maintains the site?</h4>
-The portal is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). For more information, contact [John Sekar](mailto:john.sekar@mssm.edu).
+KinAce is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). For more information, contact [John Sekar](mailto:john.sekar@mssm.edu).
 
 ## Image {data-width=30}
-##### Word cloud of names of pathways enriched in kinases and their substrates
+##### Word cloud of pathway names enriched in kinase substrates
 ![](img/wordcloud.png){width="400px"}
 
-##### Flow diagram of kinase-kinase interactions (left-kinase, right-targeted kinase), organized by kinase-group
+##### Flow diagram of kinase-kinase interaction data, organized by kinase-group
 ![](img/sankey.png){width="400px"}
 
 

@@ -19,7 +19,7 @@ library(flexdashboard)
 library(visNetwork)
 
 
-shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
+#shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```
 
 
