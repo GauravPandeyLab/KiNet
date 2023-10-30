@@ -2,7 +2,7 @@
 library(shiny)
 library(visNetwork)
 ```
-# Examine proteins
+# Proteins
 ##  {.sidebar data-width="200"}
 #### Kinase groups
 ```{r}

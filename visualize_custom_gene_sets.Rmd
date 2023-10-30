@@ -3,7 +3,7 @@ library(shiny)
 library(visNetwork)
 options(shiny.trace = TRUE)
 ```
-# Visualize custom gene sets
+# Input
 ##  {.sidebar data-width="200"}
 #### Options
 ```{r,cache=FALSE}

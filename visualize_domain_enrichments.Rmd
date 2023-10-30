@@ -3,7 +3,7 @@ library(shiny)
 library(visNetwork)
 options(shiny.trace = TRUE)
 ```
-# Visualize domain enrichments
+# Domains
 ##  {.sidebar data-width="200"}
 #### Options
 ```{r,cache=FALSE}

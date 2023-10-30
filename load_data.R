@@ -10,6 +10,14 @@ all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
 epsdrefs <- read_csv('data/EPSDReference.csv') 
 colors <- read_csv('data/groups.csv')
 
+kinases <- all_edges %>% pull(from) %>% unique
+n_kinases <- kinases  %>% length
+n_nonkinases <- setdiff(all_edges %>% pull(to) %>% unique, kinases) %>% length
+n_interactions <- all_edges %>% nrow
+n_kki <- all_edges %>% filter(to %in% kinases)  %>% nrow
+n_auto <-all_edges %>% filter(from==to)  %>% nrow
+
+
 all_nodes <- read_csv('data/proteins.csv') %>% 
   rename(id=UniProt,group=Group) %>%
   left_join(colors %>% rename(color=Color),by=join_by(group == Group)) %>% 
@@ -18,6 +26,7 @@ all_nodes <- read_csv('data/proteins.csv') %>%
   mutate(size=20)
 
 synonyms <- readLines('data/synonyms.txt')
+
 
 ####### PATHWAY GENE SETS
 pathways_df <- read_csv('data/pathway_gene_sets.csv')
