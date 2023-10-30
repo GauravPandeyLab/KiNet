@@ -18,25 +18,31 @@ all_nodes <- read_csv('data/proteins.csv') %>%
   mutate(size=20)
 
 synonyms <- readLines('data/synonyms.txt')
-pathways_df <- read_csv('data/pathway_gene_sets.csv')
 
+####### PATHWAY GENE SETS
+pathways_df <- read_csv('data/pathway_gene_sets.csv')
 pathway_categories <- pathways_df$Category %>% unique
 default_pathway_category <- "Environmental Information Processing"
 pathway_choices <- pathways_df %>% split(pathways_df[['Category']])
-
 pathways2 <- pathways_df %>% select(Category,Term)
 all_pathways <- lapply(split(pathways2, pathways2$Category), function(d) {d$Term})
-
-get_pathway_genes2 <- function(categ,name){
-  ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
-  intersect(ch[[1]],all_nodes$GeneName)
-}
-
 get_pathway_genes <- function(pathway) {
   ch <- pathways_df %>% filter(Term==pathway) %>% pull(Genes) %>% strsplit(split=" ")
   intersect(ch[[1]],all_nodes$GeneName)
 }
+####### DOMAIN GENE SETS
+domains_df <- read_csv('data/domain_gene_sets.csv')
+domain_categories <- domains_df$Category %>% unique
+default_domain_category <- "Cytoplasmic"
+domain_choices <- domains_df %>% split(domains_df[['Category']])
+domains2 <- domains_df %>% select(Category,Term)
+all_domains <- lapply(split(domains2, domains2$Category), function(d) {d$Term})
+get_domain_genes <- function(domain) {
+  ch <- domains_df %>% filter(Term==domain) %>% pull(Genes) %>% strsplit(split=" ")
+  intersect(ch[[1]],all_nodes$GeneName)
+}
 
+######### DEFAULTS
 get_gene_name <- function(protein) {
   all_nodes %>% filter(id==protein) %>% pull(GeneName)
 }
