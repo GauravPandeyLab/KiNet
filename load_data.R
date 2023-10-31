@@ -7,16 +7,7 @@ all_edges <- read_csv('data/ksi_display.csv') %>%
 #widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
 widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
 all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
-epsdrefs <- read_csv('data/EPSDReference.csv') 
 colors <- read_csv('data/groups.csv')
-
-kinases <- all_edges %>% pull(from) %>% unique
-n_kinases <- kinases  %>% length
-n_nonkinases <- setdiff(all_edges %>% pull(to) %>% unique, kinases) %>% length
-n_interactions <- all_edges %>% nrow
-n_kki <- all_edges %>% filter(to %in% kinases)  %>% nrow
-n_auto <-all_edges %>% filter(from==to)  %>% nrow
-
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
   rename(id=UniProt,group=Group) %>%
@@ -25,7 +16,12 @@ all_nodes <- read_csv('data/proteins.csv') %>%
   arrange(GeneName) %>%
   mutate(size=20)
 
-synonyms <- readLines('data/synonyms.txt')
+all_kinases <- all_nodes %>% filter(group != 'Non-kinase') %>% pull(id) %>% unique
+n_kinases <- all_kinases %>% length
+n_nonkinases <- setdiff(all_edges %>% pull(to) %>% unique, all_kinases) %>% length
+n_interactions <- all_edges %>% nrow
+n_kki <- all_edges %>% filter(to %in% all_kinases) %>% filter(from!=to)  %>% nrow
+n_auto <-all_edges %>% filter(from==to)  %>% nrow
 
 
 ####### PATHWAY GENE SETS
