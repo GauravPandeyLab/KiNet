@@ -4,7 +4,7 @@ library(visNetwork)
 options(shiny.trace = TRUE)
 ```
 # Input
-##  {.sidebar data-width="200"}
+##  {.sidebar data-width="200" .opening-page-text}
 #### Options
 ```{r,cache=FALSE}
 checkboxInput(inputId='toggleOneDegree3', "Include adjacent proteins.", value = FALSE)
@@ -32,7 +32,7 @@ output$legend3 <- renderImage({
 ```
 
 ## Main Panel
-#### Description
+#### Description {.opening-page-text}
 This visualization shows the kinase-substrate interactions between genes in a <b>custom gene set</b> input by the user. 
 
 On the left, there are additional controls to display fewer or more proteins than those in the gene set.
@@ -91,7 +91,7 @@ infoEdge3 <- reactive({
 
 ```
 
-##  {data-width="200"}
+##  {data-width="200" .opening-page-text}
 #### Select an interaction
 Click on an edge to display information about it.
 ```{r,cache=FALSE}

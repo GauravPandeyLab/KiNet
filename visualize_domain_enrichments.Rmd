@@ -4,7 +4,7 @@ library(visNetwork)
 options(shiny.trace = TRUE)
 ```
 # Domains
-##  {.sidebar data-width="200"}
+##  {.sidebar data-width="200" .opening-page-text}
 #### Options
 ```{r,cache=FALSE}
 checkboxInput(inputId='toggleOneDegree4', "Include adjacent proteins.", value = FALSE)
@@ -31,7 +31,7 @@ output$legend4 <- renderImage({
   )
 ```
 ## Main Panel
-#### Description
+#### Description {.opening-page-text}
 This visualization shows proteins enriched in a particular <b>domain</b> from [InterPro](https://www.ebi.ac.uk/interpro/) and their kinase-substrate interactions. 
 
 On the left, there are additional controls to display fewer or more proteins than those in the gene set.
@@ -66,7 +66,7 @@ infoEdge4 <- reactive({
 })
 ```
 
-##  {data-width="200"}
+##  {data-width="200" .opening-page-text}
 #### Select an interaction
 Click on an edge to display information about it.
 ```{r,cache=FALSE}

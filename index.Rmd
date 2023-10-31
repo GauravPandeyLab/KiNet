@@ -43,10 +43,10 @@ library(visNetwork)
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Playfair+Display:wght@500&display=swap');
 
 .opening-page-text {
-  font-size: 16px;
+  font-size: 18px;
 }
 .opening-page-text li {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .navbar-brand {

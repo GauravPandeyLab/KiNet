@@ -3,7 +3,7 @@ library(shiny)
 library(visNetwork)
 ```
 # Proteins
-##  {.sidebar data-width="200"}
+##  {.sidebar data-width="200" .opening-page-text}
 #### Kinase groups
 ```{r}
 imageOutput('legend',height="auto")
@@ -23,7 +23,7 @@ output$legend <- renderImage({
   )
 ```
 ## Main Panel
-#### Description 
+#### Description  {.opening-page-text}
 This visualization centers <b>a single protein</b> and shows all of its kinase-substrate interactions</b>. 
 
 To recenter the network on a different protein, select it from the drop-down menu, or double-click its node.
@@ -58,7 +58,7 @@ infoEdge1 <- reactive({
 ```
 
 
-##  {data-width="200"}
+##  {data-width="200" .opening-page-text}
 #### Select an interaction
 Click on an edge to display information about it.
 ```{r,cache=FALSE}
