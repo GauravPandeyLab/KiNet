@@ -1,0 +1,24 @@
+# FAQ
+## Content {data-width=50}
+#### {.opening-page-text data-height=250}
+
+<h4 style="text-align: center;">How do I use the site?</h4>
+KinAce provides different ways to examine the <i>functional</i> context of kinase-substrate interactions. To examine interactions
+
+* of individual proteins, use the <b>Proteins</b> tab,
+* between proteins in a curated KEGG pathway, use the <b>Pathways</b> tab,
+* of proteins enriched in specific InterPro domains, use the <b>Domains</b> tab,
+* in a custom gene set, use the <b>Input</b> tab.
+
+Each tab displays a network of kinases (colored by kinase group) and non-kinases (colored gray). Each interaction is indicated by a directed edge from the respective kinase to the substrate. Try...
+
+* interacting with the network by moving nodes around, zooming and panning,
+* selecting an edge and following the displayed links to the original sources,
+* toggling the <u>Include adjacent proteins</u> and <u>Exclude disconnected proteins</u> options.
+
+<h4 style="text-align: center;">Where is the data from?</h4>
+KinAce aggregates interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/). We also use kinase information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/). Protein names and gene symbols are from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) and [HGNC](https://www.genenames.org/) respectively. Gene set enrichment analysis for [KEGG](https://www.genome.jp/kegg/pathway.html) and [InterPro](https://www.ebi.ac.uk/interpro/) terms was performed using [Enrichr](https://maayanlab.cloud/Enrichr/).
+<br>
+
+<h4 style="text-align: center;">How do I download the data?</h4>
+On each tab, use the <u>Export</u> options to download the visualized network as a table (CSV) or in selected graph visualization formats (DOT, GML, GraphML). To download the entire dataset, click <a href="./data/2023-10-30-kinace-dataset.zip" download>here</a>.

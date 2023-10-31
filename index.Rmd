@@ -26,7 +26,8 @@ library(visNetwork)
 
 ```{r child='about.Rmd'}
 ```
-
+```{r child='faq.Rmd'}
+```
 ```{r child='examine_proteins.Rmd'}
 ```
 ```{r child='visualize_pathways.Rmd'}

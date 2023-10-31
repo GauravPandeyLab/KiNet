@@ -7,8 +7,8 @@ options(shiny.trace = TRUE)
 ##  {.sidebar data-width="200"}
 #### Options
 ```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree4', "Include proteins connected to those in the pathway", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected4', "Hide proteins with no known interactions in the pathway", value = TRUE)
+checkboxInput(inputId='toggleOneDegree4', "Include adjacent proteins.", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected4', "Exclude disconnected proteins.", value = TRUE)
 ```
 
 #### Kinase groups
@@ -32,7 +32,9 @@ output$legend4 <- renderImage({
 ```
 ## Main Panel
 #### Description
-DOMAINS The visualization shows a <b>curated pathway</b> from [KEGG](https://www.genome.jp/kegg/pathway.html) and its kinase-substrate interactions. On the left, there are additional controls to display fewer or more proteins than those in the pathway.
+This visualization shows proteins enriched in a particular <b>domain</b> from [InterPro](https://www.ebi.ac.uk/interpro/) and their kinase-substrate interactions. 
+
+On the left, there are additional controls to display fewer or more proteins than those in the gene set.
 
 #### Select a domain
 ```{r, cache = FALSE}
