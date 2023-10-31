@@ -148,6 +148,7 @@ render_edge_link <- function(idx) {
   list(L1,tags$p(info$FullName))
 }
 
+epsdrefs <- read_csv('data/EPSDReference.csv')
 render_edge_info <- function(edge) {
   if (is.null(edge)) {return('')}
   kinase <- edge %>% pull(from)
