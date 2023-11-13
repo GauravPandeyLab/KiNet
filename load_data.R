@@ -7,7 +7,6 @@ all_edges <- read_csv('data/ksi_display.csv') %>%
 #widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
 widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
 all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
-epsdrefs <- read_csv('data/EPSDReference.csv') 
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
@@ -17,26 +16,38 @@ all_nodes <- read_csv('data/proteins.csv') %>%
   arrange(GeneName) %>%
   mutate(size=20)
 
-synonyms <- readLines('data/synonyms.txt')
-pathways_df <- read_csv('data/pathway_gene_sets.csv')
+all_kinases <- all_nodes %>% filter(group != 'Non-kinase') %>% pull(id) %>% unique
+n_kinases <- all_kinases %>% length
+n_nonkinases <- setdiff(all_edges %>% pull(to) %>% unique, all_kinases) %>% length
+n_interactions <- all_edges %>% nrow
+n_kki <- all_edges %>% filter(to %in% all_kinases) %>% filter(from!=to)  %>% nrow
+n_auto <-all_edges %>% filter(from==to)  %>% nrow
 
+
+####### PATHWAY GENE SETS
+pathways_df <- read_csv('data/pathway_gene_sets.csv')
 pathway_categories <- pathways_df$Category %>% unique
 default_pathway_category <- "Environmental Information Processing"
 pathway_choices <- pathways_df %>% split(pathways_df[['Category']])
-
 pathways2 <- pathways_df %>% select(Category,Term)
 all_pathways <- lapply(split(pathways2, pathways2$Category), function(d) {d$Term})
-
-get_pathway_genes2 <- function(categ,name){
-  ch <- pathway_choices[[categ]] %>% filter(Term==name) %>% pull(Genes) %>% strsplit(split=" ") 
-  intersect(ch[[1]],all_nodes$GeneName)
-}
-
 get_pathway_genes <- function(pathway) {
   ch <- pathways_df %>% filter(Term==pathway) %>% pull(Genes) %>% strsplit(split=" ")
   intersect(ch[[1]],all_nodes$GeneName)
 }
+####### DOMAIN GENE SETS
+domains_df <- read_csv('data/domain_gene_sets.csv')
+domain_categories <- domains_df$Category %>% unique
+default_domain_category <- "Cytoplasmic"
+domain_choices <- domains_df %>% split(domains_df[['Category']])
+domains2 <- domains_df %>% select(Category,Term)
+all_domains <- lapply(split(domains2, domains2$Category), function(d) {d$Term})
+get_domain_genes <- function(domain) {
+  ch <- domains_df %>% filter(Term==domain) %>% pull(Genes) %>% strsplit(split=" ")
+  intersect(ch[[1]],all_nodes$GeneName)
+}
 
+######### DEFAULTS
 get_gene_name <- function(protein) {
   all_nodes %>% filter(id==protein) %>% pull(GeneName)
 }
@@ -53,10 +64,12 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   g$edges=rbind(E1,E2) %>% mutate(id=row_number())
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
+  g$value <- 2
   if(largeCenterNode) {
     condition <- g$nodes$label %in% genes
-    g$nodes$size[condition] <- 50
+    #g$nodes$size[condition] <- 50
     g$nodes$shape[condition] <- "circle"
+    g$nodes$value[condition] <- 5
   }
   return(g)
 }
@@ -135,6 +148,7 @@ render_edge_link <- function(idx) {
   list(L1,tags$p(info$FullName))
 }
 
+epsdrefs <- read_csv('data/EPSDReference.csv')
 render_edge_info <- function(edge) {
   if (is.null(edge)) {return('')}
   kinase <- edge %>% pull(from)
@@ -189,11 +203,12 @@ get_gml <- function(h) {
 vis_default <- function(g) {
   visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
   visIgraphLayout() %>% 
-  visNodes(font=list(size=30)) %>% 
-  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic')) %>%
-  visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
+  visNodes(font=list(size=50),opacity=0.8) %>% 
+  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5),selectionWidth=10) %>%
+  visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
+#visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
 ####### EXPORT
 export_choices <- list("Proteins as CSV"='nodes.csv',
                        "Interactions as CSV"='edges.csv',

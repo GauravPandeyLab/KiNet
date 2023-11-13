@@ -19,22 +19,23 @@ library(flexdashboard)
 library(visNetwork)
 
 
-shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
+#shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```
 
 
 
 ```{r child='about.Rmd'}
 ```
-
+```{r child='faq.Rmd'}
+```
 ```{r child='examine_proteins.Rmd'}
 ```
 ```{r child='visualize_pathways.Rmd'}
 ```
+```{r child='visualize_domain_enrichments.Rmd'}
+```
 ```{r child='visualize_custom_gene_sets.Rmd'}
 ```
-
-
 
 
 ```{=html}
@@ -44,7 +45,6 @@ shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 .opening-page-text {
   font-size: 18px;
 }
-
 .opening-page-text li {
   font-size: 18px;
 }

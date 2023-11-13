@@ -2,22 +2,14 @@
 library(shiny)
 library(visNetwork)
 ```
-# Examine proteins
-##  {.sidebar data-width="200"}
+# Proteins
+##  {.sidebar data-width="200" .opening-page-text}
 #### Kinase groups
 ```{r}
 imageOutput('legend',height="auto")
 output$legend <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
-```
-#### Highlight a group
-```{r,cache=FALSE}
-selectizeInput("highlightGroup1",label=NULL,choices=c("None selected",colors$Group),selected="None selected")
-```
-#### Change font-size
-``` {r,cache=FALSE}
-sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
 ```
 #### Export
 ```{r, cache=FALSE}
@@ -30,10 +22,11 @@ sliderInput("fontSize",label=NULL,min = 10, max = 50, value = 30)
     content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
-
 ## Main Panel
-#### Description
-This visualization shows <b>a single protein</b> at the center and all of its interactions</b>. You can traverse the network by selecting a new protein, either from the drop-down menu, or by double-clicking a node.
+#### Description  {.opening-page-text}
+This visualization centers <b>a single protein</b> and shows all of its kinase-substrate interactions</b>. 
+
+To recenter the network on a different protein, select it from the drop-down menu, or double-click its node.
 
 #### Select a protein
 ```{r, cache = FALSE}
@@ -45,35 +38,29 @@ g1 <- reactive(get_one_degree(input$centerGene,TRUE))
 visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
   vis_default(g1()) %>%
+  visNodes(scaling=list(label=list(min=60,max=80))) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
   visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}")
    })
 
-observe({visNetworkProxy("network1") %>% visNodes(font=list(size=input$fontSize))})
 infoGene <- reactive({
   if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
   })
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
-observeEvent(input$highlightGroup1,{
-  if(input$highlightGroup1 != "None selected") {
-    ids <- g1()$nodes %>% filter(group==input$highlightGroup1) %>% filter(GeneName!=input$centerGene) %>% pull(id)
-    visNetworkProxy("network1") %>% visSelectNodes(id=ids,highlightEdges=F,clickEvent=T) 
-  } else {visNetworkProxy("network1") %>% visSelectNodes(id=NULL,highlightEdges=F,clickEvent=T)}
-  })
-
 infoEdge1 <- reactive({
   if (!is.null(input$selectedEdges1) & length(input$selectedEdges1$edges)==1) {
         edge_id <- input$selectedEdges1$edges
         e <- g1()$edges %>% filter(id %in% edge_id)
         render_edge_info(e)
-      }
+      } else {tags$p('')}
 })
 ```
 
 
-##  {data-width="200"}
-#### Selected interaction
+##  {data-width="200" .opening-page-text}
+#### Select an interaction
+Click on an edge to display information about it.
 ```{r,cache=FALSE}
   renderUI({infoEdge1()})
 ```
