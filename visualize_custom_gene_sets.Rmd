@@ -3,7 +3,7 @@ library(shiny)
 library(visNetwork)
 options(shiny.trace = TRUE)
 ```
-# Input
+# Custom protein sets
 ##  {.sidebar data-width="200" .opening-page-text}
 #### Options
 ```{r,cache=FALSE}

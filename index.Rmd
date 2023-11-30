@@ -26,8 +26,6 @@ library(visNetwork)
 
 ```{r child='about.Rmd'}
 ```
-```{r child='faq.Rmd'}
-```
 ```{r child='examine_proteins.Rmd'}
 ```
 ```{r child='visualize_pathways.Rmd'}
@@ -47,6 +45,18 @@ library(visNetwork)
 }
 .opening-page-text li {
   font-size: 18px;
+}
+.opening-page-text checkbox-label {
+  font-size: 14px;
+}
+.shiny-input-container .form-check-label {
+  font-size: 14px; !important; /* Adjust the font size as needed */
+}
+.options-text {
+  font-size: 14px;
+}
+.options-text li {
+  font-size: 14px;
 }
 
 .navbar-brand {
@@ -88,6 +98,8 @@ li {font-size: 15px;}
   height: 100%
 }
 
+h5
+  color:black
 
 </style>
 ```

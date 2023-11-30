@@ -85,6 +85,7 @@ get_zero_degree <- function(genes) {
 get_pathway_graph <- function(genes,bool_one_degree,bool_remove_disconnected) {
   proteins <- all_nodes %>% filter(GeneName %in% genes) %>% pull(id)
   g <- if(bool_one_degree) get_one_degree(genes) else get_zero_degree(genes)
+  g$nodes$id <- make.unique(g$nodes$id, sep = "_")
   if(bool_remove_disconnected) {
     nonself <- g$edges %>% filter(from != to)
     ids <- c(nonself %>% pull(from),nonself %>% pull(to))
@@ -202,12 +203,17 @@ get_gml <- function(h) {
 ####### VIS
 vis_default <- function(g) {
   visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
-  visIgraphLayout() %>% 
+  #visIgraphLayout(layout="layout_with_graphopt",charge=0.01,mass=100) %>% 
+  #visIgraphLayout(layout="layout_in_circle") %>%
   visNodes(font=list(size=50),opacity=0.8) %>% 
   visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5),selectionWidth=10) %>%
   visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
+
+layout_choices <- list("Default"='layout_nicely',
+                       "Circle"='layout_in_circle',
+                       "Grid"='layout_on_grid')
 #visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
 ####### EXPORT
 export_choices <- list("Proteins as CSV"='nodes.csv',

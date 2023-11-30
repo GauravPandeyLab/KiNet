@@ -17,6 +17,26 @@ If you find KinAce useful, please cite our paper:
 
 For more information, contact [John A.P. Sekar](mailto:john.sekar@mssm.edu).
 
+KinAce sources
+<ul> 
+<li> interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/), </li>
+<li> kinase group information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/), </li>
+<li> protein names from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606), </li>
+<li> gene symbols from [HGNC](https://www.genenames.org/), </li>
+<li> pathway gene sets from [KEGG](https://www.genome.jp/kegg/pathway.html), </li>
+<li> domain composition from [InterPro](https://www.ebi.ac.uk/interpro/). </li>
+</ul> 
+KinAce also uses [Enrichr](https://maayanlab.cloud/Enrichr/) for gene set enrichment analysis. 
+
+```{r, cache=FALSE}
+  (downloadButton('download0',"Download full dataset."))
+  
+  output$download0 <- downloadHandler(
+    filename=function() {"ksi_source.csv"},
+    content = function(file) {file.copy("data/ksi_source.csv", file)}
+  )
+```
+
 ## Image {data-width=20}
 ### {}
 

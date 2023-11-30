@@ -11,6 +11,7 @@ output$legend <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
+
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice1',label=NULL,choices=names(export_choices))
@@ -22,11 +23,14 @@ output$legend <- renderImage({
     content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
+#### Layout 
+```{r,cache=FALSE}
+  selectizeInput('layout1',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
+```
+
 ## Main Panel
 #### Description  {.opening-page-text}
-This visualization centers <b>a single protein</b> and shows all of its kinase-substrate interactions</b>. 
-
-To recenter the network on a different protein, select it from the drop-down menu, or double-click its node.
+This visualization centers <b>a single protein</b> and shows all of its kinase-substrate interactions</b>. To recenter the network on a different protein, select it from the drop-down menu, or double-click its node.
 
 #### Select a protein
 ```{r, cache = FALSE}
@@ -41,7 +45,8 @@ output$network1 <- renderVisNetwork({
   visNodes(scaling=list(label=list(min=60,max=80))) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}")
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}") %>%
+  visIgraphLayout(layout=layout_choices[[input$layout1]])
    })
 
 infoGene <- reactive({
@@ -64,3 +69,15 @@ Click on an edge to display information about it.
 ```{r,cache=FALSE}
   renderUI({infoEdge1()})
 ```
+
+
+#### Troubleshooting
+<div class="options-text">
+<p>Not laid out as expected? </p>
+<ul> 
+  <li> Try a different layout.</li>
+  <li> Select/drag to manually move nodes.</li>
+  <li> Use mouse to zoom/pan.</li>
+</ul>
+
+</div>

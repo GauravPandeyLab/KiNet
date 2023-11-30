@@ -5,11 +5,6 @@ options(shiny.trace = TRUE)
 ```
 # Pathways
 ##  {.sidebar data-width="200" .opening-page-text}
-#### Options
-```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree2', "Include adjacent proteins.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected2', "Exclude disconnected proteins.", value = TRUE)
-```
 
 #### Kinase groups
 ```{r}
@@ -29,11 +24,24 @@ output$legend2 <- renderImage({
     content = function(file) {export_method(filename2(),g2(),file)}
   )
 ```
+#### Modify 
+
+```{r,cache=FALSE}
+checkboxInput(inputId='toggleOneDegree2', "Include adjacent proteins.", value = FALSE)
+checkboxInput(inputId='toggleRemoveDisconnected2', "Exclude disconnected proteins.", value = TRUE)
+```
+
+#### Layout 
+```{r,cache=FALSE}
+  selectizeInput('layout2',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
+```
+
+
+
 ## Main Panel
 #### Description {.opening-page-text}
 This visualization shows a <b>curated pathway</b> from [KEGG](https://www.genome.jp/kegg/pathway.html) and its kinase-substrate interactions. 
 
-On the left, there are additional controls to display fewer or more proteins than those in the pathway.
 
 #### Select a pathway
 ```{r, cache = FALSE}
@@ -49,7 +57,8 @@ output$network2 <- renderVisNetwork({
   vis_default(g2()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode2',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges2', edges);}")
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges2', edges);}") %>%
+  visIgraphLayout(layout=layout_choices[[input$layout2]])
    })
 
 infoGene2 <- reactive({
@@ -72,3 +81,19 @@ Click on an edge to display information about it.
 ```{r,cache=FALSE}
   renderUI({infoEdge2()})
 ```
+
+#### Troubleshooting
+<div class="options-text">
+<p>Not laid out as expected? </p>
+<ul> 
+  <li> Try a different layout.</li>
+  <li> Select/drag to manually move nodes.</li>
+  <li> Use mouse to zoom/pan.</li>
+</ul>
+<p>Not seeing nodes or edges? </p>
+<ul>
+<li> Select "Include adjacent proteins" to expand the selected set using adjacent interactions. </li>
+<li> Deselect "Exclude disconnected proteins" to also show all proteins in the set. </li>
+<li> Try both for very small protein sets. </li>
+</ul>
+</div>
