@@ -16,7 +16,7 @@ output$legend2 <- renderImage({
 ```
 
 #### Include more proteins
-```{r,cache=FALSE,.options-text}
+```{r,cache=FALSE}
 checkboxInput(inputId='toggleOneDegree2', "Proteins adjacent to selected set", value = FALSE)
 checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", value = FALSE)
 ```
@@ -39,7 +39,7 @@ checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", va
 ```
 
 
-## Main Panel
+## Main Panel {data-width=1000}
 #### Description {.opening-page-text}
 
 Select a <b>curated pathway</b>  from [KEGG](https://www.genome.jp/kegg/pathway.html) to see interactions between kinases and substrates in that pathway. Use the dropdown menu below.
@@ -79,7 +79,7 @@ infoEdge2 <- reactive({
 
 ```
 
-##  {data-width="200" .opening-page-text}
+##  {data-width="300" .opening-page-text}
 ### {}
 #### Interaction information
 <p class='options-text'> <b> Click on an edge</b> </p>
@@ -95,5 +95,5 @@ infoEdge2 <- reactive({
 <p>Try a different layout, or manually move nodes around.</p>
   
 <p><b>Not seeing any interactions?</b></p>
-<p>There may be none in the selected set. Use the options provided in <b>Include more proteins</b>. </p>
+<p>There may be none in the selected set. Use the options provided to <b>Include more proteins</b>. </p>
 </div>
