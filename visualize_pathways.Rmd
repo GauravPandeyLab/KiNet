@@ -6,7 +6,8 @@ options(shiny.trace = TRUE)
 # Pathways
 ##  {.sidebar data-width="200" .opening-page-text}
 
-#### Kinase groups
+#### Legend
+<p class='options-text'>Kinase groups by color.</p>
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
@@ -14,17 +15,17 @@ output$legend2 <- renderImage({
 },deleteFile=FALSE)
 ```
 
-#### Modify 
-
-```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree2', "Include adjacent proteins.", value = FALSE)
-checkboxInput(inputId='toggleDisconnected2', "Include disconnected proteins.", value = FALSE)
+#### Include more proteins
+```{r,cache=FALSE,.options-text}
+checkboxInput(inputId='toggleOneDegree2', "Proteins adjacent to selected set", value = FALSE)
+checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", value = FALSE)
 ```
 
 #### Layout 
 ```{r,cache=FALSE}
   selectizeInput('layout2',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
 ```
+
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice2',label=NULL,choices=names(export_choices))
@@ -62,7 +63,6 @@ output$network2 <- renderVisNetwork({
    })
 
 infoGene2 <- reactive({
-  #if(req(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   if(is.null(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   })
 
@@ -77,57 +77,13 @@ infoEdge2 <- reactive({
     render_edge_info(e)
 })
 
-# infoEdge2 <- reactive({
-#   req(input$selectedEdges2)
-#   edge_id <- input$selectedEdges2$edges
-#   req(edge_id)
-#   e <- g2()$edges %>% filter(id == edge_id)
-#     render_edge_info(e)
-#   # if (length(input$selectedEdges2$edges)==1) {
-#   #   edge_id <- input$selectedEdges2$edges
-#   #   e <- g2()$edges %>% filter(id == edge_id)
-#   #   paste(e)
-#   #   #render_edge_info(e)
-#   # } else {tags$p('')}
-#   # if (!is.null(input$selectedEdges2) & length(input$selectedEdges2$edges)==1) {
-#   #       edge_id <- input$selectedEdges2$edges
-#   #       e <- g2()$edges %>% filter(id == edge_id)
-#   #       #return(paste(e))
-#   #       render_edge_info(e)
-#   # } else {tags$p('')}
-# })
 ```
 
 ##  {data-width="200" .opening-page-text}
-#### Selected Interaction
+#### Select an interaction
 
 ```{r,cache=FALSE}
-  renderUI({
-    # req(input$selectedEdges2)
-    # req(input$selectedEdges2$edges)
-    # req(g2())
-    # req(g2()$edges)
-    # edge_id <- input$selectedEdges2$edges
-    # #req(length(edge_id)==1)
-    # e <- g2()$edges %>% filter(id == edge_id)
-    # req(nrow(e)==1)
-    # render_edge_info(e)
-    #renderText(paste(nrow(e)))
-    #renderTable(e)
-    #req(length(e)>0)
-    #if (lengths(e) == 0) {
-    #  return(tagList(p("No elements selected.")))
-    #} else {  tagList(paste(e)) }
-    #render_edge_info(e)
-    #e <- g2()$edges %>% filter(id == edge_id)
-    #if (!is.null(e)) {render_edge_info(e)} else {tagList('')}
-    
-    infoEdge2()
-    #render_edge_info(e)
-    # if(req(input$selectedEdges2,input$selectedEdges2$edges) )
-    #    {'Hello'} else {tags$p('')}
-    #   #infoEdge2()
-    })
+  renderUI({infoEdge2()})
 ```
 
 #### Troubleshooting

@@ -3,10 +3,34 @@ library(flexdashboard)
 ```
 # About 
 ## Content {data-width=50}
+### {}
 #### {.opening-page-text data-height=250}
-<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
-Welcome to the KinAce web portal for exploring the network of <b>kinase-substrate interactions</b> in the human genome. 
+<!--p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p-->
+<div style="padding: 5px 20px; text-align: justify;">
+<h3>Welcome</h3>
+The KinAce web portal aggregates and visualizes the network of **kinase-substrate interactions** in the human genome. Each tab provides a unique way to select a set of proteins and display the known kinase-substrate interactions between them.
+<ul>
+<li>**Proteins**: select a kinase or substrate protein and its interacting partners.</li>
 
+<li>**Pathways**: select kinases and substrates belonging to a curated pathway.</li>
+
+<li>**Domains**: select kinases and substrates enriched in specific domains.</li>
+
+<li>**Custom protein sets**: import a custom set of proteins that includes kinases and their substrates.</li>
+</ul>
+<h3> Data sources </h3>
+KinAce uses
+<ul> 
+<li> interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/), </li>
+<li> kinase group information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/), </li>
+<li> protein names from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606), </li>
+<li> gene symbols from [HGNC](https://www.genenames.org/), </li>
+<li> pathway gene sets from [KEGG](https://www.genome.jp/kegg/pathway.html), </li>
+<li> domain composition from [InterPro](https://www.ebi.ac.uk/interpro/). </li>
+</ul> 
+KinAce also uses [Enrichr](https://maayanlab.cloud/Enrichr/) for gene set enrichment analysis. 
+
+<h3>Contact</h3>
 KinAce is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). 
 
 If you find KinAce useful, please cite our paper:
@@ -17,16 +41,7 @@ If you find KinAce useful, please cite our paper:
 
 For more information, contact [John A.P. Sekar](mailto:john.sekar@mssm.edu).
 
-KinAce sources
-<ul> 
-<li> interactions from [PhosphoSitePlus](https://www.phosphosite.org/), [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/) and [EPSD](https://epsd.biocuckoo.cn/), </li>
-<li> kinase group information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/), </li>
-<li> protein names from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606), </li>
-<li> gene symbols from [HGNC](https://www.genenames.org/), </li>
-<li> pathway gene sets from [KEGG](https://www.genome.jp/kegg/pathway.html), </li>
-<li> domain composition from [InterPro](https://www.ebi.ac.uk/interpro/). </li>
-</ul> 
-KinAce also uses [Enrichr](https://maayanlab.cloud/Enrichr/) for gene set enrichment analysis. 
+</div>
 
 ```{r, cache=FALSE}
   (downloadButton('download0',"Download full dataset."))
@@ -38,6 +53,8 @@ KinAce also uses [Enrichr](https://maayanlab.cloud/Enrichr/) for gene set enrich
 ```
 
 ## Image {data-width=20}
+### {}
+<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
 ### {}
 
 ```{r}

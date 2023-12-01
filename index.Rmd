@@ -78,8 +78,8 @@ library(visNetwork)
   font-weight: bold;
 }
 body {
-margin-left: 3%; /* Add a left margin to     avoid content overlay */
-margin-right: 3%;
+<!--margin-left: 3%; /* Add a left margin to     avoid content overlay */-->
+<!--margin-right: 3%;-->
 
 
 <!-- background-image: url('https://linesteppers.com/tutorials/RMarkdown/img/BannerImage_TreeBlossoms_4470x3024.jpg'); -->
