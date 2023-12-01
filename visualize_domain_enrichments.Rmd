@@ -41,7 +41,9 @@ checkboxInput(inputId='toggleDisconnected4', "Proteins with no interactions", va
 ## Main Panel {data-width=1000}
 #### Description {.opening-page-text}
 
-Select a <b>domain</b> from [InterPro](https://www.ebi.ac.uk/interpro/) to see interactions between kinases and substrates containing the domain. Use the dropdown menu below.
+Select a <b>domain</b> from [InterPro](https://www.ebi.ac.uk/interpro/) to see interactions between kinases and substrates containing the domain. 
+
+Use the dropdown menu below.
   
 ```{r, cache = FALSE}
 selectizeInput(inputId='domain',label=NULL,choices=all_domains,selected="SH3 domain",options=list(maxOptions=200))
@@ -90,7 +92,7 @@ infoEdge4 <- reactive({
 <div class="options-text">
 
 <p><b>Not laid out as expected? </b></p>
-<p>Try a different layout, or manually move nodes around.</p>
+<p>Try a different layout, or, manually move nodes around.</p>
   
 <p><b>Not seeing any interactions?</b></p>
 <p>There may be none in the selected set. Use the options provided to <b>Include more proteins</b>. </p>

@@ -55,6 +55,7 @@ For more information, contact [John A.P. Sekar](mailto:john.sekar@mssm.edu).
 ## Image {data-width=20}
 ### {}
 <p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
+<p style="font-size: 18px; text-align: center;"><i>A web-portal for kinase-substrate interactions in human cells.</i></p>
 ### {}
 
 ```{r}

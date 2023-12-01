@@ -5,18 +5,25 @@ options(shiny.trace = TRUE)
 ```
 # Custom protein sets
 ##  {.sidebar data-width="200" .opening-page-text}
-#### Options
-```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree3', "Include adjacent proteins.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected3', "Exclude disconnected proteins.", value = TRUE)
-```
 
-#### Kinase Groups
+#### Legend
+<p class='options-text'><b>Kinase groups by color</b></p>
 ```{r}
 imageOutput('legend3',height="auto")
 output$legend3 <- renderImage({
-  list(src='img/kinase_families_legend2.png',width="100%")
+  list(src='img/kinase_families_legend2.png',width="100%",padding="0px 0px 5px 0px")
 },deleteFile=FALSE)
+```
+
+#### Include more proteins
+```{r,cache=FALSE}
+checkboxInput(inputId='toggleOneDegree3', "Proteins adjacent to selected set", value = FALSE)
+checkboxInput(inputId='toggleDisconnected3', "Proteins with no interactions", value = FALSE)
+```
+
+#### Layout 
+```{r,cache=FALSE}
+  selectizeInput('layout3',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
 ```
 
 #### Export
@@ -31,13 +38,13 @@ output$legend3 <- renderImage({
   )
 ```
 
-## Main Panel
+## Main Panel {data-width=1000}
 #### Description {.opening-page-text}
-This visualization shows the kinase-substrate interactions between genes in a <b>custom gene set</b> input by the user. 
+Import a <b>custom set of proteins</b> to see interactions between kinases and substrates in that set. 
 
-On the left, there are additional controls to display fewer or more proteins than those in the gene set.
+Paste a set of gene names in the text box below, then click Submit.
 
-#### Paste a set of gene names, then click Submit
+  
 ```{r,cache=FALSE}
 
 
@@ -69,31 +76,48 @@ observeEvent(input$submit,{
 ##### {}
 ### {}
 ```{r,cache=FALSE}
-g3 <- reactive({get_pathway_graph(initialGeneList3(),input$toggleOneDegree3,input$toggleRemoveDisconnected3)})
+g3 <- reactive({get_pathway_graph(initialGeneList3(),input$toggleOneDegree3,input$toggleDisconnected3)})
 visNetworkOutput('network3')
 output$network3 <- renderVisNetwork({
   vis_default(g3()) %>%
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode3',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges3', edges);}")
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges3', edges);}") %>%
+  visIgraphLayout(layout=layout_choices[[input$layout3]])
    })
 
 infoGene3 <- reactive({
   if(is.null(input$selectNode3)) {NULL} else {get_gene_name(input$selectNode3)}
   })
+
 infoEdge3 <- reactive({
-  if (!is.null(input$selectedEdges3) & length(input$selectedEdges3$edges)==1) {
-        edge_id <- input$selectedEdges3$edges
-        e <- g3()$edges %>% filter(id %in% edge_id)
-        render_edge_info(e)
-  } else {tags$p('')}
+    req(input$selectedEdges3)
+    req(input$selectedEdges3$edges)
+    req(g3())
+    req(g3()$edges)
+    edge_id <- input$selectedEdges3$edges
+    e <- g3()$edges %>% filter(id == edge_id)
+    req(nrow(e)==1)
+    render_edge_info(e)
 })
 
 ```
 
-##  {data-width="200" .opening-page-text}
-#### Select an interaction
-Click on an edge to display information about it.
+##  {data-width="300" .opening-page-text}
+### {}
+#### Interaction information
+<p class='options-text'> <b> Click on an edge</b> </p>
+
 ```{r,cache=FALSE}
-renderUI({infoEdge3()})
+  renderUI({infoEdge3()})
 ```
+### {}
+#### Troubleshooting
+<div class="options-text">
+
+<p><b>Not laid out as expected? </b></p>
+<p>Try a different layout, or, manually move nodes around.</p>
+  
+<p><b>Not seeing any interactions?</b></p>
+<p>There may be none in the selected set. Use the options provided to <b>Include more proteins</b>. </p>
+</div>
