@@ -13,6 +13,18 @@ output$legend2 <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
+
+#### Modify 
+
+```{r,cache=FALSE}
+checkboxInput(inputId='toggleOneDegree2', "Include adjacent proteins.", value = FALSE)
+checkboxInput(inputId='toggleDisconnected2', "Include disconnected proteins.", value = FALSE)
+```
+
+#### Layout 
+```{r,cache=FALSE}
+  selectizeInput('layout2',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
+```
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice2',label=NULL,choices=names(export_choices))
@@ -24,18 +36,6 @@ output$legend2 <- renderImage({
     content = function(file) {export_method(filename2(),g2(),file)}
   )
 ```
-#### Modify 
-
-```{r,cache=FALSE}
-checkboxInput(inputId='toggleOneDegree2', "Include adjacent proteins.", value = FALSE)
-checkboxInput(inputId='toggleRemoveDisconnected2', "Exclude disconnected proteins.", value = TRUE)
-```
-
-#### Layout 
-```{r,cache=FALSE}
-  selectizeInput('layout2',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
-```
-
 
 
 ## Main Panel
@@ -51,7 +51,7 @@ initialGeneList <- reactive({get_pathway_genes(input$pathway)})
 
 ### {}
 ```{r,cache=FALSE}
-g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree2,input$toggleRemoveDisconnected2)})
+g2 <- reactive({get_pathway_graph(initialGeneList(),input$toggleOneDegree2,input$toggleDisconnected2)})
 visNetworkOutput('network2')
 output$network2 <- renderVisNetwork({
   vis_default(g2()) %>%
@@ -62,24 +62,72 @@ output$network2 <- renderVisNetwork({
    })
 
 infoGene2 <- reactive({
+  #if(req(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   if(is.null(input$selectNode2)) {NULL} else {get_gene_name(input$selectNode2)}
   })
 
 infoEdge2 <- reactive({
-  if (!is.null(input$selectedEdges2) & length(input$selectedEdges2$edges)==1) {
-        edge_id <- input$selectedEdges2$edges
-        e <- g2()$edges %>% filter(id == edge_id)
-        #return(paste(e))
-        render_edge_info(e)
-  } else {tags$p('')}
+    req(input$selectedEdges2)
+    req(input$selectedEdges2$edges)
+    req(g2())
+    req(g2()$edges)
+    edge_id <- input$selectedEdges2$edges
+    e <- g2()$edges %>% filter(id == edge_id)
+    req(nrow(e)==1)
+    render_edge_info(e)
 })
+
+# infoEdge2 <- reactive({
+#   req(input$selectedEdges2)
+#   edge_id <- input$selectedEdges2$edges
+#   req(edge_id)
+#   e <- g2()$edges %>% filter(id == edge_id)
+#     render_edge_info(e)
+#   # if (length(input$selectedEdges2$edges)==1) {
+#   #   edge_id <- input$selectedEdges2$edges
+#   #   e <- g2()$edges %>% filter(id == edge_id)
+#   #   paste(e)
+#   #   #render_edge_info(e)
+#   # } else {tags$p('')}
+#   # if (!is.null(input$selectedEdges2) & length(input$selectedEdges2$edges)==1) {
+#   #       edge_id <- input$selectedEdges2$edges
+#   #       e <- g2()$edges %>% filter(id == edge_id)
+#   #       #return(paste(e))
+#   #       render_edge_info(e)
+#   # } else {tags$p('')}
+# })
 ```
 
 ##  {data-width="200" .opening-page-text}
-#### Select an interaction
-Click on an edge to display information about it.
+#### Selected Interaction
+
 ```{r,cache=FALSE}
-  renderUI({infoEdge2()})
+  renderUI({
+    # req(input$selectedEdges2)
+    # req(input$selectedEdges2$edges)
+    # req(g2())
+    # req(g2()$edges)
+    # edge_id <- input$selectedEdges2$edges
+    # #req(length(edge_id)==1)
+    # e <- g2()$edges %>% filter(id == edge_id)
+    # req(nrow(e)==1)
+    # render_edge_info(e)
+    #renderText(paste(nrow(e)))
+    #renderTable(e)
+    #req(length(e)>0)
+    #if (lengths(e) == 0) {
+    #  return(tagList(p("No elements selected.")))
+    #} else {  tagList(paste(e)) }
+    #render_edge_info(e)
+    #e <- g2()$edges %>% filter(id == edge_id)
+    #if (!is.null(e)) {render_edge_info(e)} else {tagList('')}
+    
+    infoEdge2()
+    #render_edge_info(e)
+    # if(req(input$selectedEdges2,input$selectedEdges2$edges) )
+    #    {'Hello'} else {tags$p('')}
+    #   #infoEdge2()
+    })
 ```
 
 #### Troubleshooting

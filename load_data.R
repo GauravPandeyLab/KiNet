@@ -82,11 +82,11 @@ get_zero_degree <- function(genes) {
 }
 
 
-get_pathway_graph <- function(genes,bool_one_degree,bool_remove_disconnected) {
+get_pathway_graph <- function(genes,bool_one_degree,bool_include_disconnected) {
   proteins <- all_nodes %>% filter(GeneName %in% genes) %>% pull(id)
   g <- if(bool_one_degree) get_one_degree(genes) else get_zero_degree(genes)
   g$nodes$id <- make.unique(g$nodes$id, sep = "_")
-  if(bool_remove_disconnected) {
+  if(bool_include_disconnected==FALSE) {
     nonself <- g$edges %>% filter(from != to)
     ids <- c(nonself %>% pull(from),nonself %>% pull(to))
     g$nodes <- g$nodes %>% filter(id %in% ids)
