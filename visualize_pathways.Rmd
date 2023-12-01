@@ -7,11 +7,11 @@ options(shiny.trace = TRUE)
 ##  {.sidebar data-width="200" .opening-page-text}
 
 #### Legend
-<p class='options-text'>Kinase groups by color.</p>
+<p class='options-text'><b>Kinase groups by color</b></p>
 ```{r}
 imageOutput('legend2',height="auto")
 output$legend2 <- renderImage({
-  list(src='img/kinase_families_legend2.png',width="100%")
+  list(src='img/kinase_families_legend2.png',width="100%",padding="0px 0px 5px 0px")
 },deleteFile=FALSE)
 ```
 
@@ -41,10 +41,10 @@ checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", va
 
 ## Main Panel
 #### Description {.opening-page-text}
-This visualization shows a <b>curated pathway</b> from [KEGG](https://www.genome.jp/kegg/pathway.html) and its kinase-substrate interactions. 
+
+Select a <b>curated pathway</b>  from [KEGG](https://www.genome.jp/kegg/pathway.html) to see interactions between kinases and substrates in that pathway. Use the dropdown menu below.
 
 
-#### Select a pathway
 ```{r, cache = FALSE}
 selectizeInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway",options=list(maxOptions=300))
 initialGeneList <- reactive({get_pathway_genes(input$pathway)})
@@ -80,24 +80,20 @@ infoEdge2 <- reactive({
 ```
 
 ##  {data-width="200" .opening-page-text}
-#### Select an interaction
+### {}
+#### Interaction information
+<p class='options-text'> <b> Click on an edge</b> </p>
 
 ```{r,cache=FALSE}
   renderUI({infoEdge2()})
 ```
-
+### {}
 #### Troubleshooting
 <div class="options-text">
-<p>Not laid out as expected? </p>
-<ul> 
-  <li> Try a different layout.</li>
-  <li> Select/drag to manually move nodes.</li>
-  <li> Use mouse to zoom/pan.</li>
-</ul>
-<p>Not seeing nodes or edges? </p>
-<ul>
-<li> Select "Include adjacent proteins" to expand the selected set using adjacent interactions. </li>
-<li> Deselect "Exclude disconnected proteins" to also show all proteins in the set. </li>
-<li> Try both for very small protein sets. </li>
-</ul>
+
+<p><b>Not laid out as expected? </b></p>
+<p>Try a different layout, or manually move nodes around.</p>
+  
+<p><b>Not seeing any interactions?</b></p>
+<p>There may be none in the selected set. Use the options provided in <b>Include more proteins</b>. </p>
 </div>
