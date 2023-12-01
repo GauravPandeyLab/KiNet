@@ -95,5 +95,5 @@ infoEdge4 <- reactive({
 <p>Try a different layout, or, manually move nodes around.</p>
   
 <p><b>Not seeing any interactions?</b></p>
-<p>There may be none in the selected set. Use the options provided to <b>Include more proteins</b>. </p>
+<p>There may be none in the selected set. Use the options provided to <b>include more proteins</b>. </p>
 </div>

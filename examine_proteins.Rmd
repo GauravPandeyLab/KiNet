@@ -51,6 +51,8 @@ output$network1 <- renderVisNetwork({
   visIgraphLayout(layout=layout_choices[[input$layout1]])
    })
 
+observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
+
 infoGene1 <- reactive({
   if(is.null(input$selectNode1)) {NULL} else {get_gene_name(input$selectNode1)}
   })

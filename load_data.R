@@ -23,7 +23,7 @@ n_interactions <- all_edges %>% nrow
 n_kki <- all_edges %>% filter(to %in% all_kinases) %>% filter(from!=to)  %>% nrow
 n_auto <-all_edges %>% filter(from==to)  %>% nrow
 
-
+source_data <- read_csv('data/ksi_source.csv')
 ####### PATHWAY GENE SETS
 pathways_df <- read_csv('data/pathway_gene_sets.csv')
 pathway_categories <- pathways_df$Category %>% unique
@@ -218,6 +218,7 @@ layout_choices <- list("Default"='layout_nicely',
 ####### EXPORT
 export_choices <- list("Proteins as CSV"='nodes.csv',
                        "Interactions as CSV"='edges.csv',
+                       "Interactions with sources as CSV"='edges_sources.csv',
                        "Network as GML"='network.gml',
                        "Network as GRAPHML"='network.graphml',
                        "Network as DOT"='network.dot')
@@ -228,7 +229,7 @@ export_method <- function(filename,g,file) {
   if(filename=='network.gml') {export_network_gml(g,file)}
   if(filename=='network.graphml') {export_network_graphml(g,file)}
   if(filename=='network.dot') {export_network_dot(g,file)}
-
+  if(filename=='edges_sources.csv') {export_edges_sources_csv(g,file)}
 }
 
 export_edges_csv <- function(edges,file) {
@@ -254,3 +255,8 @@ export_network_dot <- function(g,file) {
   write_graph(h,file,format="dot")
 }
 
+export_edges_sources_csv <- function(g,file) {
+  df <- g$edges %>% select(from,to) %>% rename(Kinase=from,Substrate=to)
+  data <- merge(x=source_data,y=df)
+  write.csv(data,file,row.names=F)
+}
