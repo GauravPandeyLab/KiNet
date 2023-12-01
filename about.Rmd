@@ -52,7 +52,7 @@ output$vbox_auto <- renderValueBox({
 <!--p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p-->
 <div style="padding: 2px 2px 2px 2px; text-align: justify;">
 <h3>Welcome</h3>
-The KinAce web portal aggregates and visualizes the network of **kinase-substrate interactions** in the human genome. Each tab provides a unique way to select a set of proteins and display the known kinase-substrate interactions between them.
+The KinAce web portal aggregates and visualizes the network of interactions between **protein-kinases** and their **substrates** in the human genome. Each tab provides a unique way to select a set of proteins and display the known kinase-substrate interactions between them.
 <ul>
 <li>**Proteins**: select a kinase or substrate protein and its interacting partners.</li>
 
@@ -62,6 +62,10 @@ The KinAce web portal aggregates and visualizes the network of **kinase-substrat
 
 <li>**Custom protein sets**: import a custom set of proteins that includes kinases and their substrates.</li>
 </ul>
+<h3>Visualizations</h3>
+Each tab displays the selected interactions as a network diagram. A directed edge indicates an interaction from a specific kinase to a particular substrate. Nodes representing proteins are colored grey if they are non-kinases, or by the respective kinase group.
+
+This website is best viewed on larger screens.
 <h3> Data sources </h3>
 KinAce uses
 <ul> 

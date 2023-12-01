@@ -4,14 +4,18 @@ library(visNetwork)
 ```
 # Proteins
 ##  {.sidebar data-width="200" .opening-page-text}
-#### Kinase groups
+#### Legend
+<p class='options-text'><b>Kinase groups by color</b></p>
 ```{r}
 imageOutput('legend',height="auto")
 output$legend <- renderImage({
   list(src='img/kinase_families_legend2.png',width="100%")
 },deleteFile=FALSE)
 ```
-
+#### Layout 
+```{r,cache=FALSE}
+  selectizeInput('layout1',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
+```
 #### Export
 ```{r, cache=FALSE}
   selectizeInput('download_choice1',label=NULL,choices=names(export_choices))
@@ -23,14 +27,12 @@ output$legend <- renderImage({
     content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
-#### Layout 
-```{r,cache=FALSE}
-  selectizeInput('layout1',label=NULL,choices=names(layout_choices),selected="Default",multiple=FALSE)
-```
 
-## Main Panel
+## Main Panel {data-width=1000}
 #### Description  {.opening-page-text}
-This visualization centers <b>a single protein</b> and shows all of its kinase-substrate interactions</b>. To recenter the network on a different protein, select it from the drop-down menu, or double-click its node.
+Select <b>a single protein</b> to see all of its interactions, functioning as either kinase or substrate.
+
+Use the dropdown menu below, or, double-click on a visible protein node.
 
 #### Select a protein
 ```{r, cache = FALSE}
@@ -49,35 +51,36 @@ output$network1 <- renderVisNetwork({
   visIgraphLayout(layout=layout_choices[[input$layout1]])
    })
 
-infoGene <- reactive({
-  if(is.null(input$selectNode)) {input$centerGene} else {get_gene_name(input$selectNode)}
+infoGene1 <- reactive({
+  if(is.null(input$selectNode1)) {NULL} else {get_gene_name(input$selectNode1)}
   })
-observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
+
 infoEdge1 <- reactive({
-  if (!is.null(input$selectedEdges1) & length(input$selectedEdges1$edges)==1) {
-        edge_id <- input$selectedEdges1$edges
-        e <- g1()$edges %>% filter(id %in% edge_id)
-        render_edge_info(e)
-      } else {tags$p('')}
+    req(input$selectedEdges1)
+    req(input$selectedEdges1$edges)
+    req(g1())
+    req(g1()$edges)
+    edge_id <- input$selectedEdges1$edges
+    e <- g1()$edges %>% filter(id == edge_id)
+    req(nrow(e)==1)
+    render_edge_info(e)
 })
+
 ```
 
+##  {data-width="300" .opening-page-text}
+### {}
+#### Interaction information
+<p class='options-text'> <b> Click on an edge</b> </p>
 
-##  {data-width="200" .opening-page-text}
-#### Select an interaction
-Click on an edge to display information about it.
 ```{r,cache=FALSE}
   renderUI({infoEdge1()})
 ```
-
-
+### {}
 #### Troubleshooting
 <div class="options-text">
-<p>Not laid out as expected? </p>
-<ul> 
-  <li> Try a different layout.</li>
-  <li> Select/drag to manually move nodes.</li>
-  <li> Use mouse to zoom/pan.</li>
-</ul>
 
+<p><b>Not laid out as expected? </b></p>
+<p>Try a different layout, or, manually move nodes around.</p>
+  
 </div>
