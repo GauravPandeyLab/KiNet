@@ -2,6 +2,50 @@
 library(flexdashboard)
 ```
 # About 
+
+
+## Image {data-width=20}
+### {}
+<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
+<p style="font-size: 18px; text-align: center;"><i>A web-portal for kinase-substrate interactions in human cells.</i></p>
+### {}
+
+```{r}
+valueBoxOutput('vbox_kinases')
+output$vbox_kinases <- renderValueBox({
+  valueBox(value=n_kinases,caption=tags$p("Kinases",class="opening-page-text"),icon="fa-solid fa-k")
+  })
+```
+### {}
+```{r}
+valueBoxOutput('vbox_nonkinases')
+output$vbox_nonkinases <- renderValueBox({
+  valueBox(value=n_nonkinases,caption=tags$p("Non-kinases",class="opening-page-text"),icon="fa-solid fa-s")
+  })
+```
+### {}
+```{r}
+valueBoxOutput('vbox_interactions')
+output$vbox_interactions <- renderValueBox({
+  valueBox(value=n_interactions,caption=tags$p("Interactions",class="opening-page-text"),icon="fa-solid fa-i")
+  })
+```
+### {}
+```{r}
+valueBoxOutput('vbox_kki')
+output$vbox_kki <- renderValueBox({
+  valueBox(value=n_kki,caption=tags$p("Kinase-kinase interactions",class="opening-page-text"),icon="fa-solid fa-kip-sign")
+  })
+```
+### {}
+```{r}
+valueBoxOutput('vbox_auto')
+output$vbox_auto <- renderValueBox({
+  valueBox(value=n_auto,caption=tags$p("Autophosphorylations",class="opening-page-text"),icon="fa-solid fa-a")
+  })
+```
+
+
 ## Content {data-width=50}
 ### {}
 #### {.opening-page-text data-height=250}
@@ -51,53 +95,11 @@ For more information, contact [John A.P. Sekar](mailto:john.sekar@mssm.edu).
     content = function(file) {file.copy("data/ksi_source.csv", file)}
   )
 ```
+<!-- ##### Word cloud of pathway names enriched in kinase substrates -->
+<!-- ![](img/wordcloud.png){width="400px"} -->
 
-## Image {data-width=20}
-### {}
-<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
-<p style="font-size: 18px; text-align: center;"><i>A web-portal for kinase-substrate interactions in human cells.</i></p>
-### {}
-
-```{r}
-valueBoxOutput('vbox_kinases')
-output$vbox_kinases <- renderValueBox({
-  valueBox(value=n_kinases,caption=tags$p("Kinases",class="opening-page-text"),icon="fa-solid fa-k")
-  })
-```
-### {}
-```{r}
-valueBoxOutput('vbox_nonkinases')
-output$vbox_nonkinases <- renderValueBox({
-  valueBox(value=n_nonkinases,caption=tags$p("Non-kinases",class="opening-page-text"),icon="fa-solid fa-s")
-  })
-```
-### {}
-```{r}
-valueBoxOutput('vbox_interactions')
-output$vbox_interactions <- renderValueBox({
-  valueBox(value=n_interactions,caption=tags$p("Interactions",class="opening-page-text"),icon="fa-solid fa-i")
-  })
-```
-### {}
-```{r}
-valueBoxOutput('vbox_kki')
-output$vbox_kki <- renderValueBox({
-  valueBox(value=n_kki,caption=tags$p("Kinase-kinase interactions",class="opening-page-text"),icon="fa-solid fa-kip-sign")
-  })
-```
-### {}
-```{r}
-valueBoxOutput('vbox_auto')
-output$vbox_auto <- renderValueBox({
-  valueBox(value=n_auto,caption=tags$p("Autophosphorylations",class="opening-page-text"),icon="fa-solid fa-a")
-  })
-```
-
-##### Word cloud of pathway names enriched in kinase substrates
-![](img/wordcloud.png){width="400px"}
-
-##### Flow diagram of kinase-kinase interaction data, organized by kinase-group
-![](img/sankey.png){width="400px"}
+<!-- ##### Flow diagram of kinase-kinase interaction data, organized by kinase-group -->
+<!-- ![](img/sankey.png){width="400px"} -->
 
 
 
