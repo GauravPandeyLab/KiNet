@@ -64,6 +64,7 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   g$edges=rbind(E1,E2) %>% mutate(id=row_number())
   ids <- c(E1 %>% pull(to), E2 %>% pull(from), proteins) %>% unique
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
+  g$nodes$id <- make.unique(g$nodes$id, sep = "_")
   g$value <- 2
   if(largeCenterNode) {
     condition <- g$nodes$label %in% genes
@@ -202,7 +203,7 @@ get_gml <- function(h) {
 } 
 ####### VIS
 vis_default <- function(g) {
-  visNetwork(nodes=g$nodes,edges=g$edges,physics=F) %>%
+  visNetwork(nodes=g$nodes,edges=g$edges,physics=T) %>%
   #visIgraphLayout(layout="layout_with_graphopt",charge=0.01,mass=100) %>% 
   #visIgraphLayout(layout="layout_in_circle") %>%
   visNodes(font=list(size=50),opacity=0.8) %>% 
