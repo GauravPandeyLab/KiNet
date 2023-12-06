@@ -18,7 +18,6 @@ runtime: shiny
 library(flexdashboard)
 library(visNetwork)
 
-
 #shinyOptions(cache = cachem::cache_disk("./myapp-cache"))
 ```
 
@@ -58,7 +57,9 @@ library(visNetwork)
 .options-text li {
   font-size: 14px;
 }
-
+.disclaimer-text p {
+  font-size: 12px;
+}
 .navbar-brand {
   font-family: 'Righteous', cursive;
   font-weight: thin;

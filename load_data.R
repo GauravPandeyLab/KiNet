@@ -47,6 +47,20 @@ get_domain_genes <- function(domain) {
   intersect(ch[[1]],all_nodes$GeneName)
 }
 
+######### DISCLAIMERS
+last_date = as.Date('2023-10-04',"%Y-%m-%d")
+dataset_last_update = format(last_date,"%B %d, %Y")
+nproteins = nrow(all_nodes)
+nproteins_all = "20423"
+uniprot_release = 'release 2023_04'
+npathways = nrow(pathways_df)
+npathways_all = "320"
+kegg_name = "KEGG_2021_Human"
+gseapy_release = "v1.0.6"
+interpro_name = "InterPro_Domains_2019"
+ndomains = nrow(domains_df)
+ndomains_all = "1071"
+
 ######### DEFAULTS
 get_gene_name <- function(protein) {
   all_nodes %>% filter(id==protein) %>% pull(GeneName)

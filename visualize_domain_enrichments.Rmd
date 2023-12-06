@@ -38,6 +38,17 @@ checkboxInput(inputId='toggleDisconnected4', "Proteins with no interactions", va
     content = function(file) {export_method(filename4(),g4(),file)}
   )
 ```
+
+#### Data Overview {.disclaimer-text}
+Last update: <b>`r dataset_last_update`</b>
+
+The dropdown menu lists `r ndomains` out of `r ndomains_all` domains from the `r interpro_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/). 
+
+The selected domains' gene sets were identified to be significantly enriched against the kinase substrates in the KinAce dataset using [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>. 
+
+For more details,see our [paper]('').
+
+
 ## Main Panel {data-width=1000}
 #### Description {.opening-page-text}
 

@@ -38,6 +38,16 @@ checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", va
   )
 ```
 
+#### Data Overview {.disclaimer-text}
+Last update: <b>`r dataset_last_update`</b>
+
+The dropdown menu lists `r npathways` out of `r npathways_all` pathways from the `r kegg_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/). 
+
+The selected pathways were identified to be significantly enriched against the kinase substrates in the KinAce dataset using [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
+
+For more details,see our [paper]('').
+
+
 
 ## Main Panel {data-width=1000}
 #### Description {.opening-page-text}

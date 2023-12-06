@@ -27,6 +27,12 @@ output$legend <- renderImage({
     content = function(file) {export_method(filename1(),g1(),file)}
   )
 ```
+#### Data Overview {.disclaimer-text}
+Last update: <b>`r dataset_last_update`</b>
+
+The KinAce interaction dataset contains `r nproteins` proteins with at least one interaction. 
+
+Protein names were standardized against `r nproteins_all` reviewed entries of human proteins in [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) <i>`r uniprot_release`</i>.
 
 ## Main Panel {data-width=1000}
 #### Description  {.opening-page-text}
