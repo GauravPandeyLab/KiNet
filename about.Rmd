@@ -5,11 +5,17 @@ library(flexdashboard)
 
 
 ## Image {data-width=20}
+####
+```{r, cache=FALSE}
+  (downloadButton('download0',tags$span("Download full dataset",class="opening-page-text"),class="download-full"))
+  
+  output$download0 <- downloadHandler(
+    filename=function() {"ksi_source.csv"},
+    content = function(file) {file.copy("data/ksi_source.csv", file)}
+  )
+```
+####
 ### {}
-<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
-<p style="font-size: 18px; text-align: center;"><i>A web-portal for kinase-substrate interactions in human cells.</i></p>
-### {}
-
 ```{r}
 valueBoxOutput('vbox_kinases')
 output$vbox_kinases <- renderValueBox({
@@ -48,7 +54,11 @@ output$vbox_auto <- renderValueBox({
 
 ## Content {data-width=50}
 ### {}
+
+<p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p>
+<p style="font-size: 18px; text-align: center;"><i>A web-portal for kinase-substrate interactions in human cells.</i></p>
 #### {.opening-page-text data-height=250}
+
 <!--p style="font-family: 'Righteous', cursive; font-size: 80px; text-align: center;">KinAce</p-->
 <div style="padding: 2px 2px 2px 2px; text-align: justify;">
 <h3>Welcome</h3>
@@ -73,10 +83,10 @@ KinAce uses
 <li> kinase group information from [KinHub](http://kinhub.org/), [Coral](http://phanstiel-lab.med.unc.edu/CORAL/) and the [Dark Kinase Knowledgebase](https://darkkinome.org/), </li>
 <li> protein names from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606), </li>
 <li> gene symbols from [HGNC](https://www.genenames.org/), </li>
-<li> pathway gene sets from [KEGG](https://www.genome.jp/kegg/pathway.html), </li>
-<li> domain composition from [InterPro](https://www.ebi.ac.uk/interpro/). </li>
+<li> sets of proteins from select pathways in [KEGG](https://www.genome.jp/kegg/pathway.html), </li>
+<li> sets of proteins having select domains from [InterPro](https://www.ebi.ac.uk/interpro/). </li>
 </ul> 
-KinAce also uses [Enrichr](https://maayanlab.cloud/Enrichr/) for gene set enrichment analysis. 
+
 
 <h3>Contact</h3>
 KinAce is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). 
@@ -91,14 +101,7 @@ For more information, contact [John A.P. Sekar](mailto:john.sekar@mssm.edu).
 
 </div>
 
-```{r, cache=FALSE}
-  (downloadButton('download0',"Download full dataset."))
-  
-  output$download0 <- downloadHandler(
-    filename=function() {"ksi_source.csv"},
-    content = function(file) {file.copy("data/ksi_source.csv", file)}
-  )
-```
+
 <!-- ##### Word cloud of pathway names enriched in kinase substrates -->
 <!-- ![](img/wordcloud.png){width="400px"} -->
 
