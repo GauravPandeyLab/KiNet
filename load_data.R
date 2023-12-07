@@ -80,9 +80,8 @@ get_one_degree <- function(genes,largeCenterNode=FALSE) {
   g$nodes <- all_nodes %>% filter(id %in% ids) %>% mutate(label=GeneName)
   g$nodes$id <- make.unique(g$nodes$id, sep = "_")
   g$value <- 2
-  if(largeCenterNode) {
+  if(largeCenterNode & nrow(g$nodes)>10) {
     condition <- g$nodes$label %in% genes
-    #g$nodes$size[condition] <- 50
     g$nodes$shape[condition] <- "circle"
     g$nodes$value[condition] <- 5
   }
@@ -226,7 +225,7 @@ vis_default <- function(g) {
   visExport(type="png",label="Screenshot visible region as PNG")
 }
 
-layout_choices <- list("Default"='layout_nicely',
+layout_choices <- list("Default"='layout_with_fr',
                        "Circle"='layout_in_circle',
                        "Grid"='layout_on_grid')
 #visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 

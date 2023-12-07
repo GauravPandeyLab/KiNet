@@ -54,7 +54,7 @@ output$network1 <- renderVisNetwork({
   visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
   visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}") %>%
-  visIgraphLayout(layout=layout_choices[[input$layout1]])
+  visIgraphLayout(layout=layout_choices[[input$layout1]],smooth=T,physics=(nrow(g1()$edges)<10))
    })
 
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
