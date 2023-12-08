@@ -28,16 +28,15 @@ output$legend <- renderImage({
   )
 ```
 #### Data Overview {.disclaimer-text}
-Last update: <b>`r dataset_last_update`</b>
+Last update: </br> <b>`r dataset_last_update`</b>
 
-The KinAce interaction dataset contains `r nproteins` proteins with at least one interaction. 
+Proteins available: </br> <b> `r nproteins` </b>
 
-Protein names were standardized against `r nproteins_all` reviewed entries of human proteins in [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) <i>`r uniprot_release`</i>.
+Proteins data source: </br> [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) <i>`r uniprot_release`</i>.
 
 ## Main Panel {data-width=1000}
 #### Description  {.opening-page-text}
-Select <b>a single protein</b> to see all of its interactions, functioning as either kinase or substrate.
-
+Visualize kinase-substrate interactions of **individual proteins**. </br>
 Use the dropdown menu below, or, double-click on a visible protein node.
 
 #### Select a protein
