@@ -39,10 +39,12 @@ checkboxInput(inputId='toggleDisconnected3', "Proteins with no interactions", va
 ```
 
 ## Main Panel {data-width=1000}
-#### Description {.opening-page-text}
-Import a <b>custom set of proteins</b> to see interactions between kinases and substrates in that set. 
+#### Provide a custom set of proteins {.opening-page-text}
+Visualize kinase-substrate interactions within any protein set. Paste a set of gene symbols in the text box below, then click Submit.
 
-Paste a set of gene names in the text box below, then click Submit.
+<p class='options-text'>
+If the selected set does not include any interactions, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
+</p>
 
   
 ```{r,cache=FALSE}
@@ -60,7 +62,7 @@ output$displayNotFound <- renderText({
   if(length(notFound())==0) {""} else {paste(c("Warning! Genes not found: ",notFound()))}
 })
 
-default_gene_set <- "BRAF RAF1 MAP2K1 MAP2K2 MAPK1 MAPK3"
+default_gene_set <- "EGFR INSR MAPK1 GAB1 IRS1 PTPN1"
 
 observeEvent(input$example,{updateTextAreaInput(session,'customGeneList', value=paste(default_gene_set))})
 observeEvent(input$clear,{updateTextAreaInput(session,'customGeneList', value="")})

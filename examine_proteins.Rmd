@@ -35,12 +35,11 @@ Proteins available: </br> <b> `r nproteins` </b>
 Proteins data source: </br> [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) <i>`r uniprot_release`</i>.
 
 ## Main Panel {data-width=1000}
-#### Description  {.opening-page-text}
-Visualize kinase-substrate interactions of **individual proteins**.
 
-Use the dropdown menu below, or, double-click on a visible protein node.
 
-#### Select a protein
+#### Choose a protein {.opening-page-text}
+Visualize kinase-substrate interactions of **individual proteins**. Choose a protein from the dropdown menu, or, double-click on a visible protein node.
+
 ```{r, cache = FALSE}
 selectizeInput(inputId='centerGene',choices=all_nodes$GeneName,label=NULL,selected = "STK11", multiple = F,options=list(maxOptions=4000))
 ``` 

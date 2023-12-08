@@ -52,11 +52,11 @@ For more details,see our [paper]('').
 
 
 ## Main Panel {data-width=1000}
-#### Description {.opening-page-text}
-Visualize kinase-substrate interactions in curated [KEGG](https://www.genome.jp/kegg/pathway.html) **pathways**.  Use the dropdown menu below.
+#### Choose a pathway {.opening-page-text}
+Visualize kinase-substrate interactions in select [KEGG](https://www.genome.jp/kegg/pathway.html) **pathways**.  Choose a pathway from the dropdown menu.
 
 <p class='options-text'>
-Pathways were selected by enriching against substrates in the KinAce interaction dataset. If the selected pathway only contains kinase substrates, you may not see any nodes or edges. Use the sidebar options to include more proteins.
+Pathways were selected by enriching against substrates in the KinAce interaction dataset. If a pathway only contains kinase substrates, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
 </p>
 
 ```{r, cache = FALSE}
