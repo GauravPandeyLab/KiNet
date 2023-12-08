@@ -36,7 +36,8 @@ Proteins data source: </br> [UniProt](https://www.uniprot.org/uniprotkb?query=Hu
 
 ## Main Panel {data-width=1000}
 #### Description  {.opening-page-text}
-Visualize kinase-substrate interactions of **individual proteins**. </br>
+Visualize kinase-substrate interactions of **individual proteins**.
+
 Use the dropdown menu below, or, double-click on a visible protein node.
 
 #### Select a protein

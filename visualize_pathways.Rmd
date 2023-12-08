@@ -39,11 +39,13 @@ checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", va
 ```
 
 #### Data Overview {.disclaimer-text}
-Last update: <b>`r dataset_last_update`</b>
+Last update: </br> <b>`r dataset_last_update`</b>
 
-The dropdown menu lists `r npathways` out of `r npathways_all` pathways from the `r kegg_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/). 
+Pathways available: </br> <b> `r npathways`</b>
 
-The selected pathways were identified to be significantly enriched against the kinase substrates in the KinAce dataset using [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
+Pathways data source: </br> `r kegg_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/).
+
+Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
 
 For more details,see our [paper]('').
 
@@ -51,11 +53,11 @@ For more details,see our [paper]('').
 
 ## Main Panel {data-width=1000}
 #### Description {.opening-page-text}
+Visualize kinase-substrate interactions in curated [KEGG](https://www.genome.jp/kegg/pathway.html) **pathways**.  Use the dropdown menu below.
 
-Select a <b>curated pathway</b>  from [KEGG](https://www.genome.jp/kegg/pathway.html) to see interactions between kinases and substrates in that pathway. 
-
-Use the dropdown menu below.
-
+<p class='options-text'>
+Pathways were selected by enriching against substrates in the KinAce interaction dataset. If the selected pathway only contains kinase substrates, you may not see any nodes or edges. Use the sidebar options to include more proteins.
+</p>
 
 ```{r, cache = FALSE}
 selectizeInput(inputId='pathway',label=NULL,choices=all_pathways,selected="MAPK signaling pathway",options=list(maxOptions=300))
