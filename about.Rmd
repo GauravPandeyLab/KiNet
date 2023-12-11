@@ -91,7 +91,7 @@ KinAce uses
 <h3>Contact</h3>
 KinAce is jointly maintained by [Pandey](https://gpandeylab.org/) and [Schlessinger](http://www.schlessingerlab.org/) labs at [Icahn School of Medicine at Mt. Sinai, New York](https://icahn.mssm.edu/). 
 
-If you find KinAce useful, please cite our paper:
+If you find KinAce useful, please cite our paper ([bioRxiv](https://doi.org/10.1101/2023.12.08.570875)):
 
 <b> KinAce: a web portal for exploring kinase-substrate interactions. </b>
 <br>

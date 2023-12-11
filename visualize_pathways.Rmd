@@ -47,7 +47,7 @@ Pathways data source: </br> `r kegg_name` gene set library provided by [Enrichr]
 
 Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
 
-For more details,see our [paper]('').
+For more details,see our [paper](https://doi.org/10.1101/2023.12.08.570875).
 
 
 
