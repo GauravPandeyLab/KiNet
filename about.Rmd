@@ -7,7 +7,7 @@ library(flexdashboard)
 ## Image {data-width=20}
 ####
 ```{r, cache=FALSE}
-  (downloadButton('download0',tags$span("Download full dataset",class="opening-page-text"),class="download-full"))
+  (downloadButton('download0',HTML("DOWNLOAD<br/>The full KinAce interaction dataset"),class="download-full"))
   
   output$download0 <- downloadHandler(
     filename=function() {"ksi_source.csv"},
