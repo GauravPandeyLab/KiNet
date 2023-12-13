@@ -5,8 +5,8 @@ library(igraph)
 all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate)
 #widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=3*ntile(NSites,10))
-widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
-all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
+#widths <- data.frame(NSites =all_edges$NSites %>% unique %>% sort) %>% mutate(width=5)
+#all_edges <- merge(x=all_edges,y=widths,by="NSites",all.x=TRUE)
 colors <- read_csv('data/groups.csv')
 
 all_nodes <- read_csv('data/proteins.csv') %>% 
@@ -220,7 +220,7 @@ vis_default <- function(g) {
   #visIgraphLayout(layout="layout_with_graphopt",charge=0.01,mass=100) %>% 
   #visIgraphLayout(layout="layout_in_circle") %>%
   visNodes(font=list(size=50),opacity=0.8) %>% 
-  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5),selectionWidth=10) %>%
+  visEdges(arrows="to",smooth = list(enabled = T, type = 'dynamic'),color=list(opacity=0.5),selectionWidth=10,width=5) %>%
   visOptions(highlightNearest = list(enabled=T,degree=list(from=1,to=1),algorithm="hierarchical")) %>% 
   visExport(type="png",label="Screenshot visible region as PNG")
 }
@@ -230,15 +230,15 @@ layout_choices <- list("Default"='layout_with_fr',
                        "Grid"='layout_on_grid')
 #visOptions(highlightNearest = list(enabled=TRUE,labelOnly=F)) %>% 
 ####### EXPORT
-export_choices <- list("Proteins as CSV"='nodes.csv',
+export_choices <- list("Interactions (with sources) as CSV"='edges_sources.csv',
+                       "Proteins as CSV"='nodes.csv',
                        "Interactions as CSV"='edges.csv',
-                       "Interactions with sources as CSV"='edges_sources.csv',
                        "Network as GML"='network.gml',
                        "Network as GRAPHML"='network.graphml',
                        "Network as DOT"='network.dot')
 
 export_method <- function(filename,g,file) {
-  if(filename=='nodes.csv') {write.csv(g$nodes,file,row.names=F)}
+  if(filename=='nodes.csv') {export_nodes_csv(g$nodes,file)}
   if(filename=='edges.csv') {export_edges_csv(g$edges,file)}
   if(filename=='network.gml') {export_network_gml(g,file)}
   if(filename=='network.graphml') {export_network_graphml(g,file)}
@@ -246,10 +246,16 @@ export_method <- function(filename,g,file) {
   if(filename=='edges_sources.csv') {export_edges_sources_csv(g,file)}
 }
 
+export_nodes_csv <- function(nodes,file) {
+  data <- nodes %>% select(c('id','GeneName','group'))
+  write.csv(data,file,row.names=F)
+}
+
 export_edges_csv <- function(edges,file) {
   from_names <- sapply(edges %>% pull(from), get_gene_name)
   to_names <- sapply(edges %>% pull(to), get_gene_name)
   data <- edges %>% mutate(from_label = from_names,to_label=to_names)
+  data <- data %>% select(c('from','to','from_label','to_label','NSites','Sites'))
   write.csv(data,file,row.names=F)
 }
 
