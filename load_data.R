@@ -651,6 +651,7 @@ export_edges_sources_csv <- function(g,file) {
   data <- data %>% rename("Source Database"=PrimarySource,
                           "Reference (PMID)"=pmid_ref,
                           "Evidence"=evidence)
+  data <- data[!duplicated(data),]
   data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
   
   # print(colnames(data))
