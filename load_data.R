@@ -610,7 +610,10 @@ export_edges_csv <- function(edges,file) {
   from_names <- sapply(edges %>% pull(from), get_gene_name)
   to_names <- sapply(edges %>% pull(to), get_gene_name)
   data <- edges %>% mutate(from_label = from_names,to_label=to_names)
-  data <- data %>% select(c('from','to','from_label','to_label','NSites','Sites'))
+  data <- data %>% 
+    select(c('from','from_label','to','to_label','NSites','Sites')) %>%
+    rename(Kinase=from, "Kinase Name"=from_label, 
+           Substrate=to, "Substrate Name"=to)
   write.csv(data,file,row.names=F)
 }
 
@@ -648,7 +651,24 @@ export_edges_sources_csv <- function(g,file) {
   data <- data %>% rename("Source Database"=PrimarySource,
                           "Reference (PMID)"=pmid_ref,
                           "Evidence"=evidence)
-  print(colnames(data))
   data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
-  write.csv(data,file,row.names=F)
+  
+  # print(colnames(data))
+  ksi_pair <- unique(data[c('Kinase', 'Substrate')])
+  # print(ksi_pair)
+  new_df <- data.frame()
+  ksi_pair <- ksi_pair[order(ksi_pair$Kinase),]
+  
+  for (ksi_row in 1:nrow(ksi_pair)){
+    ksi_pair_i <- ksi_pair[ksi_row,]
+    # print(ksi_pair_i)
+    ksi_pair_df <- data[(data$Kinase == ksi_pair_i$Kinase) & (data$Substrate == ksi_pair_i$Substrate),]
+    ksi_pair_df$siteNum <- unlist(lapply(substring(ksi_pair_df$Site, 2), as.integer))
+    ksi_pair_df <- ksi_pair_df[order(ksi_pair_df$siteNum),]
+    ksi_pair_df <- ksi_pair_df[!names(ksi_pair_df) %in% c("siteNum")]
+    if (ksi_row < nrow(ksi_pair)) {ksi_pair_df <- rbind(ksi_pair_df, "")}
+    # print(ksi_pair_df)
+    new_df <- rbind(new_df, ksi_pair_df)
+  }
+  write.csv(new_df,file,row.names=F)
 }
