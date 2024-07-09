@@ -38,7 +38,7 @@ checkboxInput(inputId='toggleDisconnected3', "Proteins with no interactions", va
   )
 ```
 
-## Main Panel {data-width=1000}
+## Main Panel {data-width=750}
 #### Provide a custom set of proteins {.opening-page-text}
 Visualize kinase-substrate interactions within any protein set. Paste a set of gene symbols in the text box below, then click Submit.
 
@@ -105,15 +105,15 @@ infoEdge3 <- reactive({
 
 ```
 
-##  {data-width="300" .opening-page-text}
-### {}
+##  {data-width="650" .opening-page-text}
+### {data-height="500"}
 #### Interaction information
 <p class='options-text'> <b> Click on an edge</b> </p>
 
 ```{r,cache=FALSE}
   renderUI({infoEdge3()})
 ```
-### {}
+### {data-height="140"}
 #### Troubleshooting
 <div class="options-text">
 

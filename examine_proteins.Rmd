@@ -32,9 +32,9 @@ Last update: </br> <b>`r dataset_last_update`</b>
 
 Proteins available: </br> <b> `r nproteins` </b>
 
-Proteins data source: </br> [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606) <i>`r uniprot_release`</i>.
+Proteins data source: </br> [UniProt](https://www.uniprot.org/uniprotkb?query=Human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606){target="_blank"} <i>`r uniprot_release`</i>.
 
-## Main Panel {data-width=1000}
+## Main Panel {data-width=750}
 
 
 #### Choose a protein {.opening-page-text}
@@ -50,40 +50,54 @@ visNetworkOutput('network1')
 output$network1 <- renderVisNetwork({
   vis_default(g1()) %>%
   visNodes(scaling=list(label=list(min=60,max=80))) %>%
-  visEvents(select="function(nodes){Shiny.onInputChange('selectNode',nodes.nodes);}") %>%
+  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges.edges);}") %>%
+  visEvents(selectNode ="function(nodes){Shiny.onInputChange('selectNode1', nodes.nodes);}") %>%
   visEvents(doubleClick="function(nodes){Shiny.onInputChange('nextCenterNode',nodes.nodes)}") %>%
-  visEvents(selectEdge = "function(edges) {Shiny.setInputValue('selectedEdges1', edges);}") %>%
   visIgraphLayout(layout=layout_choices[[input$layout1]],smooth=T,physics=(nrow(g1()$edges)<10))
    })
 
 observeEvent(input$nextCenterNode,{updateSelectInput(inputId='centerGene',selected=get_gene_name(input$nextCenterNode))})
 
 infoGene1 <- reactive({
-  if(is.null(input$selectNode1)) {NULL} else {get_gene_name(input$selectNode1)}
-  })
+  req(input$selectNode1)
+  get_gene_name(input$selectNode1)
+  # if(is.null(input$selectNode1)) {NULL} else {get_gene_name(input$selectNode1)}
+
+})
 
 infoEdge1 <- reactive({
+# infoEdge1 <- renderUI({
+    # 
+    # req(input$selectedEdges1)
+    # input[['button-view-toggle-p1']] <- FALSE
+    
     req(input$selectedEdges1)
-    req(input$selectedEdges1$edges)
+    print(input$selectedEdges1)
     req(g1())
     req(g1()$edges)
-    edge_id <- input$selectedEdges1$edges
+    edge_id <- input$selectedEdges1
     e <- g1()$edges %>% filter(id == edge_id)
     req(nrow(e)==1)
+    # render_edge_info(e, 'button-view-toggle-p1', 'seq-table-p1')
     render_edge_info(e)
 })
 
+# observeEvent()
 ```
 
-##  {data-width="300" .opening-page-text}
-### {}
-#### Interaction information
+##  {data-width="650" .opening-page-text}
+### {data-height="500"}
+#### Interaction information 
 <p class='options-text'> <b> Click on an edge</b> </p>
 
 ```{r,cache=FALSE}
   renderUI({infoEdge1()})
 ```
-### {}
+
+<!-- #### test2  -->
+<!-- test123 -->
+
+### {data-height="110"}
 #### Troubleshooting
 <div class="options-text">
 

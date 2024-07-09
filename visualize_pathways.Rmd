@@ -43,20 +43,20 @@ Last update: </br> <b>`r dataset_last_update`</b>
 
 Pathways available: </br> <b> `r npathways`</b>
 
-Pathways data source: </br> `r kegg_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/).
+Pathways data source: </br> `r kegg_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/){target="_blank"}.
 
-Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
+Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/){target="_blank"} <i>`r gseapy_release`</i>.
 
-For more details,see our [paper](https://doi.org/10.1101/2023.12.08.570875).
+For more details,see our [paper](https://doi.org/10.1101/2023.12.08.570875){target="_blank"}.
 
 
 
-## Main Panel {data-width=1000}
+## Main Panel {data-width=750}
 #### Choose a pathway {.opening-page-text}
-Visualize kinase-substrate interactions in select [KEGG](https://www.genome.jp/kegg/pathway.html) **pathways**.  Choose a pathway from the dropdown menu.
+Visualize kinase-substrate interactions in select [KEGG](https://www.genome.jp/kegg/pathway.html){target="_blank"} **pathways**.  Choose a pathway from the dropdown menu.
 
 <p class='options-text'>
-Pathways were selected by enriching against substrates in the KinAce interaction dataset. If a pathway only contains kinase substrates, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
+Pathways were selected by enriching against substrates in the KiNet interaction dataset. If a pathway only contains kinase substrates, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
 </p>
 
 ```{r, cache = FALSE}
@@ -93,15 +93,15 @@ infoEdge2 <- reactive({
 
 ```
 
-##  {data-width="300" .opening-page-text}
-### {}
+##  {data-width="650" .opening-page-text}
+### {data-height="500"}
 #### Interaction information
 <p class='options-text'> <b> Click on an edge</b> </p>
 
 ```{r,cache=FALSE}
   renderUI({infoEdge2()})
 ```
-### {}
+### {data-height="140"}
 #### Troubleshooting
 <div class="options-text">
 

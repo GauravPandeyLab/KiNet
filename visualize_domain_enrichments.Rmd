@@ -46,18 +46,18 @@ Domains available: </br> <b> `r npathways`</b>
 
 Domains data source: </br> `r interpro_name` gene set library provided by [Enrichr](https://maayanlab.cloud/Enrichr/).
 
-Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/) <i>`r gseapy_release`</i>.
+Enrichment analysis software: </br> [GSEApy](https://github.com/zqfang/GSEApy/){target="_blank"} <i>`r gseapy_release`</i>.
 
-For more details,see our [paper](https://doi.org/10.1101/2023.12.08.570875).
+For more details,see our [paper](https://doi.org/10.1101/2023.12.08.570875){target="_blank"}.
 
 
-## Main Panel {data-width=1000}
+## Main Panel {data-width=750}
 #### Choose a domain {.opening-page-text }
 
-Visualize kinase-substrate interactions among proteins with select [InterPro](https://www.ebi.ac.uk/interpro/) **domains**.  Choose a domain from the dropdown menu.
+Visualize kinase-substrate interactions among proteins with select [InterPro](https://www.ebi.ac.uk/interpro/){target="_blank"} **domains**.  Choose a domain from the dropdown menu.
 
 <p class='options-text'>
-Domains were selected by enriching their protein sets against substrates in the KinAce interaction dataset. If a domain is only present in kinase substrates, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
+Domains were selected by enriching their protein sets against substrates in the KiNet interaction dataset. If a domain is only present in kinase substrates, you may not see any nodes or edges. Use the sidebar options to <b>include more proteins</b>.
 </p>
 
 
@@ -95,15 +95,15 @@ infoEdge4 <- reactive({
 
 ```
 
-##  {data-width="300" .opening-page-text}
-### {}
+##  {data-width="650" .opening-page-text}
+### {data-height="500"}
 #### Interaction information
 <p class='options-text'> <b> Click on an edge</b> </p>
 
 ```{r,cache=FALSE}
   renderUI({infoEdge4()})
 ```
-### {}
+### {data-height="140"}
 #### Troubleshooting
 <div class="options-text">
 

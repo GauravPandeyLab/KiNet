@@ -1,19 +1,38 @@
 ---
-title: <span class="title">KinAce</span>
+title: '<span class="title">KiNet</span>'
 resource_files:
-  - "./load_data.R"
+  - "load_data.R"
+  - data/..
+  - img/..
 output:
   flexdashboard::flex_dashboard:
     vertical_layout: fill
     theme:
       version: 3
       bootswatch: cerulean
-    # includes:
-    #   after_body: ./footer.html
     orientation: columns
     align: left
+self_contained: false
 runtime: shiny
 ---
+
+<!-- --- -->
+<!-- title: "PreDM/DM in youth ONline Dashboard (POND)" -->
+<!-- resource_files: -->
+<!--  - icons/.. -->
+<!-- # - data/.. -->
+<!-- # output: html_document -->
+<!-- output: -->
+<!--   flexdashboard::flex_dashboard: -->
+<!--     theme: -->
+<!--       version: 3 -->
+<!--       bootswatch: cerulean -->
+<!--     orientation: columns -->
+<!--     # vertical_layout: scroll -->
+<!-- self_contained: false -->
+
+<!-- runtime: shiny -->
+<!-- --- -->
 
 ```{r global, file='load_data.R', cache=FALSE}
 library(flexdashboard)
@@ -26,8 +45,10 @@ library(visNetwork)
 
 ```{r child='about.Rmd'}
 ```
+
 ```{r child='examine_proteins.Rmd'}
 ```
+
 ```{r child='visualize_pathways.Rmd'}
 ```
 ```{r child='visualize_domain_enrichments.Rmd'}
@@ -37,6 +58,11 @@ library(visNetwork)
 
 
 ```{=html}
+
+<script>
+$('.navbar-header').wrap('<a href="#section-about">');
+</script>
+
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Righteous&family=Playfair+Display:wght@500&display=swap');
 
