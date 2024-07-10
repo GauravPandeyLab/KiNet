@@ -12,64 +12,41 @@ library(flexdashboard)
   output$download0 <- downloadHandler(
     filename=function() {"ksi_source.csv"},
     content = function(file) {
-        # edges <- g$edges
-  raw_df <- read_csv("data/ksi_source_evi_ref.csv")
-  node_dropped_repeats <- all_nodes[!duplicated(all_nodes$id),]
-  data_ <- merge(raw_df, 
-                 node_dropped_repeats[c('id', 'GeneName')], 
-                 by.x=c('Kinase'), by.y=c('id'), all.x = TRUE) %>% rename("Kinase Name" = GeneName)
-  
-  data_ <- merge(data_, 
-                 node_dropped_repeats[c('id', 'GeneName')], 
-                 by.x=c('Substrate'), by.y=c('id'), all.x = TRUE) %>% rename("Substrate Name" = GeneName)
-  # from_names <- sapply(raw_df %>% pull(Kinase), get_gene_name)
-  # to_names <- sapply(raw_df %>% pull(Substrate), get_gene_name)
-  # data_ <- raw_df %>% mutate(from_label = from_names,to_label=to_names)
-  # data_ <- data_ %>% select(c('Kinase','Substrate','from_label','to_label'))
-  
-  # df <- data_ %>% rename(
-  #                     # Kinase=from,Substrate=to, 
-  #                       "Kinase Name"=from_label, "Substrate Name"=to_label,
+  ### First to create from raw file ###
+  # raw_df <- read_csv("data/ksi_source_evi_ref.csv")
+  # node_dropped_repeats <- all_nodes[!duplicated(all_nodes$id),]
+  # data_ <- merge(raw_df, 
+  #                node_dropped_repeats[c('id', 'GeneName')], 
+  #                by.x=c('Kinase'), by.y=c('id'), all.x = TRUE) %>% rename("Kinase Name" = GeneName)
+  # 
+  # data <- merge(data_, 
+  #                node_dropped_repeats[c('id', 'GeneName')], 
+  #                by.x=c('Substrate'), by.y=c('id'), all.x = TRUE) %>% rename("Substrate Name" = GeneName)
+  # print(colnames(data))
+  # data$siteNum <- unlist(lapply(substring(data$Site, 2), as.integer))
+  # print('test1')
+  # data <- data[order(data$Kinase, data$Substrate, data$siteNum, data$PrimarySource), ]
+  # data <- data %>% rename(
+  #                       "Source Database"=PrimarySource,
+  #                       "Reference (PMID)"=pmid_ref,
+  #                       "Evidence"=evidence
   #                       
   #                       )
-  # data_ <- edges %>% mutate(from_label = from_names,to_label=to_names)
-  # data_ <- data_ %>% select(c('from','to','from_label','to_label'))
-  # data <- merge(x=raw_df,y=df)
-  data <- data_ %>% rename(
-                        # Kinase=from,Substrate=to, 
-                        # "Kinase Name"=KinaseName, "Substrate Name"=SubstrateName,
-                        "Source Database"=PrimarySource,
-                        "Reference (PMID)"=pmid_ref,
-                        "Evidence"=evidence
-                        
-                        )
-  data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
-  data <- data[!duplicated(data),]
-  data <- data[order(data$Kinase),]
-  # data <- data[]
-  ksi_pair <- unique(data[c('Kinase', 'Substrate')])
-  # print(ksi_pair)
-  new_df <- data.frame()
-  ksi_pair <- ksi_pair[order(ksi_pair$Kinase),]
+  # data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
+  # data <- data[!duplicated(data),]
+  # insertIndex <- which(!duplicated(data[c('Kinase', 'Substrate')]), arr.ind = TRUE)
+  # # if ((insertIndex[1] == 1) & (insertIndex[2] == 2)) {
+  # if (length(insertIndex) > 2) {
+  #   insertIndex2 <- c(insertIndex[2]-1, insertIndex[3:length(insertIndex)])
+  #   dataWithEmptyRows <- insertRows(data, insertIndex2, new="", rcurrent=TRUE)
+  # } else {
+  #   dataWithEmptyRows <- data
+  # }
+  # 
+  # write.csv(dataWithEmptyRows,file,row.names=F)
   
-  for (ksi_row in 1:nrow(ksi_pair)){
-    ksi_pair_i <- ksi_pair[ksi_row,]
-    # print(ksi_pair_i)
-    ksi_pair_df <- data[(data$Kinase == ksi_pair_i$Kinase) & (data$Substrate == ksi_pair_i$Substrate),]
-    ksi_pair_df$siteNum <- unlist(lapply(substring(ksi_pair_df$Site, 2), as.integer))
-    ksi_pair_df <- ksi_pair_df[order(ksi_pair_df$siteNum),]
-    ksi_pair_df <- ksi_pair_df[!names(ksi_pair_df) %in% c("siteNum")]
-    if (ksi_row < nrow(ksi_pair)) {ksi_pair_df <- rbind(ksi_pair_df, "")}
-    # print(ksi_pair_df)
-    new_df <- rbind(new_df, ksi_pair_df)
-  }
-  
-  
-  # data <- merge(x=raw_df,y=df)
-  # data <- data %>% rename()
-  # raw_df <- raw_df[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
-  write.csv(new_df,file,row.names=F)
-      # file.copy("data/ksi_source_evi_ref.csv", file)
+  ### just copy the existing one ###
+      file.copy("data/ksi_source_full_dataset.csv", file)
       }
   )
 ```
@@ -138,7 +115,7 @@ This website is best viewed on larger screens.
 <h3> Data sources </h3>
 KiNet uses
 <ul> 
-<li> interactions from [PhosphoSitePlus](https://www.phosphosite.org/){target="_blank"}, [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/){target="_blank"} and [EPSD](https://epsd.biocuckoo.cn/){target="_blank"} downloaded in October,2023, </li>
+<li> interactions from [PhosphoSitePlus](https://www.phosphosite.org/){target="_blank"}, [iPTMnet](https://research.bioinformatics.udel.edu/iptmnet/){target="_blank"} and [EPSD](https://epsd.biocuckoo.cn/){target="_blank"} downloaded in October, 2023, </li>
 <li> kinase group information from [KinHub](http://kinhub.org/){target="_blank"}, [Coral](http://phanstiel-lab.med.unc.edu/CORAL/){target="_blank"} and the [Dark Kinase Knowledgebase](https://darkkinome.org/){target="_blank"}, </li>
 <li> protein names from [UniProt](https://www.uniprot.org/uniprotkb?query=human&facets=reviewed%3Atrue%2Cmodel_organism%3A9606){target="_blank"}, </li>
 <li> gene symbols from [HGNC](https://www.genenames.org/){target="_blank"} </li>

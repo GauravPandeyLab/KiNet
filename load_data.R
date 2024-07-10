@@ -4,6 +4,7 @@ library(xtable)
 library(rvest)
 library(dplyr)
 library(stringr)
+library(berryFunctions)
 
 all_edges <- read_csv('data/ksi_display.csv') %>% 
   rename(from=Kinase,to=Substrate)
@@ -633,6 +634,27 @@ export_network_dot <- function(g,file) {
   write_graph(h,file,format="dot")
 }
 
+get_rows_KSI <- function(x, whole_dataset) {
+
+  # ksi_pair_i <- ksi_pair[ksi_row,]
+  # ksi_
+  # print(ksi_pair_i)
+  # print(row_)
+  # print(whale_dataset)
+  print('test1')
+  print(x)
+  whole_dataset_temp <- whole_dataset[(whole_dataset$Kinase == x$Kinase) & (whole_dataset$Substrate == x$Substrate),]
+  print('test2')
+  whole_dataset_temp$siteNum <- unlist(lapply(substring(whole_dataset_temp$Site, 2), as.integer))
+  print('test3')
+  whole_dataset_temp <- whole_dataset_temp[order(whole_dataset_temp$siteNum),]
+  whole_dataset_final <- whole_dataset_temp[!names(whole_dataset_temp) %in% c("siteNum")]
+  return(whole_dataset_final)
+  # if (ksi_row < nrow(ksi_pair)) {ksi_pair_df <- rbind(ksi_pair_df, "")}
+  # print(ksi_pair_df)
+  # new_df <- rbind(new_df, ksi_pair_df)
+}
+
 export_edges_sources_csv <- function(g,file) {
   # df <- g$edges %>% select(from,to) %>% rename(Kinase=from,Substrate=to)
   # print(g)
@@ -648,28 +670,47 @@ export_edges_sources_csv <- function(g,file) {
                         )
   # df <- df[,c('Kinase', 'KinaseName', 'Substrate', 'SubstrateName', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
   data <- merge(x=source_data,y=df)
+  data$siteNum <- unlist(lapply(substring(data$Site, 2), as.integer))
+  data <- data[order(data$Kinase, data$Substrate, data$siteNum, data$PrimarySource), ]
   data <- data %>% rename("Source Database"=PrimarySource,
                           "Reference (PMID)"=pmid_ref,
                           "Evidence"=evidence)
   
-  data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
-  data <- data[!duplicated(data),]
-  # print(colnames(data))
-  ksi_pair <- unique(data[c('Kinase', 'Substrate')])
-  # print(ksi_pair)
-  new_df <- data.frame()
-  ksi_pair <- ksi_pair[order(ksi_pair$Kinase),]
   
-  for (ksi_row in 1:nrow(ksi_pair)){
-    ksi_pair_i <- ksi_pair[ksi_row,]
-    # print(ksi_pair_i)
-    ksi_pair_df <- data[(data$Kinase == ksi_pair_i$Kinase) & (data$Substrate == ksi_pair_i$Substrate),]
-    ksi_pair_df$siteNum <- unlist(lapply(substring(ksi_pair_df$Site, 2), as.integer))
-    ksi_pair_df <- ksi_pair_df[order(ksi_pair_df$siteNum),]
-    ksi_pair_df <- ksi_pair_df[!names(ksi_pair_df) %in% c("siteNum")]
-    if (ksi_row < nrow(ksi_pair)) {ksi_pair_df <- rbind(ksi_pair_df, "")}
-    # print(ksi_pair_df)
-    new_df <- rbind(new_df, ksi_pair_df)
+  
+  data <- data[,c('Kinase', 'Kinase Name', 'Substrate', 'Substrate Name', 'Site', 'Source Database', 'Evidence','Reference (PMID)')]
+  
+  data <- data[!duplicated(data),]
+  
+  insertIndex <- which(!duplicated(data[c('Kinase', 'Substrate')]), arr.ind = TRUE)
+  # if ((insertIndex[1] == 1) & (insertIndex[2] == 2)) {
+  if (length(insertIndex) > 2) {
+    insertIndex2 <- c(insertIndex[2]-1, insertIndex[3:length(insertIndex)])
+    dataWithEmptyRows <- insertRows(data, insertIndex2, new="", rcurrent=TRUE)
+  } else {
+    dataWithEmptyRows <- data
   }
-  write.csv(new_df,file,row.names=F)
+  
+  # print(colnames(data))
+  # ksi_pair <- unique(data[c('Kinase', 'Substrate')])
+  # print(ksi_pair)
+  # new_df <- data.frame()
+  # new_df_list <- 
+  # ksi_pair <- ksi_pair[order(ksi_pair$Kinase, ksi_pair$Substrate),]
+  # 
+  # ksi_pairs_ <- lapply(ksi_pair, get_rows_KSI, whole_dataset=data)
+  # print(ksi_pairs_)
+  # for (ksi_row in 1:nrow(ksi_pair)){
+  #   ksi_pair_i <- ksi_pair[ksi_row,]
+  #   # print(ksi_pair_i)
+  #   ksi_pair_df <- data[(data$Kinase == ksi_pair_i$Kinase) & (data$Substrate == ksi_pair_i$Substrate),]
+  #   ksi_pair_df$siteNum <- unlist(lapply(substring(ksi_pair_df$Site, 2), as.integer))
+  #   ksi_pair_df <- ksi_pair_df[order(ksi_pair_df$siteNum),]
+  #   ksi_pair_df <- ksi_pair_df[!names(ksi_pair_df) %in% c("siteNum")]
+  #   if (ksi_row < nrow(ksi_pair)) {ksi_pair_df <- rbind(ksi_pair_df, "")}
+  #   # print(ksi_pair_df)
+  #   new_df <- rbind(new_df, ksi_pair_df)
+  # }
+  # new_df <- do.call(rbind())
+  write.csv(dataWithEmptyRows,file,row.names=F)
 }
