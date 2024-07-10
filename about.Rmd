@@ -10,7 +10,7 @@ library(flexdashboard)
   (downloadButton('download0',HTML("DOWNLOAD<br/>The full KiNet interaction dataset"),class="download-full"))
   
   output$download0 <- downloadHandler(
-    filename=function() {"ksi_source.csv"},
+    filename=function() {"ksi_source_full_dataset.csv"},
     content = function(file) {
   ### First to create from raw file ###
   # raw_df <- read_csv("data/ksi_source_evi_ref.csv")
