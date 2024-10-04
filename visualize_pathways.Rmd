@@ -33,7 +33,7 @@ checkboxInput(inputId='toggleDisconnected2', "Proteins with no interactions", va
   (downloadButton('download2',"Download"))
   
   output$download2 <- downloadHandler(
-    filename=function() {filename2()},
+    filename=function() {paste(c(input$pathway, filename2()), collapse = "_")},
     content = function(file) {export_method(filename2(),g2(),file)}
   )
 ```
